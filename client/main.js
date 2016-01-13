@@ -3,16 +3,18 @@ var ReactDOM = require('react-dom');
 
 var HelloWorld = React.createClass({
     getInitialState: function() {
-      return {dog: false};
+      return {dog: null};
     },
-    handleClick: function(event) {
-      this.setState({dog: !this.state.dog});
+    handleChange: function(event) {
+      this.setState({dog: event.target.value});
     },
     render: function() {
-      var text = this.state.dog ? 'Woof, Bark' : 'Hello, World';
+      var text = this.state.dog ? 'Hello, ' + this.state.dog : '';
         return (
-        <div onClick={this.handleClick}>
+        <div>
           {text}
+          <br />
+          What is your name? <input type="text" value={this.state.dog} onChange={this.handleChange} />
         </div>
         );
     }
