@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node ./server/server.js",
-    "build": "browserify -t reactify /client/main.js -o /build/bundle.js"
+    "build": "browserify -t reactify ./client/main.js -o ./build/bundle.js"
   },
   "repository": {
     "type": "git",
