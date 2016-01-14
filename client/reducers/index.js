@@ -1,10 +1,11 @@
-const helloMessage = function(state, action){
-  state = state || {page:'MAIN'};
+//evetually export these to other files and import all reducers to this file and combine them.
+const nav = function(state, action){
+  state = state || {page:'MAIN'}; // main menu is default page rendered.
   switch(action.type){
-    case 'CHANGE':
-      return Object.assign({}, state, {text: action.text});
+    case 'NAVIGATE':
+      return Object.assign({}, state, {page: action.page}); // Object.assign() is equivalent to _.extend()
     default:
       return state;
   }
 }
-module.exports.helloMessage = helloMessage;
+module.exports.nav = nav;

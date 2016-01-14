@@ -1,41 +1,39 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Redux = require('redux');
+window.React = require('react');
+window.ReactDOM = require('react-dom');
+window.Redux = require('redux');
+// putting these on the window so our components in other files can use them.
 var reducers = require('./reducers/');
+var components = require('./components/');
+window.store = Redux.createStore(reducers.nav);
+ 
 
-// var pages = {
-//   MAIN: HelloWorld
-// }
-
-const helloMessage = reducers.helloMessage;
-var HelloWorld = React.createClass({
-    handleChange: function(event) {
-      store.dispatch({
-        type: 'CHANGE',
-        text: event.target.value
-      });
-    },
-    render: function() {
-      var text = store.getState().text ? 'Hello, ' + store.getState().text : ''
-        return (
-        <div>
-          {text}
-          <br />
-          What is your name? <input type="text" value={store.getState().text} onChange={this.handleChange} />
-        </div>
-        );
-    }
-});
-const store = Redux.createStore(helloMessage);
-store.subscribe(function(){
+// tell when components should render.
+var render = function(){
+  // this function should handle rendering of seperate pages e.g if state.page is 'MAIN' render the main menu.
   console.log(store.getState());
-  ReactDOM.render(<HelloWorld />, document.getElementById('content'));
-});
-
-const render = function(){
-  var state = store.getState();
-  console.log(state);
-
+  switch(store.getState().page){
+    case 'MAIN':
+      ReactDOM.render(<MainMenu />, document.getElementById('content'));
+      return;
+    case 'SELECT':
+      ReactDOM.render(<SongSelect />, document.getElementById('content'));
+      return;
+    case 'PLAY':
+      ReactDOM.render(<SongPlay />, document.getElementById('content'));
+      return;
+    case 'SCORE':
+      ReactDOM.render(<ScoreScreen />, document.getElementById('content'));
+      return;
+    case 'LOGIN':
+      // ReactDOM.render(<Login />, document.getElementById('content'));
+      return;
+    case 'SIGNUP':
+      // ReactDOM.render(<Signup />, document.getElementById('content'));
+      return;  
+  }
 }
 
-ReactDOM.render(<HelloWorld />, document.getElementById('content'));
+// tell store to run render function when state changes.
+store.subscribe(render);
+// initial render.
+render();
