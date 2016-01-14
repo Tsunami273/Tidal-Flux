@@ -1,7 +1,7 @@
+// putting these on the window so our components in other files can use them.
 window.React = require('react');
 window.ReactDOM = require('react-dom');
 window.Redux = require('redux');
-// putting these on the window so our components in other files can use them.
 var reducers = require('./reducers/');
 var components = require('./components/');
 window.store = Redux.createStore(reducers.nav);
