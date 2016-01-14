@@ -1,18 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Redux = require('redux');
-// var components = require('./components/');
-// var store = require('./store/');
-// var reduces = require('./reducers/');
-const helloMessage = function(state, action){
-  state = state || undefined;
-  switch(action.type){
-    case 'CHANGE':
-      return action.text;
-    default:
-      return state;
-  }
-}
+var reducers = require('./reducers/');
+
+// var pages = {
+//   MAIN: HelloWorld
+// }
+
+const helloMessage = reducers.helloMessage;
 var HelloWorld = React.createClass({
     handleChange: function(event) {
       store.dispatch({
@@ -21,21 +16,26 @@ var HelloWorld = React.createClass({
       });
     },
     render: function() {
-      var text = store.getState() ? 'Hello, ' + store.getState() : ''
+      var text = store.getState().text ? 'Hello, ' + store.getState().text : ''
         return (
         <div>
           {text}
           <br />
-          What is your name? <input type="text" value={store.getState()} onChange={this.handleChange} />
+          What is your name? <input type="text" value={store.getState().text} onChange={this.handleChange} />
         </div>
         );
     }
 });
 const store = Redux.createStore(helloMessage);
 store.subscribe(function(){
+  console.log(store.getState());
   ReactDOM.render(<HelloWorld />, document.getElementById('content'));
 });
 
+const render = function(){
+  var state = store.getState();
+  console.log(state);
 
+}
 
 ReactDOM.render(<HelloWorld />, document.getElementById('content'));
