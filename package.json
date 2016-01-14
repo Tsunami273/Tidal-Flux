@@ -23,6 +23,7 @@
     "nodemon": "^1.8.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
-    "reactify": "^1.1.1"
+    "reactify": "^1.1.1",
+    "redux": "^3.0.5"
   }
 }
