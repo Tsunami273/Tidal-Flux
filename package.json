@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Web based rhythm game",
   "main": "index.js",
+  "watch": {"build":"client/*"},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node ./server/server.js",
-    "build": "browserify -t reactify ./client/main.js -o ./build/bundle.js"
+    "build": "browserify -t reactify ./client/main.js -o ./build/bundle.js",
+    "watch": "npm-watch"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   "dependencies": {
     "browserify": "^13.0.0",
     "nodemon": "^1.8.1",
+    "npm-watch": "^0.1.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "reactify": "^1.1.1",
