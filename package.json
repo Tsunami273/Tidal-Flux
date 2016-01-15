@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Web based rhythm game",
   "main": "index.js",
-  "watch": {"build":"client/*"},
+  "watch": {
+    "build": "client/*"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build && node ./server/server.js",
@@ -22,12 +24,15 @@
   "homepage": "https://github.com/Tsunami273/Tidal-Flux#readme",
   "dependencies": {
     "browserify": "^13.0.0",
+    "classnames": "^2.2.3",
     "keypress.js": "^2.1.0",
     "nodemon": "^1.8.1",
     "npm-watch": "^0.1.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "reactify": "^1.1.1",
-    "redux": "^3.0.5"
+    "redux": "^3.0.5",
+    "express": "~4.0.0",
+    "body-parser": "~1.0.1"
   }
 }

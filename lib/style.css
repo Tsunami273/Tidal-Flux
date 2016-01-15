@@ -1,3 +1,9 @@
 .clicky { cursor: pointer; }
 
 .hidden {}
+
+.selectedsong {
+  background-color:blue;
+  color:white;
+}
+
