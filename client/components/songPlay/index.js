@@ -1,4 +1,5 @@
 // import child components here.
+NavButton = require('../navButton.js');
 
 SongPlay = React.createClass({
     play: function(event) {
@@ -12,7 +13,7 @@ SongPlay = React.createClass({
         <div>
           <h1>Song Play</h1>
           <br />
-          <div className="clicky" onClick={this.play}>Finished</div>
+          <NavButton dest="Finished" onClick={this.play} />
         </div>
         );
     }

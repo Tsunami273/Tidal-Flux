@@ -1,4 +1,5 @@
 // import child components here.
+NavButton = require('../navButton.js');
 
 MainMenu = React.createClass({
     play: function(event) {
@@ -12,7 +13,7 @@ MainMenu = React.createClass({
         <div>
           <h1>Main Menu</h1>
           <br />
-          <div className="clicky" onClick={this.play}>Play</div>
+          <NavButton dest="Play" onClick={this.play} />
         </div>
         );
     }
