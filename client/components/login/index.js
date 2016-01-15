@@ -7,6 +7,9 @@ Login = React.createClass({
         page: 'LOGIN'
       });
     },
+    goToSignup: function(event){
+      store.dispatch(navigateToPage('SIGNUP'));
+    },
     render: function() {
         return (
         <div>
@@ -20,7 +23,7 @@ Login = React.createClass({
             <br />
           </form>
           <p>I forgot my password!</p>
-          <p>Not a user yet? Sign up here</p>
+          <div className="clicky" onClick={this.goToSignup}>Not a user yet? Signup here</div>
         </div>
         );
     }
