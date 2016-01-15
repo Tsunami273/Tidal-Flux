@@ -33,7 +33,7 @@ var render = function(){
       ReactDOM.render(<Login />, document.getElementById('content'));
       return;
     case 'SIGNUP':
-      // ReactDOM.render(<Signup />, document.getElementById('content'));
+      ReactDOM.render(<Signup />, document.getElementById('content'));
       return;  
   }
 }
@@ -43,7 +43,7 @@ store.subscribe(render);
 // initial render.
 render();
 listener.register_many([{
-      "keys"              : "s",
+      "keys"              : "",
       "on_keydown"        : function(){
          store.dispatch(navigateToPage('SELECT'));
       },

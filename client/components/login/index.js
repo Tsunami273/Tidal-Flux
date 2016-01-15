@@ -13,7 +13,6 @@ Login = React.createClass({
           <h1>Login Page</h1>
           <br />
           <input type="text">emailadfas</input>
-          <div className="clicky" onClick={this.play}>Play</div>
         </div>
         );
     }
