@@ -1,0 +1,29 @@
+{
+  "name": "tidal-flux",
+  "version": "1.0.0",
+  "description": "Web based rhythm game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node ./server/server.js",
+    "build": "browserify -t reactify ./client/main.js -o ./build/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tsunami273/Tidal-Flux.git"
+  },
+  "author": "273",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tsunami273/Tidal-Flux/issues"
+  },
+  "homepage": "https://github.com/Tsunami273/Tidal-Flux#readme",
+  "dependencies": {
+    "browserify": "^13.0.0",
+    "nodemon": "^1.8.1",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "reactify": "^1.1.1",
+    "redux": "^3.0.5"
+  }
+}
