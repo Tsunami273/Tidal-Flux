@@ -1,11 +1,10 @@
 // import child components here.
+// var combos = require('./keybinds.js');
+var NavButton = require('../navButton.js');
 
 MainMenu = React.createClass({
     play: function(event) {
-      store.dispatch({
-        type: 'NAVIGATE',
-        page: 'SELECT'
-      });
+      store.dispatch(navigateToPage('SELECT'));
     },
     goToLogin: function(event){
       store.dispatch({
@@ -14,6 +13,7 @@ MainMenu = React.createClass({
       });
     },
     render: function() {
+      // listener.register_many[{}]
         return (
         <div>
           <h1>Main Menu</h1>

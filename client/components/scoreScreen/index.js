@@ -1,18 +1,16 @@
 // import child components here.
+var NavButton = require('../navButton.js');
 
 ScoreScreen = React.createClass({
     play: function(event) {
-      store.dispatch({
-        type: 'NAVIGATE',
-        page: 'SELECT'
-      });
+      store.dispatch(navigateToPage('SELECT'));
     },
     render: function() {
         return (
         <div>
           <h1>Score Screen</h1>
           <br />
-          <div className="clicky" onClick={this.play}>Done</div>
+          <NavButton dest="Done" onClick={this.play} />
         </div>
         );
     }
