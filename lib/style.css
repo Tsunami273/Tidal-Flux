@@ -1,6 +1,11 @@
 .clicky { cursor: pointer; }
 
+.hidden {
+	display: none;
+}
+
 .selectedsong {
   background-color:#373F51;
   color:white;
 }
+
