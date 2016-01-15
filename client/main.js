@@ -1,10 +1,11 @@
-// putting these on the window so our components in other files can use them.
-window.React = require('react');
-window.ReactDOM = require('react-dom');
-window.Redux = require('redux');
+// putting these on global scope so our components in other files can use them.
+React = require('react');
+ReactDOM = require('react-dom');
+Redux = require('redux');
+require('./actions/');
 var reducers = require('./reducers/');
-var components = require('./components/');
-window.store = Redux.createStore(reducers.nav);
+store = Redux.createStore(reducers.nav);
+require('./components/');
  
 
 // tell when components should render.

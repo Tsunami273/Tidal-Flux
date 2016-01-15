@@ -1,12 +1,9 @@
 // import child components here.
-NavButton = require('../navButton.js');
-
+var NavButton = require('../navButton.js');
+ 
 SongPlay = React.createClass({
     play: function(event) {
-      store.dispatch({
-        type: 'NAVIGATE',
-        page: 'SCORE'
-      });
+      store.dispatch(navigateToPage('SCORE'));
     },
     render: function() {
         return (
