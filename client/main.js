@@ -2,11 +2,15 @@
 React = require('react');
 ReactDOM = require('react-dom');
 Redux = require('redux');
-require('./actions/');
+
+keypress = require('keypress.js').keypress; 
+listener = new keypress.Listener();
+
 var reducers = require('./reducers/');
+require('./actions/');
 store = Redux.createStore(reducers.nav);
 require('./components/');
- 
+
 
 // tell when components should render.
 var render = function(){
@@ -38,3 +42,12 @@ var render = function(){
 store.subscribe(render);
 // initial render.
 render();
+listener.register_many([{
+      "keys"              : "s",
+      "on_keydown"        : function(){
+         store.dispatch(navigateToPage('SELECT'));
+      },
+      "on_keyup"          : function(){
+        console.log('hey');
+      }
+  }]);
