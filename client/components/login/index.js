@@ -11,8 +11,16 @@ Login = React.createClass({
         return (
         <div>
           <h1>Login Page</h1>
-          <br />
-          <input type="text">emailadfas</input>
+          <form>
+            <p>Email/Username</p>
+              <input type="text" name="email"></input>
+            <br />
+            <p>Password</p>
+              <input type="text" name="password"></input>
+            <br />
+          </form>
+          <p>I forgot my password!</p>
+          <p>Not a user yet? Sign up here</p>
         </div>
         );
     }
