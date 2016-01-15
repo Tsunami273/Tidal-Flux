@@ -23,15 +23,15 @@ SongSelect = React.createClass({
         // store.dispatch(selectSong(songList[0]));
         // return (<div>loading...</div>);
       // }
-      var nowPlaying = audioSource ? 'Now Playing: ' + audioSource.title : '';
+      // var nowPlaying = audioSource ? 'Now Playing: ' + audioSource.title : '';
         return (
         <div>
           <h1>Song Select</h1>
-          <h2>{nowPlaying}</h2>
           <Songs songList={songList} />
           <br />
           <NavButton dest="Play Song" onClick={this.play} />
-          <audio src={'./songs/' + audioSource.id + '.ogg'} autoPlay></audio>
+          <br />
+          <audio controls src={'./songs/' + audioSource.id + '.ogg'} autoPlay></audio>
         </div>
         );
     }
