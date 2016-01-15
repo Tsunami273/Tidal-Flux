@@ -24,6 +24,8 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "reactify": "^1.1.1",
-    "redux": "^3.0.5"
+    "redux": "^3.0.5",
+    "express": "~4.0.0",
+    "body-parser": "~1.0.1"
   }
 }
