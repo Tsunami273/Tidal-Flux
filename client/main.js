@@ -8,7 +8,7 @@ listener = new keypress.Listener();
 
 var reducers = require('./reducers/');
 require('./actions/');
-store = Redux.createStore(reducers.nav);
+store = Redux.createStore(reducers.main);
 require('./components/');
 
 
@@ -43,7 +43,7 @@ store.subscribe(render);
 // initial render.
 render();
 listener.register_many([{
-      "keys"              : "s",
+      "keys"              : "",
       "on_keydown"        : function(){
          store.dispatch(navigateToPage('SELECT'));
       },
