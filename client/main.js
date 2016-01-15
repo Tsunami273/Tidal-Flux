@@ -1,11 +1,16 @@
-// putting these on the window so our components in other files can use them.
-window.React = require('react');
-window.ReactDOM = require('react-dom');
-window.Redux = require('redux');
+// putting these on global scope so our components in other files can use them.
+React = require('react');
+ReactDOM = require('react-dom');
+Redux = require('redux');
+
+keypress = require('keypress.js').keypress; 
+listener = new keypress.Listener();
+
 var reducers = require('./reducers/');
-var components = require('./components/');
-window.store = Redux.createStore(reducers.nav);
- 
+require('./actions/');
+store = Redux.createStore(reducers.nav);
+require('./components/');
+
 
 // tell when components should render.
 var render = function(){
@@ -37,3 +42,12 @@ var render = function(){
 store.subscribe(render);
 // initial render.
 render();
+listener.register_many([{
+      "keys"              : "s",
+      "on_keydown"        : function(){
+         store.dispatch(navigateToPage('SELECT'));
+      },
+      "on_keyup"          : function(){
+        console.log('hey');
+      }
+  }]);

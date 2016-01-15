@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Tsunami273/Tidal-Flux#readme",
   "dependencies": {
     "browserify": "^13.0.0",
+    "keypress.js": "^2.1.0",
     "nodemon": "^1.8.1",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
