@@ -7,10 +7,10 @@ MainMenu = React.createClass({
       store.dispatch(navigateToPage('SELECT'));
     },
     goToLogin: function(event){
-      store.dispatch({
-        type: 'NAVIGATE',
-        page: 'LOGIN'
-      });
+      store.dispatch(navigateToPage('LOGIN'));
+    },
+    goToSignup: function(event){
+      store.dispatch(navigateToPage('SIGNUP'));
     },
     render: function() {
       // listener.register_many[{}]
@@ -20,6 +20,7 @@ MainMenu = React.createClass({
           <br />
           <div className="clicky" onClick={this.play}>Play</div>
           <div className="clicky" onClick={this.goToLogin}>Login</div>
+          <div className="clicky" onClick={this.goToSignup}>Signup</div>
         </div>
         );
     }
