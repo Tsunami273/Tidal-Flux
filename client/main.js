@@ -30,10 +30,10 @@ var render = function(){
       ReactDOM.render(<ScoreScreen />, document.getElementById('content'));
       return;
     case 'LOGIN':
-      // ReactDOM.render(<Login />, document.getElementById('content'));
+      ReactDOM.render(<Login />, document.getElementById('content'));
       return;
     case 'SIGNUP':
-      // ReactDOM.render(<Signup />, document.getElementById('content'));
+      ReactDOM.render(<Signup />, document.getElementById('content'));
       return;  
   }
 }
