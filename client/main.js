@@ -43,12 +43,3 @@ var render = function(){
 store.subscribe(render);
 // initial render.
 render();
-listener.register_many([{
-      "keys"              : "",
-      "on_keydown"        : function(){
-         store.dispatch(navigateToPage('SELECT'));
-      },
-      "on_keyup"          : function(){
-        console.log('hey');
-      }
-  }]);
