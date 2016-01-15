@@ -4,3 +4,9 @@ navigateToPage = function(page){
           page: page
         };
 }
+selectSong = function(song){
+  return {
+    type:'SELECT_SONG',
+    selected: song
+  }
+}
