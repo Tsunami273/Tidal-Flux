@@ -15,14 +15,33 @@ MainMenu = React.createClass({
     render: function() {
       // listener.register_many[{}]
         return (
-        <div>
-          <h1>Main Menu</h1>
+        <div id="menucontain">
+
+          <div id="title">
+            <img src="TidalFlux.svg" alt="Tidal Flux"></img>
+          </div>
           <br />
-          <div className="clicky" onClick={this.play}>Play</div>
-          <div className="clicky" onClick={this.goToLogin}>Login</div>
-          <div className="clicky" onClick={this.goToSignup}>Signup</div>
+          <div id="play" className="clicky" onClick={this.play}>
+            <h3>Play</h3>
+          </div>
+
+          <div id="options" className="clicky">
+            <h3>Options</h3>
+          </div>
+
+          <div id="login" className="clicky" onClick={this.goToLogin}>
+            <h3>Login</h3>
+          </div>
+
+          <div id="signup" className="clicky" onClick={this.goToSignup}>
+            <h3>Signup</h3>
+          </div>
+
         </div>
         );
     }
 });
 module.exports = MainMenu;
+
+// <div className="clicky" onClick={this.goToLogin}>Login</div>
+// <div className="clicky" onClick={this.goToSignup}>Signup</div>
