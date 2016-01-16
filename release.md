@@ -10,4 +10,4 @@ Created views:
   - song play  
   - score screen  
 
-Team spent most of the week learning react / redux.
+Team spent most of the week learning react / redux.  
