@@ -28,7 +28,7 @@ Signup = React.createClass({
     validateUsername: function(event){
       var username = event.target.value;
       var usernameError = '';
-      if(username.length <= 4){
+      if(username.length < 4){
         this.setState({usernameError: 'Username must be at least 4 characters'});
         this.setState({hide:'hidden'});
       }
@@ -57,6 +57,23 @@ Signup = React.createClass({
       }
       this.setState({confirmPassword: event.target.value});
     },
+    sendCredentialsToServer: function(event){
+      event.preventDefault();
+      $.ajax({
+        url: '/api/signup'/*waiting on route from Festus*/,
+        dataType: 'json',
+        type: 'POST',
+        data: { username : this.state.username, password : this.state.password },
+        success: function(data) {
+          store.dispatch( { type:'SIGN_IN', username : data.username } );
+          console.log('sign up succes')
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+          console.log('sign up error');
+        }.bind(this)
+      });
+    },
     render: function() {
       var emailError = this.state.emailError ? 'Error, ' + this.state.emailError : '';
       var usernameError = this.state.usernameError ? 'Error, ' + this.state.usernameError : '';
@@ -65,7 +82,7 @@ Signup = React.createClass({
         return (
         <div>
           <h1>Sign Up Page</h1>
-          <form>
+          <form onSubmit={this.sendCredentialsToServer}>
             Email: <input type="input" value={this.state.email} onChange={this.validateEmail}/>
             <br />
             {emailError}

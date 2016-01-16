@@ -6,13 +6,16 @@ const main = function(state, action){
                 title:'Ice Angel', 
                 artist:'Yooh',
                 id: 1
-              }
+              },
+  username:''
   }; 
   switch(action.type){
     case 'NAVIGATE':
       return Object.assign({}, state, {page: action.page}); // Object.assign() is equivalent to _.extend()
     case 'SELECT_SONG':
       return Object.assign({}, state, {selectedSong: action.selected});
+    case 'SIGN_IN':
+      return Object.assign({}, state, {username: action.username});
     default:
       return state;
   }
