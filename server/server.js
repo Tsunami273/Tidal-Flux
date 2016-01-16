@@ -7,13 +7,15 @@ var React      = require('react');
 var port       = process.env.PORT || 4000;  
 var https 	   = require('https');
 var router     = express.Router();
+var logger     = require('morgan')
 
 
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../'));
-app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+
 
 
 app.post('/user', function (req, res) {
