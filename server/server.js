@@ -17,21 +17,26 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../'));
 //
-app.post('/api/users/signup', function(req, res){
+app.post('/api/player/signup', function(req, res){
 	signup(req, res, res.send);
 });
 
-app.post('/api/users/signin', function(req, res){
+app.post('/api/player/signin', function(req, res){
 	signin(req, res, res.send);
 });
 
-app.post('/api/users/profile', function (req, res) {
-	returnProfile(req, res);
+app.post('/api/player/messages', function(req, res){
+	messages(req, res, res.send)
+})
+
+app.post('/api/player/profile', function (req, res) {
+	playerProfile(req, res);
 });
 
 app.post('/api/rankings', function (req, res) {
-  returnRankings(req, res);
+	playerRankings(req, res);
 });
+
 
 
 app.listen(port);
