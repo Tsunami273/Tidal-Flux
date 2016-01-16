@@ -31,7 +31,7 @@ SongSelect = React.createClass({
           <br />
           <NavButton dest="Play Song" onClick={this.play} />
           <br />
-          <audio controls src={'./songs/' + audioSource.id + '.ogg'} autoPlay></audio>
+          <audio controls src={'./songs/' + audioSource.id + '/'+  audioSource.id + '.ogg'} autoPlay></audio>
         </div>
         );
     }
