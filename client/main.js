@@ -3,6 +3,7 @@ React = require('react');
 ReactDOM = require('react-dom');
 Redux = require('redux');
 classNames = require('classnames');
+$ = require('jquery');
 
 keypress = require('keypress.js').keypress; 
 listener = new keypress.Listener();
