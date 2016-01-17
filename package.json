@@ -23,8 +23,11 @@
   },
   "homepage": "https://github.com/Tsunami273/Tidal-Flux#readme",
   "dependencies": {
+    "body-parser": "~1.0.1",
     "browserify": "^13.0.0",
     "classnames": "^2.2.3",
+    "express": "~4.0.0",
+    "jquery": "^2.2.0",
     "keypress.js": "^2.1.0",
     "nodemon": "^1.8.1",
     "npm-watch": "^0.1.1",
