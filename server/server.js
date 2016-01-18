@@ -10,19 +10,30 @@ var router     = express.Router();
 var logger     = require('morgan');
 var path       = require('path');
 
-
+var player = [{name: 'fest', password: '123'}];
+var messages = [];
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../'));
-//
+app.use(router);
+
 app.post('/api/player/signup', function(req, res){
-	signup(req, res, res.send);
+	player.push(req.body)
+	console.log('signup req: ', player);
+	res.send(200, 'player logged in');
 });
 
 app.post('/api/player/signin', function(req, res){
-	signin(req, res, res.send);
+	for(var i = 0; i < player.length; i++) {
+		if (req.body.name === player[i].name && req.body.password === player[i].password) {
+			console.log('signin req: ', req.body);
+			res.send(200, 'player logged in');
+		} else {
+			res.send(401, 'player is not logged in');
+		}
+	}
 });
 
 app.post('/api/player/messages', function(req, res){
@@ -36,7 +47,6 @@ app.post('/api/player/profile', function (req, res) {
 app.post('/api/rankings', function (req, res) {
 	playerRankings(req, res);
 });
-
 
 
 app.listen(port);
