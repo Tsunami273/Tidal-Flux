@@ -36,7 +36,9 @@ var render = function(){
       return;
     case 'SIGNUP':
       ReactDOM.render(<Signup />, document.getElementById('content'));
-      return;  
+      return; 
+    case 'GOPTIONS':
+      ReactDOM.render(<GlobalOptions />, document.getElementById('content')); 
   }
 }
 
