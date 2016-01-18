@@ -39,5 +39,9 @@
     "body-parser": "~1.0.1",
     "morgan": "^1.6.1",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chai": "^3.4.0",
+    "mocha": "^2.3.3"
   }
 }
