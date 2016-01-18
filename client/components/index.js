@@ -5,4 +5,5 @@ require('./songPlay/');
 require('./scoreScreen/');
 require('./login/');
 require('./signup/');
+require('./globalOptions');
 
