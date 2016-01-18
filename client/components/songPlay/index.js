@@ -1,5 +1,6 @@
 // import child components here.
 var beatMaps = require('./maps/');
+var findMeasureStartTimes = require('findMeasureStartTimes.js');
 
 SongPlay = React.createClass({
     getInitialState: function() {
