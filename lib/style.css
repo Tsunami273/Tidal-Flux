@@ -461,17 +461,25 @@ body {
   width: 450px;
   margin-left: auto;
   margin-right: auto;
+  /*box-shadow: 4px 4px 10px  #b5bec9;*/
   box-shadow: 8px 8px 10px  #b5bec9;
   border-radius: 1.5px;
   color: #ECEEF1;
+  letter-spacing: 2px;
 }
 .clicky:hover {
+  /*-webkit-filter: blur(1px);*/
+  box-shadow: 12px 12px 10px #b5bec9;
+}
+.clicky:active {
   box-shadow: 4px 4px 10px  #b5bec9;
+  -webkit-filter: blur(.5px);
 }
 .clicky h3 {
   padding-top: 3px;
   font-weight: 1px;
   font-size: 150%;
+  text-shadow: 2px 2px 8px #404040;
 }
 
 #options #login #signup {
