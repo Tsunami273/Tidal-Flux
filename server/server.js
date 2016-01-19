@@ -10,7 +10,6 @@ var path       = require('path');
 var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
 var messages = [];
 
-app.use('/',router);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
