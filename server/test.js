@@ -21,10 +21,8 @@ describe("Server unit tests",function(){
     server
     .get("/")
     .expect("Content-type",/json/)
-    .expect(200) 
     .end(function(err,res){
       expect(res.status).to.equal(200);
-      expect(res.body.error).to.equal(false);
       done();
     });
   });
@@ -72,7 +70,7 @@ describe("Server unit tests",function(){
   });
 
 
-  it("should return 404",function(done){
+  it("should return Error 404 for wrong url links",function(done){
     server
     .get("/random")
     .expect(404)
