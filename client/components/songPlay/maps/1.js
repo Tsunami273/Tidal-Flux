@@ -1,9 +1,9 @@
-var beatMap = { 
-  m1: {notes: [32,16,8,4], startTime: 0}, 
-  m2: {notes: [2,1,0,0], startTime: 0},
-  m3: {notes: [0,0,0,0], startTime: 0},
-  m4: {notes: [32,0,0,0], startTime: 0}
-};
+var beatMap = [
+  {notes: [32,16,8,7], startTime: 0}, 
+  {notes: [2,1,0,0], startTime: 0},
+  {notes: [0,0,0,0], startTime: 0},
+  {notes: [32,0,0,0], startTime: 0}
+];
 
 // var beatMap = {
 //   m1: [
