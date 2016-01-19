@@ -440,6 +440,8 @@ body {
   background-color: #ECEEF1;
 }
 
+/*====================Main Menu Style=============================*/
+
 #menucontain {
   width: 1000px;
   height: 500px;
@@ -493,6 +495,8 @@ body {
 
 .clicky { cursor: pointer; }
 
+/*====================Song Select============================*/
+
 .hidden {
 	display: none;
 }
@@ -502,7 +506,54 @@ body {
   color:white;
 }
 
+/*==========================Global Options====================*/
+
+#opContain {
+   width: 1000px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: center;
+}
+
+#opTitle h1 {
+  letter-spacing: 2px;
+  font-size: 350%;
+  color: #262626;
+  text-shadow: 2px 2px 10px #404040; 
+}
+
+.clickyGO {
+  background-color: #298FA3;
+  height: 40px;
+  width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  /*box-shadow: 4px 4px 10px  #b5bec9;*/
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius: 1.5px;
+  color: #ECEEF1;
+  letter-spacing: 2px;  
+}
+.clickyGO h3 {
+  padding-top: 3px;
+  font-weight: 1px;
+  font-size: 150%;
+  text-shadow: 2px 2px 8px #404040; 
+}
+.clickyGO:hover {
+  box-shadow: 12px 12px 10px #b5bec9; 
+}
+.clickyGO:active {
+  box-shadow: 4px 4px 10px  #b5bec9;
+  -webkit-filter: blur(.5px); 
+}
+=======
 .playfield {
   background-color:#262626;
 }
 
+>>>>>>> origin
