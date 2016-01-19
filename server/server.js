@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/api/player/signup', function(req, res){
-	player.push(req.body)
+	player.push(req.body);
 	console.log('signup req: ', player);
 	res.send(200, 'player logged in');
 });
@@ -38,7 +38,7 @@ app.post('/api/player/signin', function(req, res){
 });
 
 router.get('/',function(req,res){
-  res.json({"error" : false, "message" : "Hello !"});
+  res.json({'error' : false, 'message' : 'Hello !'});
 });
 
 app.post('/api/player/messages', function(req, res){
