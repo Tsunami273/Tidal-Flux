@@ -7,22 +7,52 @@ var server = supertest.agent("http://localhost:4000");
 
 
 
-describe("Home Page",function(){
+describe("Server unit tests",function(){
+  var body = {
+    "name": "fest", 
+    "password": "123"
+  };
 
-  it("should return home page",function(done){
+  it("should return homepage",function(done){
     server
     .get("/")
     .expect("Content-type",/json/)
-    .expect(200) // THis is HTTP response
+    .expect(200) 
     .end(function(err,res){
-      // HTTP status should be 200
       res.status.should.equal(200);
-      // Error key should be false.
       res.body.error.should.equal(false);
       done();
     });
   });
 
+  // it("should be able to sign in",function(done){
+  //   server
+  //   .post('/api/player/signin')
+  //   .send(JSON.stringify(body))
+  //   .expect("Content-type", /json/)
+  //   .expect(200)
+  //   .end(function(err,res){
+  //     if (err) {
+  //       throw err;
+  //     }
+  //     res.status.should.equal(401);
+  //     res.body.name.should.equal('fest');
+  //     res.body.password.should.equal('123');
+  //     res.body.creationDate.should.not.equal(null);
+  //     done();
+  //   });
+  // });
+
+  it("should return 404",function(done){
+    server
+    .get("/random")
+    .expect(404)
+    .end(function(err,res){
+      res.status.should.equal(404);
+      done();
+    });
+  });
 });
+
 
 
