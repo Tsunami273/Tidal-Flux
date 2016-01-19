@@ -506,3 +506,33 @@ body {
   background-color:#262626;
 }
 
+.lanearea0 {
+  left:0px;
+}
+
+.lanearea1 {
+  left:50px;
+}
+
+.lanearea2 {
+  left:100px;
+}
+
+.lanearea3 {
+  left:150px;
+}
+
+.lanearea4 {
+  left:200px;
+}
+
+.lanearea5 {
+  left:250px;
+}
+
+.note{
+  background-color:#ECEEF1;
+}
+
+
+
