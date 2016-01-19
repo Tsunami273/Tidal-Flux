@@ -45,8 +45,9 @@ var render = function(){
       ReactDOM.render(<Signup />, domContainerNode);
       return; 
     case 'GOPTIONS':
+      ReactDOM.render(<GOptions />, document.getElementById('content'));
       ReactDOM.unmountComponentAtNode(domContainerNode)
-      ReactDOM.render(<GlobalOptions />, domContainerNode); 
+      ReactDOM.render(<GOptions />, domContainerNode); 
       return; 
   }
 }
