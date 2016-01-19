@@ -1,4 +1,5 @@
 // import child components here.
+// var Notes = require('./Notes.js');
 var beatMaps = require('./maps/');
 var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
@@ -7,6 +8,7 @@ var offsetArr = [];
 var intervalID = [];
 var noteTimes = findNoteTimes(timedBeatMap);
 
+
 SongPlay = React.createClass({
     getInitialState: function() {
       return {
@@ -14,13 +16,13 @@ SongPlay = React.createClass({
         timer: 0,
         offset: 0,
         avgOffset: 0,
-        notes: []
+        notes: [[],[],[],[],[],[]]
       };
     },
     play: function(event) {
-      for(var i = 0; i < intervalID.length; i++){
-        clearInterval(intervalID[i]);  
-      }
+      intervalID.forEach(function(e,i,c){
+        clearInterval(e);  
+      });
       store.dispatch(navigateToPage('SCORE'));
     },
     componentWillUnmount: function(event){
@@ -43,11 +45,21 @@ SongPlay = React.createClass({
         var time = Date.now() - start;
         that.setState({timer: time});
         that.setState({offsetTime: time - offset});
-
       }, 10);
       var staging = setInterval(function(){
-        var stagedNotes = [[],[],[],[],[],[]];
-        // Date.now()
+        var stagedNotes = that.state.notes.slice();
+        var grabTime = Date.now()-start + 1300;
+        for(var i = 0; i < 6; i++){
+          var length = noteTimes[i].length;
+          for(var k = length-1; k > -1; k--){
+            if(noteTimes[i][k] > grabTime){
+              break;
+            }
+            stagedNotes[i].push(noteTimes[i].pop());
+          }
+        }
+        console.log(stagedNotes);
+        that.setState({notes: stagedNotes});
       }, 1000);
       intervalID.push(polling);
       intervalID.push(staging);
@@ -90,6 +102,10 @@ SongPlay = React.createClass({
           onTimeUpdate={this.updatePlayhead}
           ref='audio'
           ></audio>
+          <br />
+          {this.state.notes.map(function(e,i,c){  
+            return e.map(function(e,i,c){return <span className={i}>{e}<br /></span>});
+          })}
         </div>
         );
     }

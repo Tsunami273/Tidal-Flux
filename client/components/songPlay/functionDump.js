@@ -18,9 +18,9 @@ var findMeasureStartTimes = function(beatMap, beatsPerMinute){
 var findNoteTimes = function(timedBeatMap){
   var millisecondsPerMeasure = timedBeatMap[1].startTime;
   var noteTimes = [[],[],[],[],[],[]];
-  for(var measure = 0; measure < timedBeatMap.length; measure++){
+  for(var measure = timedBeatMap.length-1; measure > -1; measure--){
     var notesPerMeasure = timedBeatMap[measure].notes.length;
-    for(var note = 0; note < notesPerMeasure; note++){
+    for(var note = notesPerMeasure-1; note > -1; note--){
       if(timedBeatMap[measure].notes[note] === 0){
         continue;
       }
