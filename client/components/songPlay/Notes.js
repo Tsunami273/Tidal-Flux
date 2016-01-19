@@ -1,17 +1,16 @@
-var Note = require('./Note.js');
+var d3Notes = require('./d3Notes.js');
 Notes = React.createClass({
+    componentDidMount: function() {
+      var el = this.refs.playarea;
+      d3Notes.create(el, {}, {notes:this.props.stagedNotes});
+    },
+    componentDidUpdate: function() {
+      var el = this.refs.playarea;
+      d3Notes.update(el, {notes:this.props.stagedNotes});
+    },
     render: function() {
-      var songs = songList;
-      var currSong = store.getState().selectedSong;
-      currSong = currSong ? currSong : {};
-      // console.log(this);
-      var that = this;
         return (
-          <div>
-          {this.props.stagedNotes.map(function(result, i){
-            return <Note className='notes' key={i}> </span>
-          })}
-          </div>
+          <div ref="playarea" className="playarea"></div>
         );
     }
 });

@@ -1,5 +1,5 @@
 // import child components here.
-// var Notes = require('./Notes.js');
+var Notes = require('./Notes.js');
 var beatMaps = require('./maps/');
 var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
@@ -58,7 +58,6 @@ SongPlay = React.createClass({
             stagedNotes[i].push(noteTimes[i].pop());
           }
         }
-        console.log(stagedNotes);
         that.setState({notes: stagedNotes});
       }, 1000);
       intervalID.push(polling);
@@ -68,7 +67,7 @@ SongPlay = React.createClass({
       var playhead = this.refs.audio.currentTime;
       var timeNoOffset = Date.now() - start;
       var offsetTime = timeNoOffset - this.state.offset;
-      if(timeNoOffset !== playhead){  // this will always be true unless divine intervention. 
+      if(timeNoOffset !== playhead){  
         var offset = timeNoOffset - (playhead*1000);
         this.setState({offset: offset});
         var avgOffset = this.state.avgOffset;
@@ -87,7 +86,6 @@ SongPlay = React.createClass({
     },
     render: function() {
         var audioSource = store.getState().selectedSong;
-       // var fill = this.state.timer;
         return (
         <div>
           <h1>Song Play</h1>
@@ -103,11 +101,12 @@ SongPlay = React.createClass({
           ref='audio'
           ></audio>
           <br />
-          {this.state.notes.map(function(e,i,c){  
-            return e.map(function(e,i,c){return <span className={i}>{e}<br /></span>});
-          })}
+          <Notes stagedNotes={this.state.notes} />
         </div>
         );
     }
 });
+          // {this.state.notes.map(function(e,i,c){  
+          //   return e.map(function(e,i,c){return <span className={i}>{e}<br /></span>});
+          // })}
 module.exports = SongPlay;
