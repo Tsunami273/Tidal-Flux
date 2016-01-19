@@ -7,7 +7,7 @@
     "build": "client/*"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node node_modules/mocha/bin/mocha server/test.js",
     "start": "npm run build && node ./server/server.js",
     "build": "browserify -t reactify ./client/main.js -o ./build/bundle.js",
     "watch": "npm-watch"
@@ -37,6 +37,14 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "reactify": "^1.1.1",
-    "redux": "^3.0.5"
+    "redux": "^3.0.5",
+    "morgan": "^1.6.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "jshint": "^2.9.1",
+    "mocha": "^2.3.4",
+    "supertest": "^1.1.0"
   }
 }
