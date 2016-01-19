@@ -506,6 +506,7 @@ body {
   color:white;
 }
 
+<<<<<<< HEAD
 /*==========================Global Options====================*/
 
 #opContain {
@@ -551,3 +552,9 @@ body {
   box-shadow: 4px 4px 10px  #b5bec9;
   -webkit-filter: blur(.5px); 
 }
+=======
+.playfield {
+  background-color:#262626;
+}
+
+>>>>>>> origin

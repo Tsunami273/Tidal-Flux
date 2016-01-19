@@ -4,7 +4,7 @@ ReactDOM = require('react-dom');
 Redux = require('redux');
 classNames = require('classnames');
 $ = require('jquery');
-
+d3 = require('d3');
 keypress = require('keypress.js').keypress; 
 listener = new keypress.Listener();
 
@@ -14,31 +14,41 @@ store = Redux.createStore(reducers.main);
 require('./components/');
 
 
+var domContainerNode = document.getElementById('content');
 // tell when components should render.
 var render = function(){
   // this function should handle rendering of seperate pages e.g if state.page is 'MAIN' render the main menu.
   console.log(store.getState());
   switch(store.getState().page){
     case 'MAIN':
-      ReactDOM.render(<MainMenu />, document.getElementById('content'));
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<MainMenu />, domContainerNode);
       return;
     case 'SELECT':
-      ReactDOM.render(<SongSelect />, document.getElementById('content'));
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<SongSelect />, domContainerNode);
       return;
     case 'PLAY':
-      ReactDOM.render(<SongPlay />, document.getElementById('content'));
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<SongPlay />, domContainerNode);
       return;
     case 'SCORE':
-      ReactDOM.render(<ScoreScreen />, document.getElementById('content'));
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<ScoreScreen />, domContainerNode);
       return;
     case 'LOGIN':
-      ReactDOM.render(<Login />, document.getElementById('content'));
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Login />, domContainerNode);
       return;
     case 'SIGNUP':
-      ReactDOM.render(<Signup />, document.getElementById('content'));
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Signup />, domContainerNode);
       return; 
     case 'GOPTIONS':
-      ReactDOM.render(<GOptions />, document.getElementById('content')); 
+      ReactDOM.render(<GOptions />, document.getElementById('content'));
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<GlobalOptions />, domContainerNode); 
+      return; 
   }
 }
 
