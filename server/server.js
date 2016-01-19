@@ -13,11 +13,12 @@ var path       = require('path');
 var player = [{name: 'fest', password: '123'}];
 var messages = [];
 
+app.use('/',router);
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../'));
-app.use(router);
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.post('/api/player/signup', function(req, res){
 	player.push(req.body)
@@ -34,6 +35,10 @@ app.post('/api/player/signin', function(req, res){
 			res.send(401, 'player is not logged in');
 		}
 	}
+});
+
+router.get('/',function(req,res){
+  res.json({"error" : false, "message" : "Hello !"});
 });
 
 app.post('/api/player/messages', function(req, res){
