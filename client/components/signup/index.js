@@ -60,7 +60,7 @@ Signup = React.createClass({
     sendCredentialsToServer: function(event){
       event.preventDefault();
       $.ajax({
-        url: '/api/signup'/*waiting on route from Festus*/,
+        url: '/api/player/signup',
         dataType: 'json',
         type: 'POST',
         data: { username : this.state.username, password : this.state.password },

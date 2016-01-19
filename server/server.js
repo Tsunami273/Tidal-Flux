@@ -1,16 +1,13 @@
 'use strict';
-var http       = require('http');
 var express    = require('express');      
 var app        = express();            
 var bodyParser = require('body-parser');
-var React      = require('react');
 var port       = process.env.PORT || 4000;  
-var https 	   = require('https');
 var router     = express.Router();
 var logger     = require('morgan');
 var path       = require('path');
 
-var player = [{name: 'fest', password: '123'}];
+var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
 var messages = [];
 
 app.use('/',router);
@@ -29,17 +26,13 @@ app.post('/api/player/signup', function(req, res){
 app.post('/api/player/signin', function(req, res){
 	console.log('Test signin req: ', req.body);
 	for(var i = 0; i < player.length; i++) {
-		if (req.body.name === player[i].name && req.body.password === player[i].password) {
+		if (req.body.username === player[i].username && req.body.password === player[i].password) {
 			console.log('signin req: ', req.body);
 			res.send(200, 'player logged in');
 		} else {
 			res.send(403, 'Forbidden');
 		}
 	}
-});
-
-router.get('/',function(req,res){
-  res.json({'error' : false, 'message' : 'Hello !'});
 });
 
 app.post('/api/player/messages', function(req, res){

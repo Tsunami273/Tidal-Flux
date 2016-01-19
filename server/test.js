@@ -8,12 +8,12 @@ var server = supertest.agent("http://localhost:4000");
 
 describe("Server unit tests",function(){
   var player = {
-    "name": "fest", 
+    "username": "fest", 
     "password": "123"
   };
 
   var wrongPasswordPlayer = {
-    "name": "dfsfsdfdsfsd",
+    "username": "dfsfsdfdsfsd",
     "password": "sdsdsd"
   }
 
