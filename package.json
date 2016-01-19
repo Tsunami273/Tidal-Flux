@@ -7,7 +7,7 @@
     "build": "client/*"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/mocha/bin/mocha/mocha.js test/test.js",
     "start": "npm run build && node ./server/server.js",
     "build": "browserify -t reactify ./client/main.js -o ./build/bundle.js",
     "watch": "npm-watch"
@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "chai": "^3.4.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "superagent": "^1.6.1"
   }
 }
