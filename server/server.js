@@ -27,12 +27,13 @@ app.post('/api/player/signup', function(req, res){
 });
 
 app.post('/api/player/signin', function(req, res){
+	console.log('Test signin req: ', req.body);
 	for(var i = 0; i < player.length; i++) {
 		if (req.body.name === player[i].name && req.body.password === player[i].password) {
 			console.log('signin req: ', req.body);
 			res.send(200, 'player logged in');
 		} else {
-			res.send(401, 'player is not logged in');
+			res.send(403, 'Forbidden');
 		}
 	}
 });
