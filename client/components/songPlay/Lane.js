@@ -7,10 +7,13 @@ Lane = React.createClass({
       });
     },
     componentDidUpdate: function() {
-      var el = this.refs.lanearea;
-      d3Notes.update(el, {notes:this.props.stagedNotes,
-        laneNum: this.props.laneNum
-      });
+      if(this.props.stagedNotes.length){
+        var el = this.refs.lanearea;
+        d3Notes.update(el, {notes:this.props.stagedNotes,
+          laneNum: this.props.laneNum,
+          songState: this.props.songState
+        });
+      }
     },
     render: function() {
         var laneID = "lanearea" + this.props.laneNum;

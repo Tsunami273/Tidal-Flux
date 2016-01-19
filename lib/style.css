@@ -507,31 +507,39 @@ body {
 }
 
 .lanearea0 {
+  position:absolute;
   left:0px;
 }
 
 .lanearea1 {
+  position:absolute;
   left:50px;
 }
 
 .lanearea2 {
+  position:absolute;
   left:100px;
 }
 
 .lanearea3 {
+  position:absolute;
   left:150px;
 }
 
 .lanearea4 {
+  position:absolute;
   left:200px;
 }
 
 .lanearea5 {
+  position:absolute;
   left:250px;
 }
 
 .note{
   background-color:#ECEEF1;
+  color:#ECEEF1;
+  fill: #ECEEF1;
 }
 
 

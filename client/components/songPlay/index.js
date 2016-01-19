@@ -101,7 +101,7 @@ SongPlay = React.createClass({
           ref='audio'
           ></audio>
           <br />
-          <Notes stagedNotes={this.state.notes} />
+          <Notes songState="this" stagedNotes={this.state.notes} />
         </div>
         );
     }

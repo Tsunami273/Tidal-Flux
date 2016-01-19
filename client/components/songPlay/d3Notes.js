@@ -3,13 +3,13 @@ var d3Notes = {};
 d3Notes.create = function(el, props, state) {
   var svg = d3.select(el).append('svg')
       .attr('class', 'playfield')
-      .attr('width', 300)
+      .attr('width', 50)
       .attr('height', 800);
 
   svg.append('g')
       .attr('class', 'd3-points');
 
-  this.update(el, state);
+  // this.update(el, state);
 };
 
 d3Notes.update = function(el, state) {
@@ -23,20 +23,29 @@ d3Notes.destroy = function(el) {
 };
 
 d3Notes._renderNotes = function(el, state) {
-  var g = d3.select(el).selectAll('.d3-points');
+  var svg = d3.select(el).selectAll('.playfield');
     var notes = state.notes;
-    var laneNum = state.laneNum
-    g.selectAll('rect')
-    .data(notes)
-    .enter()
-    .append('rect')
-    .attr('class', 'note')
-    .attr('x', laneNum * 50)
-    .attr('y', 0)
-    .attr('width', 50)
-    .attr('height', 10)
-    // .transition()
-    // .attr('y', 800);
+    var laneNum = state.laneNum;
+
+    svg.selectAll('rect')
+      .data(notes)
+      .enter()
+      .append('rect')
+      .attr('class', 'note')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', 50)
+      .attr('height', 10);
+
+    svg.selectAll('rect')
+      .data(notes)
+      .transition()
+      .attr('y', 800);
+    // .easing('linear')
+    var allStagedNotes = state.songState.state.notes.slice();
+    allStagedNotes[laneNum] = [];
+    state.songState.setState({notes: allStagedNotes});
+
   
 
   // var point = g.selectAll('.d3-point')
