@@ -1,8 +1,11 @@
 // import child components here.
 var beatMaps = require('./maps/');
-var findMeasureStartTimes = require('findMeasureStartTimes.js');
-offsetArr = [];
-intervalID = null;
+var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
+var findNoteTimes = require('./functionDump.js').findNoteTimes;
+var timedBeatMap = findMeasureStartTimes(beatMaps[0], 185);
+var offsetArr = [];
+var intervalID = [];
+var noteTimes = findNoteTimes(timedBeatMap);
 
 SongPlay = React.createClass({
     getInitialState: function() {
@@ -15,7 +18,9 @@ SongPlay = React.createClass({
       };
     },
     play: function(event) {
-      clearInterval(intervalID);  
+      for(var i = 0; i < intervalID.length; i++){
+        clearInterval(intervalID[i]);  
+      }
       store.dispatch(navigateToPage('SCORE'));
     },
     componentWillUnmount: function(event){
@@ -31,7 +36,7 @@ SongPlay = React.createClass({
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
-      intervalID = setInterval(function(){ // dont use this.state.timer since setInterval can lag.
+      var polling = setInterval(function(){ // dont use this.state.timer since setInterval can lag.
                               // if you want to calculate the current progress at the time of an event
                               // use Date.now() - start
         var offset = that.state.offset
@@ -40,6 +45,12 @@ SongPlay = React.createClass({
         that.setState({offsetTime: time - offset});
 
       }, 10);
+      var staging = setInterval(function(){
+        var stagedNotes = [[],[],[],[],[],[]];
+        // Date.now()
+      }, 1000);
+      intervalID.push(polling);
+      intervalID.push(staging);
     },
     updatePlayhead: function(event){
       var playhead = this.refs.audio.currentTime;
