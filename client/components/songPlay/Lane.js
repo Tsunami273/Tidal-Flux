@@ -1,5 +1,3 @@
-var d3Notes = require('./d3Notes.js');
-counter = 0;
 Lane = React.createClass({
     componentDidMount: function() {
       var el = this.refs.lanearea;
