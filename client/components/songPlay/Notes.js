@@ -5,10 +5,11 @@ Notes = React.createClass({
 
     },
     render: function() {
+      var songState = this.props.songState
         return (
           <div ref="playarea" className="playarea">
           {this.props.stagedNotes.map(function(e,i,c){
-            return <Lane allNotes={c} key={i} laneNum={i} stagedNotes={e} />;
+            return <Lane songState={songState} key={i} laneNum={i} stagedNotes={e} />;
           })}
           </div>
         );

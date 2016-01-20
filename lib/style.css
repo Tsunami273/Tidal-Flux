@@ -502,44 +502,68 @@ body {
   color:white;
 }
 
-.playfield {
-  background-color:#262626;
-}
 
 .lanearea0 {
   position:absolute;
   left:0px;
+  background-color:#262626
 }
 
 .lanearea1 {
   position:absolute;
   left:50px;
+  background-color:#262626
 }
 
 .lanearea2 {
   position:absolute;
   left:100px;
+  background-color:#262626
 }
 
 .lanearea3 {
   position:absolute;
   left:150px;
+  background-color:#262626
 }
 
 .lanearea4 {
   position:absolute;
   left:200px;
+  background-color:#262626
 }
 
 .lanearea5 {
   position:absolute;
   left:250px;
+  background-color:#262626
+} 
+
+.triggered {
+  background-color:purple;
 }
 
-.note{
-  background-color:#ECEEF1;
-  color:#ECEEF1;
-  fill: #ECEEF1;
+.note {
+    fill:#ECEEF1;
+    width: 50px;
+    height: 10px;
+    /*-webkit-transition: height 2s; /* For Safari 3.1 to 6.0 */*/
+    /*transition: height 2s;*/
+}
+
+.strikezone {
+  fill:#298FA3;
+  width: 50px;
+  height: 10px;
+  position:absolute;
+  z-index: 1;
+}
+
+
+.playarea {
+  position:absolute;
+  left:550;
+  top:50;
 }
 
 

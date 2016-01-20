@@ -32,19 +32,11 @@ d3Notes._renderNotes = function(el, state) {
       .enter()
       .append('rect')
       .attr('class', 'note')
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', 50)
-      .attr('height', 10);
 
-    svg.selectAll('rect')
-      .data(notes)
-      .transition()
-      .attr('y', 800);
     // .easing('linear')
-    var allStagedNotes = state.songState.state.notes.slice();
-    allStagedNotes[laneNum] = [];
-    state.songState.setState({notes: allStagedNotes});
+    // var allStagedNotes = state.songState.state.notes.slice();
+    // allStagedNotes[laneNum] = [];
+    // state.songState.setState({notes: allStagedNotes});
 
   
 
