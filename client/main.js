@@ -46,7 +46,7 @@ var render = function(){
       return; 
     case 'GOPTIONS':
       ReactDOM.unmountComponentAtNode(domContainerNode)
-      ReactDOM.render(<GlobalOptions />, domContainerNode); 
+      ReactDOM.render(<GOptions />, domContainerNode); 
       return; 
   }
 }

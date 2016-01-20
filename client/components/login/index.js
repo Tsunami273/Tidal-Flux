@@ -38,7 +38,7 @@ Login = React.createClass({
     sendCredentialsToServer: function(event){
       event.preventDefault();
       $.ajax({
-        url: '/api/signin'/*waiting on route from Festus*/,
+        url: '/api/player/signin',
         dataType: 'json',
         type: 'POST',
         data: { username : this.state.username, password : this.state.password },
@@ -56,18 +56,18 @@ Login = React.createClass({
       var usernameError = this.state.usernameError ? 'Error, ' + this.state.usernameError : '';
       var hide = this.state.hide;
         return (
-        <div>
-          <h1>Login Page</h1>
+        <div id="loginContain">
+          <h1>Login</h1>
           <form onSubmit={this.sendCredentialsToServer}>
             <br />
-            Username: <input type="text" value={this.state.username} onChange={this.validateUsername}/>
+            <div className="loginfield">Username</div><input type="text" value={this.state.username} onChange={this.validateUsername}/>
             <br />
-            {usernameError}
             <br />
-            Password: <input type="password" value={this.state.password} onChange={this.setPassword}/>
+            <div className="loginfield">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
             <br />
-            <input type="submit" className={hide}/>
           </form>
+            <input type="submit" id="subButton" className={hide}/>
+            {usernameError}
         </div>
         );
     }
