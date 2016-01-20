@@ -504,17 +504,7 @@ body {
 }
 
 
-.lanearea0 {
-  position:absolute;
-  left:0px;
-  background-color:#262626
-}
 
-.lanearea1 {
-  position:absolute;
-  left:50px;
-  background-color:#262626
-}
 /*==========================Global Options====================*/
 
 #opContain {
@@ -604,6 +594,17 @@ body {
 
 /*===============Song Play=================*/
 
+.lanearea0 {
+  position:absolute;
+  left:0px;
+  background-color:#262626
+}
+
+.lanearea1 {
+  position:absolute;
+  left:50px;
+  background-color:#262626
+}
 
 .lanearea2 {
   position:absolute;
