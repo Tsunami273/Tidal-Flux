@@ -16,7 +16,13 @@ SongPlay = React.createClass({
         timer: 0,
         offset: 0,
         avgOffset: 0,
-        notes: [[],[],[],[],[],[]]
+        notes: [[],[],[],[],[],[]],
+        lane0: false,
+        lane1: false,
+        lane2: false,
+        lane3: false,
+        lane4: false,
+        lane5: false,
       };
     },
     play: function(event) {
@@ -25,7 +31,75 @@ SongPlay = React.createClass({
       });
       store.dispatch(navigateToPage('SCORE'));
     },
+    componentDidMount: function() {
+      var scope = this;
+      listener.register_many([
+        {"keys": "s",
+          "on_keydown": function(event){
+            this.setState({lane0: true});
+            var currTime = Date.now() - start - this.state.avgOffset;
+            // for(var i = 0; i < this.state.notes[0].length; i++){
+            console.log(this.state.notes[0]);
+            if(this.state.notes[0][0] > currTime - 200 && this.state.notes[0][0] < currTime + 200){
+              console.log('hit note');
+              var notes = this.state.notes.slice();
+              notes[0].shift()
+              this.setState({notes: notes})
+            }
+          },
+          "on_keyup": function(event){
+            this.setState({lane0: false});
+          }, 
+          "this": scope
+        },
+        {"keys": "d",
+          "on_keydown": function(event){
+            this.setState({lane1: true});
+          },
+          "on_keyup": function(event){
+            this.setState({lane1: false});
+          }, 
+          "this": scope
+        },
+        {"keys": "f",
+          "on_keydown": function(event){
+            this.setState({lane2: true});
+          },
+          "on_keyup": function(event){
+            this.setState({lane2: false});
+          }, 
+          "this": scope
+        },
+        {"keys": "j",
+          "on_keydown": function(event){
+            this.setState({lane3: true});
+          },
+          "on_keyup": function(event){
+            this.setState({lane3: false});
+          }, 
+          "this": scope
+        },
+        {"keys": "k",
+          "on_keydown": function(event){
+            this.setState({lane4: true});
+          },
+          "on_keyup": function(event){
+            this.setState({lane4: false});
+          }, 
+          "this": scope
+        },
+        {"keys": "l",
+          "on_keydown": function(event){
+            this.setState({lane5: true});
+          },
+          "on_keyup": function(event){
+            this.setState({lane5: false});
+          }, 
+          "this": scope
+        }]);
+    },
     componentWillUnmount: function(event){
+      listener.reset()
       console.log('unmounting');
     },
     loadedSong: function(event){
@@ -38,17 +112,17 @@ SongPlay = React.createClass({
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
-      var polling = setInterval(function(){ // dont use this.state.timer since setInterval can lag.
-                              // if you want to calculate the current progress at the time of an event
-                              // use Date.now() - start
-        var offset = that.state.offset
-        var time = Date.now() - start;
-        that.setState({timer: time});
-        that.setState({offsetTime: time - offset});
-      }, 10);
+      // var polling = setInterval(function(){ // dont use this.state.timer since setInterval can lag.
+      //                         // if you want to calculate the current progress at the time of an event
+      //                         // use Date.now() - start
+      //   var offset = that.state.offset
+      //   var time = Date.now() - start;
+      //   that.setState({timer: time});
+      //   that.setState({offsetTime: time - offset});
+      // }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
-        var grabTime = Date.now()-start + 1300;
+        var grabTime = Date.now()-start + 3500;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
           for(var k = length-1; k > -1; k--){
@@ -60,7 +134,7 @@ SongPlay = React.createClass({
         }
         that.setState({notes: stagedNotes});
       }, 1000);
-      intervalID.push(polling);
+      // intervalID.push(polling);
       intervalID.push(staging);
     },
     updatePlayhead: function(event){
@@ -94,6 +168,7 @@ SongPlay = React.createClass({
           <div> time + offset: {this.state.offsetTime} </div>
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
+          <div>{this.state.skey}</div>
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
@@ -101,7 +176,7 @@ SongPlay = React.createClass({
           ref='audio'
           ></audio>
           <br />
-          <Notes stagedNotes={this.state.notes} />
+          <Notes songState={this} stagedNotes={this.state.notes} />
         </div>
         );
     }

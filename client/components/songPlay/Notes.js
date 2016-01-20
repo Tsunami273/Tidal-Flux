@@ -1,16 +1,17 @@
-var d3Notes = require('./d3Notes.js');
+var Lane = require('./Lane.js');
+var placed
 Notes = React.createClass({
-    componentDidMount: function() {
-      var el = this.refs.playarea;
-      d3Notes.create(el, {}, {notes:this.props.stagedNotes});
-    },
     componentDidUpdate: function() {
-      var el = this.refs.playarea;
-      d3Notes.update(el, {notes:this.props.stagedNotes});
+
     },
     render: function() {
+      var songState = this.props.songState
         return (
-          <div ref="playarea" className="playarea"></div>
+          <div ref="playarea" className="playarea">
+          {this.props.stagedNotes.map(function(e,i,c){
+            return <Lane songState={songState} key={i} laneNum={i} stagedNotes={e} />;
+          })}
+          </div>
         );
     }
 });
