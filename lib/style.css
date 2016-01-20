@@ -536,7 +536,8 @@ body {
   box-shadow: 8px 8px 10px  #b5bec9;
   border-radius: 1.5px;
   color: #ECEEF1;
-  letter-spacing: 2px;  
+  letter-spacing: 2px;
+  cursor: pointer;  
 }
 .clickyGO h3 {
   padding-top: 3px;
@@ -553,16 +554,32 @@ body {
 }
 
 /*===============Login=================*/
-
-#loginContain {
-  width: 350px;
-  height: 350px;
+#loginA {
+  width: 727px;
+  height: 500px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 150px;
+}
+
+/*#loginA img {
+  width: 1000px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}*/
+
+#loginContain {
+  width: 350px;
+  height: 360px;
+  margin-left: auto;
+  margin-right: auto;
+  /*margin-top: 150px;*/
   text-align: center;
-  border-radius: 1.5px;
+  border-radius: 2.5px;
   background-color: #298FA3;
+  margin-top: 75px;
+  box-shadow: 8px 8px 10px  #b5bec9;
 }
 
 #loginContain span {
@@ -591,4 +608,39 @@ body {
 
 #subButton {
   width: 100px;
+}
+
+#notUser {
+  color: #ECEEF1;
+  cursor: pointer; 
+}
+
+/*=============Sign Up=================*/
+
+#signUpA {
+  width: 727px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+}
+
+#signUpContain {
+  width: 350px;
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  /*margin-top: 150px;*/
+  text-align: center;
+  border-radius: 2.5px;
+  background-color: #298FA3;
+  margin-top: 75px;
+  box-shadow: 8px 8px 10px  #b5bec9; 
+}
+
+#signUpContain h1 {
+  letter-spacing: 2px;
+  font-size: 350%;
+  color: #ECEEF1;
+  text-shadow: 2px 2px 10px #404040;
 }

@@ -81,23 +81,29 @@ Signup = React.createClass({
       var hide = this.state.hide;
         return (
         <div>
-          <h1>Sign Up Page</h1>
-          <form onSubmit={this.sendCredentialsToServer}>
-            Email: <input type="input" value={this.state.email} onChange={this.validateEmail}/>
-            <br />
-            {emailError}
-            <br />
-            Username: <input type="text" value={this.state.username} onChange={this.validateUsername}/>
-            <br />
-            {usernameError}
-            <br />
-            Password: <input type="password" value={this.state.password} onChange={this.setPassword}/>
-            <br />
-            Confirm Password: <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
-            <br />
-            {passwordError}
-            <input type="submit" className={hide}/>
-          </form>
+          <div id="signUpA">
+            <div id="signUpContain">
+              <h1>Sign Up</h1>
+              <form onSubmit={this.sendCredentialsToServer}>
+                <div>Email</div> <input type="input" value={this.state.email} onChange={this.validateEmail}/>
+                <br />
+                <br />
+                <div>Username</div> <input type="text" value={this.state.username} onChange={this.validateUsername}/>
+                <br />
+                <br />
+                <div>Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
+                <br />
+                <br />
+                <div>Confirm Password</div> <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
+                <br />
+                <br />
+                {passwordError}
+                {emailError}
+                {usernameError}
+              </form>
+                <input type="submit" className={hide}/>
+            </div>
+          </div>
         </div>
         );
     }

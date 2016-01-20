@@ -56,18 +56,24 @@ Login = React.createClass({
       var usernameError = this.state.usernameError ? 'Error, ' + this.state.usernameError : '';
       var hide = this.state.hide;
         return (
-        <div id="loginContain">
-          <h1>Login</h1>
-          <form onSubmit={this.sendCredentialsToServer}>
-            <br />
-            <div className="loginfield">Username</div><input type="text" value={this.state.username} onChange={this.validateUsername}/>
-            <br />
-            <br />
-            <div className="loginfield">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
-            <br />
-          </form>
-            <input type="submit" id="subButton" className={hide}/>
-            {usernameError}
+        <div id="loginA">
+          <img src="TidalFlux.svg" alt="Tidal Flux"></img>
+          <div id="loginContain">
+            <h1>Login</h1>
+            <form onSubmit={this.sendCredentialsToServer}>
+              <br />
+              <div className="loginfield">Username</div><input type="text" value={this.state.username} onChange={this.validateUsername}/>
+              <br />
+              <br />
+              <div className="loginfield">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
+              <br />
+            </form>
+              <input type="submit" id="subButton" className={hide}/>
+              {usernameError}
+              <br />
+              <br />
+              <div id="notUser" onClick={this.goToSignup}>Not yet a user? Click here.</div>
+          </div>
         </div>
         );
     }
