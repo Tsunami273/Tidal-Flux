@@ -1,7 +1,7 @@
 'use strict';
+var mongoose = require('mongoose');
 mongoose.connect('mongodb://tidal:tidal@ds047355.mongolab.com:47355/tidal');
 
-var mongoose = require('mongoose');
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
@@ -39,18 +39,18 @@ PlayerSchema.pre('save', function(next) {
     });
 });
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+PlayerSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Player', PlayerSchema);
 
 
 
 
-////////////////////////////////////////////////////
-var Player = mongoose.model('Player', playerSchema);
-module.exports.Player = Player;
+// ////////////////////////////////////////////////////
+// var Player = mongoose.model('Player', PlayerSchema);
+// module.exports.Player = Player;

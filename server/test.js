@@ -8,7 +8,8 @@ var server = supertest.agent("http://localhost:4000");
 
 describe("Server unit tests",function(){
   var player = {
-    "username": "fest", 
+    "username": "fest",
+    "email": "email@email.com",  
     "password": "123"
   };
 

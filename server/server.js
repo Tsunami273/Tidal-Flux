@@ -6,7 +6,7 @@ var port       = process.env.PORT || 4000;
 var router     = express.Router();
 var logger     = require('morgan');
 var path       = require('path');
-var db         = require("./mongodb");
+var Player         = require("./mongodb");
 
 var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
 var messages = [];
@@ -18,8 +18,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/api/player/signup', function(req, res){
-	player.push(req.body);
-	console.log('signup req: ', player);
+	var testPlayer = new Player(req.body);
+
+	// save user to database
+	testPlayer.save(function(err) {
+	    if (err) throw err;
+	});
+
+	player.push(req.body); //Need to substitude with database
+	console.log('signup req: ', req.body);
 	res.send(200, 'player logged in');
 });
 
