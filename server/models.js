@@ -1,12 +1,15 @@
-var mongoose = require('mongoose');
+var db         = require("./mongodb");
 
-var Schema = mongoose.Schema;
+var module.exports{
+	signin: function() {
 
- 
-var PlayerSchema = new Schema({
-    username  : String,
-    password  : String,
-    email     : Email,
-});
+	},
 
-module.exports = mongoose.model('Player', PlayerSchema);
+	signup: function() {
+
+	},
+
+	profile: function() {
+		
+	}
+}

@@ -6,6 +6,7 @@ var port       = process.env.PORT || 4000;
 var router     = express.Router();
 var logger     = require('morgan');
 var path       = require('path');
+var db         = require("./mongodb");
 
 var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
 var messages = [];
