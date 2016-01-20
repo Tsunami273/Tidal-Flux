@@ -42,7 +42,7 @@ describe("Server unit tests",function(){
     });
   });
 
-  it("should not be able to sign in with wrong username/password",function(done){
+  it("should NOT BE ABLE to sign in with wrong username/password",function(done){
     server
     .post('/api/player/signin')
     .send(JSON.stringify(wrongPasswordPlayer))
