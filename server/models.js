@@ -1,15 +1,15 @@
-'use strict';
+var db         = require("./mongodb");
 
-module.exports = {
-	signIn: function(userSignin) {
-
-	},
-
-	signUp: function(userSignUp) {
+var module.exports{
+	signin: function() {
 
 	},
 
-	rankings: function(rankings) {
+	signup: function() {
 
+	},
+
+	profile: function() {
+		
 	}
 }

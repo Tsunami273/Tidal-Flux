@@ -708,7 +708,7 @@ body {
 } 
 
 .triggered {
-  background-color:purple;
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
 }
 
 .note {
