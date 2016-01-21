@@ -506,9 +506,8 @@ body {
   color:white;
 }
 
-.playfield {
-  background-color:#262626;
-}
+
+
 /*==========================Global Options====================*/
 
 #opContain {
@@ -669,3 +668,67 @@ body {
   cursor: pointer;
   text-shadow: 2px 2px 8px #404040;  
 }
+
+/*===============Song Play=================*/
+
+.lanearea0 {
+  position:absolute;
+  left:0px;
+  background-color:#262626
+}
+
+.lanearea1 {
+  position:absolute;
+  left:50px;
+  background-color:#262626
+}
+
+.lanearea2 {
+  position:absolute;
+  left:100px;
+  background-color:#262626
+}
+
+.lanearea3 {
+  position:absolute;
+  left:150px;
+  background-color:#262626
+}
+
+.lanearea4 {
+  position:absolute;
+  left:200px;
+  background-color:#262626
+}
+
+.lanearea5 {
+  position:absolute;
+  left:250px;
+  background-color:#262626
+} 
+
+.triggered {
+  background-color:purple;
+}
+
+.note {
+    fill:#ECEEF1;
+    width: 50px;
+    height: 10px;
+}
+
+.strikezone {
+  fill:#298FA3;
+  width: 50px;
+  height: 10px;
+  position:absolute;
+  z-index: 1;
+}
+
+
+.playarea {
+  position:absolute;
+  left:550;
+  top:50;
+}
+
