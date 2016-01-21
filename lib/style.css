@@ -440,6 +440,9 @@ body {
   background-color: #ECEEF1;
 }
 
+.logo {
+  cursor: pointer;
+}
 /*====================Main Menu Style=============================*/
 
 #menucontain {
@@ -447,7 +450,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 100px;
   padding-left: 3px;
   padding-right: 3px;
   text-align: center;
@@ -559,7 +562,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 /*#loginA img {
@@ -571,7 +574,8 @@ body {
 
 #loginContain {
   width: 350px;
-  height: 360px;
+  height: auto;
+  padding: 2px;
   margin-left: auto;
   margin-right: auto;
   /*margin-top: 150px;*/
@@ -588,7 +592,7 @@ body {
 
 #loginContain h1 {
   letter-spacing: 2px;
-  font-size: 350%;
+  font-size: 200%;
   color: #ECEEF1;
   text-shadow: 2px 2px 10px #404040;  
 }
@@ -607,12 +611,13 @@ body {
 }
 
 #subButton {
-  width: 100px;
+  width: 225px;
 }
 
 #notUser {
   color: #ECEEF1;
-  cursor: pointer; 
+  cursor: pointer;
+  text-shadow: 2px 2px 8px #404040; 
 }
 
 /*=============Sign Up=================*/
@@ -622,12 +627,13 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 #signUpContain {
   width: 350px;
-  height: 450px;
+  height: auto;
+  padding: 2px;
   margin-left: auto;
   margin-right: auto;
   /*margin-top: 150px;*/
@@ -640,7 +646,26 @@ body {
 
 #signUpContain h1 {
   letter-spacing: 2px;
-  font-size: 350%;
+  font-size: 200%;
   color: #ECEEF1;
   text-shadow: 2px 2px 10px #404040;
+}
+
+#signUpContain span {
+  color: #ECEEF1;  
+}
+
+.signUpField {
+  color: #ECEEF1;
+  width: 350px;
+  height: 20px; 
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px #404040;
+  margin-bottom: 5px; 
+}
+
+#alreadyUser {
+  color: #ECEEF1;
+  cursor: pointer;
+  text-shadow: 2px 2px 8px #404040;  
 }

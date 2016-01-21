@@ -13,6 +13,12 @@ Signup = React.createClass({
       hide:'hidden'
       };
     },
+    goToLogin: function(event){
+      store.dispatch(navigateToPage('LOGIN'));
+    },
+    goToMainMenu: function(event) {
+    store.dispatch(navigateToPage('MAIN'));
+    },
     validateEmail: function(event) {
       var email = event.target.value;
       var emailError = '';
@@ -82,26 +88,30 @@ Signup = React.createClass({
         return (
         <div>
           <div id="signUpA">
+            <img src="TidalFlux.svg" alt="Tidal Flux" className="logo" onClick={this.goToMainMenu}></img>
             <div id="signUpContain">
               <h1>Sign Up</h1>
               <form onSubmit={this.sendCredentialsToServer}>
-                <div>Email</div> <input type="input" value={this.state.email} onChange={this.validateEmail}/>
+                <div className="signUpField">Email</div> <input type="input" value={this.state.email} onChange={this.validateEmail}/>
                 <br />
                 <br />
-                <div>Username</div> <input type="text" value={this.state.username} onChange={this.validateUsername}/>
+                <div className="signUpField">Username</div> <input type="text" value={this.state.username} onChange={this.validateUsername}/>
                 <br />
                 <br />
-                <div>Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
+                <div className="signUpField">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
                 <br />
                 <br />
-                <div>Confirm Password</div> <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
+                <div className="signUpField">Confirm Password</div> <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
                 <br />
                 <br />
+              </form>
+                <input type="submit" id="subButton" className={hide}/>
                 {passwordError}
                 {emailError}
                 {usernameError}
-              </form>
-                <input type="submit" className={hide}/>
+                <br />
+                <br />
+                <div id="alreadyUser" onClick={this.goToLogin}>Already a user? Click here.</div>
             </div>
           </div>
         </div>

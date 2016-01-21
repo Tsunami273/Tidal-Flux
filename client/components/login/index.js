@@ -12,6 +12,9 @@ Login = React.createClass({
     goToSignup: function(event){
       store.dispatch(navigateToPage('SIGNUP'));
     },
+    goToMainMenu: function(event) {
+    store.dispatch(navigateToPage('MAIN'));
+    },
     validateUsername: function(event){
       var username = event.target.value;
       var usernameError = '';
@@ -57,7 +60,7 @@ Login = React.createClass({
       var hide = this.state.hide;
         return (
         <div id="loginA">
-          <img src="TidalFlux.svg" alt="Tidal Flux"></img>
+          <img src="TidalFlux.svg" alt="Tidal Flux" className="logo" onClick={this.goToMainMenu}></img>
           <div id="loginContain">
             <h1>Login</h1>
             <form onSubmit={this.sendCredentialsToServer}>
@@ -66,6 +69,7 @@ Login = React.createClass({
               <br />
               <br />
               <div className="loginfield">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
+              <br />
               <br />
             </form>
               <input type="submit" id="subButton" className={hide}/>
