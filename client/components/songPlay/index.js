@@ -3,7 +3,8 @@ var Notes = require('./Notes.js');
 var beatMaps = require('./maps/');
 var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
-var timedBeatMap = findMeasureStartTimes(beatMaps[0], 185);
+var currSong = store.getState().selectedSong;
+var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1], currSong.BPM);
 var offsetArr = [];
 var intervalID = [];
 var noteTimes = findNoteTimes(timedBeatMap);
@@ -25,12 +26,21 @@ SongPlay = React.createClass({
         lane5: false,
         score: 0,
         message: '',
+        judgements: {
+          Perfect: 0,
+          Good: 0,
+          Decent: 0,
+          Miss: 0
+        }
       };
     },
     play: function(event) {
       intervalID.forEach(function(e,i,c){
         clearInterval(e);  
       });
+      var score = this.state.score
+      var judges = this.state.judgements
+      store.dispatch(setScore(score, judges));
       store.dispatch(navigateToPage('SCORE'));
     },
     componentDidMount: function() {
@@ -45,11 +55,24 @@ SongPlay = React.createClass({
               var notes = this.state.notes.slice();
               var batting = Math.abs(this.state.notes[0][0] - currTime);
               console.log(batting);
-              var judge = batting < 50 ? 'Perfect' : 'Good';
+              if(batting<40){
+                judge = 'Perfect';
+              }
+              else if(batting<80){
+                judge = 'Good';
+              }
+              else {
+                judge = 'Decent'
+              }
               notes[0].shift()
+              var judgements = {};
+              Object.assign(judgements,this.state.judgements);
+              judgements[judge]++;
+
               this.setState({notes: notes,
               score: this.state.score + 100,
-              message: judge});
+              message: judge,
+              judgements: judgements});
             }
           },
           "on_keyup": function(event){
@@ -65,11 +88,24 @@ SongPlay = React.createClass({
               var notes = this.state.notes.slice();
               var batting = Math.abs(this.state.notes[1][0] - currTime);
               console.log(batting);
-              var judge = batting < 50 ? 'Perfect' : 'Good';
+              if(batting<40){
+                judge = 'Perfect';
+              }
+              else if(batting<80){
+                judge = 'Good';
+              }
+              else {
+                judge = 'Decent'
+              }
               notes[1].shift()
+              var judgements = {};
+              Object.assign(judgements,this.state.judgements);
+              judgements[judge]++;
+
               this.setState({notes: notes,
               score: this.state.score + 100,
-              message: judge});
+              message: judge,
+              judgements: judgements});
             }
           },
           "on_keyup": function(event){
@@ -85,11 +121,24 @@ SongPlay = React.createClass({
               var notes = this.state.notes.slice();
               var batting = Math.abs(this.state.notes[2][0] - currTime);
               console.log(batting);
-              var judge = batting < 50 ? 'Perfect' : 'Good';
+              if(batting<40){
+                judge = 'Perfect';
+              }
+              else if(batting<80){
+                judge = 'Good';
+              }
+              else {
+                judge = 'Decent'
+              }
               notes[2].shift()
+              var judgements = {};
+              Object.assign(judgements,this.state.judgements);
+              judgements[judge]++;
+
               this.setState({notes: notes,
               score: this.state.score + 100,
-              message: judge});
+              message: judge,
+              judgements: judgements});
             }
           },
           "on_keyup": function(event){
@@ -105,11 +154,24 @@ SongPlay = React.createClass({
               var notes = this.state.notes.slice();
               var batting = Math.abs(this.state.notes[3][0] - currTime);
               console.log(batting);
-              var judge = batting < 50 ? 'Perfect' : 'Good';
+              if(batting<40){
+                judge = 'Perfect';
+              }
+              else if(batting<80){
+                judge = 'Good';
+              }
+              else {
+                judge = 'Decent'
+              }
               notes[3].shift()
+              var judgements = {};
+              Object.assign(judgements,this.state.judgements);
+              judgements[judge]++;
+
               this.setState({notes: notes,
               score: this.state.score + 100,
-              message: judge});
+              message: judge,
+              judgements: judgements});
             }
           },
           "on_keyup": function(event){
@@ -125,11 +187,24 @@ SongPlay = React.createClass({
               var notes = this.state.notes.slice();
               var batting = Math.abs(this.state.notes[4][0] - currTime);
               console.log(batting);
-              var judge = batting < 50 ? 'Perfect' : 'Good';
+              if(batting<40){
+                judge = 'Perfect';
+              }
+              else if(batting<80){
+                judge = 'Good';
+              }
+              else {
+                judge = 'Decent'
+              }
               notes[4].shift()
+             var judgements = {};
+              Object.assign(judgements,this.state.judgements);
+              judgements[judge]++;
+
               this.setState({notes: notes,
               score: this.state.score + 100,
-              message: judge});
+              message: judge,
+              judgements: judgements});
             }
           },
           "on_keyup": function(event){
@@ -145,11 +220,24 @@ SongPlay = React.createClass({
               var notes = this.state.notes.slice();
               var batting = Math.abs(this.state.notes[5][0] - currTime);
               console.log(batting);
-              var judge = batting < 50 ? 'Perfect' : 'Good';
+              if(batting<40){
+                judge = 'Perfect';
+              }
+              else if(batting<80){
+                judge = 'Good';
+              }
+              else {
+                judge = 'Decent'
+              }
               notes[5].shift()
+              var judgements = {};
+              Object.assign(judgements,this.state.judgements);
+              judgements[judge]++;
+
               this.setState({notes: notes,
               score: this.state.score + 100,
-              message: judge});
+              message: judge,
+              judgements: judgements});
             }
           },
           "on_keyup": function(event){
@@ -178,14 +266,18 @@ SongPlay = React.createClass({
         var currTime = Date.now() - start - that.state.avgOffset;
         var notes = that.state.notes.slice();
         var message = that.state.message;
+        var judgements = {};
+        Object.assign(judgements,that.state.judgements);
         for(var i = 0 ; i < 6; i++){
           if(notes[i][0] + 150 < currTime){
               notes[i].shift();
               message = 'Miss';
+              judgements.Miss++
           }
         }
         that.setState({notes: notes,
-          message: message});
+          message: message,
+          judgements: judgements});
         // that.setState({timer: time});
       }, 10);
       var staging = setInterval(function(){
@@ -202,7 +294,7 @@ SongPlay = React.createClass({
         }
         that.setState({notes: stagedNotes});
       }, 1000);
-      // intervalID.push(polling);
+      intervalID.push(polling);
       intervalID.push(staging);
     },
     updatePlayhead: function(event){
