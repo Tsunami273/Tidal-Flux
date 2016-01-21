@@ -18,6 +18,15 @@ var PlayerSchema = new Schema({
     avatar	   : String
 });
 
+
+PlayerSchema.methods.comparePassword = function(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
+
+
 PlayerSchema.pre('save', function(next) {
     var user = this;
 
@@ -39,19 +48,4 @@ PlayerSchema.pre('save', function(next) {
     });
 });
 
-PlayerSchema.methods.comparePassword = function(candidatePassword, cb) {
-    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
-
-
 module.exports = mongoose.model('Player', PlayerSchema);
-
-
-
-
-// ////////////////////////////////////////////////////
-// var Player = mongoose.model('Player', PlayerSchema);
-// module.exports.Player = Player;
