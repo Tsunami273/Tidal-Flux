@@ -15,7 +15,7 @@ Lane = React.createClass({
         .attr("x2", 50)
         .attr("y2", 790)
         .attr("stroke-width", 10)
-        .attr("stroke", "red");
+        .attr("stroke", "#EF307E");
     },
     componentDidUpdate: function() {
       var el = this.refs.lanearea;

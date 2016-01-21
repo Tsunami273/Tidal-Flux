@@ -708,7 +708,7 @@ body {
 } 
 
 .triggered {
-  background-color:purple;
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
 }
 
 .note {
@@ -716,15 +716,6 @@ body {
     width: 50px;
     height: 10px;
 }
-
-.strikezone {
-  fill:#298FA3;
-  width: 50px;
-  height: 10px;
-  position:absolute;
-  z-index: 1;
-}
-
 
 .playarea {
   position:absolute;
