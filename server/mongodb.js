@@ -4,7 +4,7 @@ mongoose.connect('mongodb://tidal:tidal@ds047355.mongolab.com:47355/tidal');
 
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
 
  
@@ -17,7 +17,6 @@ var PlayerSchema = new Schema({
     updated_at : Date, 
     avatar	   : String
 });
-
 
 PlayerSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {

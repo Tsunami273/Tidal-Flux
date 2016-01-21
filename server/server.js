@@ -31,22 +31,26 @@ app.post('/api/player/signup', function(req, res){
 });
 
 app.post('/api/player/signin', function(req, res){
-	// fetch user and test password verification
-	Player.findOne({ username: req.body.username }, function(err, user) {
-	    if (err) throw err;
+	// var signinUser = req.body.username;
+	// var signinPassword = req.body.password;
 
-	    // test a matching password
-	    user.comparePassword(req.body.password, function(err, isMatch) {
-	        if (err) throw err;
-	        console.log('Password check: ', isMatch);
-	        if (isMatch) {
-	        	res.send(200, 'player logged in');
-	        }
-	        if (isMatch) {
-	        	res.send(403, 'Forbidden');
-	        }
-	    });
-	});
+	// //Fetch and validate user
+	// Player.findOne({ username: signinUser }, function(err, user) {
+	//     if (err) throw err;
+
+	//     // test a matching password
+	//     user.comparePassword(signinPassword, function(err, isMatch) {
+	//         if(err) throw err;
+	//         //Matching password
+	//         if(isMatch === true) {
+	//         	res.send(200, 'player logged in');
+	//         }
+	//         //Failing password
+	//         if(isMatch === false) {
+	//         	res.send(403, 'Forbidden');
+	//         }
+	//     });
+	// });
 });
 
 app.post('/api/player/messages', function(req, res){
