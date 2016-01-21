@@ -1,13 +1,10 @@
 Songs = React.createClass({
     select: function(i) {
-      console.log(this.props.songList[i]);
       store.dispatch(selectSong(this.props.songList[i]));
     },
     render: function() {
-      var songs = songList;
       var currSong = store.getState().selectedSong;
       currSong = currSong ? currSong : {};
-      // console.log(this);
       var that = this;
         return (
           <div>
