@@ -717,15 +717,6 @@ body {
     height: 10px;
 }
 
-.strikezone {
-  fill:#298FA3;
-  width: 50px;
-  height: 10px;
-  position:absolute;
-  z-index: 1;
-}
-
-
 .playarea {
   position:absolute;
   left:550;
