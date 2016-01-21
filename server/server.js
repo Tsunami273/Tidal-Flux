@@ -8,6 +8,8 @@ var logger     = require('morgan');
 var path       = require('path');
 var Player     = require("./mongodb");
 var mongoose   = require('mongoose');
+var bcrypt     = require('bcrypt-nodejs');
+
 
 var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
 var messages = [];
@@ -17,39 +19,44 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.post('/api/player/signup', function(req, res){
 	// save user to database
-	var newPlayer = new Player(req.body);
+	var player = new Player();
 
-	//save user to database
-	newPlayer.save(function(err) {
-	    if (err) throw err;
-	    console.log('signup req: ', req.body);
+	
+
+	player.email = req.body.email;
+	player.username = req.body.username;
+	player.password = req.body.password;
+
+	//save new player in Database
+	player.save(function ( err, player) {
+		if (err) {
+			return err;
+		}
 		res.send(200, 'player logged in');
 	});
 });
 
+
+
 app.post('/api/player/signin', function(req, res){
-	var signinUser = req.body.username;
 	var signinPassword = req.body.password;
 
 	//Fetch and validate user
-	Player.findOne({ username: signinUser }, function(err, user) {
-	    if (err) throw err;
+	Player.findOne({ username: req.body.username }, function(err, user) {
+		var user = JSON.stringify(user);
+	    if (err) {
+	    	return err;
+	    }
+	    //Saved passsword in database
+	    var savedPassword = user.password;
 
-	    // test a matching password
-	    user.comparePassword(signinPassword, function(err, isMatch) {
-	        if(err) throw err;
-	        //Matching password
-	        if(isMatch === true) {
-	        	res.send(200, 'player logged in');
-	        }
-	        //Failing password
-	        if(isMatch === false) {
-	        	res.send(403, 'Forbidden');
-	        }
-	    });
+	    if (savedPassword === signinPassword) {
+	    	res.send(200, 'player logged in');
+	    } else {
+	    	res.send(403, 'Forbidden');
+	    }
 	});
 });
 

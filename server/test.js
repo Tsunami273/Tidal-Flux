@@ -8,9 +8,9 @@ var server = supertest.agent("http://localhost:4000");
 
 describe("Server unit tests",function(){
   var player = {
-    "username": "fest",
-    "email": "email@email.com",  
-    "password": "123"
+    "username": "festus",
+    "email": "email@emasjil.com",  
+    "password": "123sdf"
   };
 
   var wrongPasswordPlayer = {
@@ -27,6 +27,21 @@ describe("Server unit tests",function(){
       done();
     });
   });
+
+  it("should be able to sign up",function(done){
+    server
+    .post('/api/player/signup')
+    .send(JSON.stringify(player))
+    .set('Content-type', 'application/json')
+    .expect(200)
+    .end(function(err,res){
+      if (err) {
+        throw err;
+      }
+      done();
+    });
+  });
+
 
   it("should be able to sign in",function(done){
     server
@@ -55,21 +70,6 @@ describe("Server unit tests",function(){
       done();
     });
   });
-
-  it("should be able to sign up",function(done){
-    server
-    .post('/api/player/signup')
-    .send(JSON.stringify(player))
-    .set('Content-type', 'application/json')
-    .expect(200)
-    .end(function(err,res){
-      if (err) {
-        throw err;
-      }
-      done();
-    });
-  });
-
 
   it("should return Error 404 for wrong url links",function(done){
     server
