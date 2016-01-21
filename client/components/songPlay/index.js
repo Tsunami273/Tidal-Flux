@@ -327,7 +327,7 @@ SongPlay = React.createClass({
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
           <div>{this.state.score}</div>
-          <h1>{this.state.message}</h1>
+          <h1 className="judgetext">{this.state.message}</h1>
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
