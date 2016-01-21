@@ -72,11 +72,11 @@ Signup = React.createClass({
         data: { username : this.state.username, password : this.state.password },
         success: function(data) {
           store.dispatch( { type:'SIGN_IN', username : data.username } );
-          console.log('sign up succes')
+          store.dispatch( navigateToPage('MAIN') );
+          console.log('sign up succes');
         }.bind(this),
         error: function(xhr, status, err) {
-          console.error(this.props.url, status, err.toString());
-          console.log('sign up error');
+          console.log('sign up error: ', err);
         }.bind(this)
       });
     },
@@ -104,8 +104,8 @@ Signup = React.createClass({
                 <div className="signUpField">Confirm Password</div> <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
                 <br />
                 <br />
-              </form>
                 <input type="submit" id="subButton" className={hide}/>
+              </form>
                 {passwordError}
                 {emailError}
                 {usernameError}
