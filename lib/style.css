@@ -440,6 +440,9 @@ body {
   background-color: #ECEEF1;
 }
 
+.logo {
+  cursor: pointer;
+}
 /*====================Main Menu Style=============================*/
 
 #menucontain {
@@ -447,7 +450,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 100px;
   padding-left: 3px;
   padding-right: 3px;
   text-align: center;
@@ -535,7 +538,8 @@ body {
   box-shadow: 8px 8px 10px  #b5bec9;
   border-radius: 1.5px;
   color: #ECEEF1;
-  letter-spacing: 2px;  
+  letter-spacing: 2px;
+  cursor: pointer;  
 }
 .clickyGO h3 {
   padding-top: 3px;
@@ -552,16 +556,33 @@ body {
 }
 
 /*===============Login=================*/
+#loginA {
+  width: 727px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+
+/*#loginA img {
+  width: 1000px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}*/
 
 #loginContain {
   width: 350px;
-  height: 350px;
+  height: auto;
+  padding: 2px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  /*margin-top: 150px;*/
   text-align: center;
-  border-radius: 1.5px;
+  border-radius: 2.5px;
   background-color: #298FA3;
+  margin-top: 75px;
+  box-shadow: 8px 8px 10px  #b5bec9;
 }
 
 #loginContain span {
@@ -570,7 +591,7 @@ body {
 
 #loginContain h1 {
   letter-spacing: 2px;
-  font-size: 350%;
+  font-size: 200%;
   color: #ECEEF1;
   text-shadow: 2px 2px 10px #404040;  
 }
@@ -589,7 +610,63 @@ body {
 }
 
 #subButton {
-  width: 100px;
+  width: 225px;
+}
+
+#notUser {
+  color: #ECEEF1;
+  cursor: pointer;
+  text-shadow: 2px 2px 8px #404040; 
+}
+
+/*=============Sign Up=================*/
+
+#signUpA {
+  width: 727px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+
+#signUpContain {
+  width: 350px;
+  height: auto;
+  padding: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  /*margin-top: 150px;*/
+  text-align: center;
+  border-radius: 2.5px;
+  background-color: #298FA3;
+  margin-top: 75px;
+  box-shadow: 8px 8px 10px  #b5bec9; 
+}
+
+#signUpContain h1 {
+  letter-spacing: 2px;
+  font-size: 200%;
+  color: #ECEEF1;
+  text-shadow: 2px 2px 10px #404040;
+}
+
+#signUpContain span {
+  color: #ECEEF1;  
+}
+
+.signUpField {
+  color: #ECEEF1;
+  width: 350px;
+  height: 20px; 
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 8px #404040;
+  margin-bottom: 5px; 
+}
+
+#alreadyUser {
+  color: #ECEEF1;
+  cursor: pointer;
+  text-shadow: 2px 2px 8px #404040;  
 }
 
 /*===============Song Play=================*/
@@ -654,3 +731,4 @@ body {
   left:550;
   top:50;
 }
+
