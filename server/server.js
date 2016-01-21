@@ -20,35 +20,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/api/player/signup', function(req, res){
 	// save user to database
-	var testPlayer = new Player(req.body);
+	var newPlayer = new Player(req.body);
 
-	// save user to database
-	// testPlayer.save(function(err) {
-	//     if (err) throw err;
-	// });
-
-	// player.push(req.body); //Need to substitude with database
-	console.log('signup req: ', req.body);
-	res.send(200, 'player logged in');
+	//save user to database
+	newPlayer.save(function(err) {
+	    if (err) throw err;
+	    console.log('signup req: ', req.body);
+		res.send(200, 'player logged in');
+	});
 });
 
 app.post('/api/player/signin', function(req, res){
-	// fetch user and test password verification
-	Player.findOne({ username: req.body.username }, function(err, user) {
-	    if (err) throw err;
+	// // fetch user and test password verification
+	// Player.findOne({ username: req.body.username }, function(err, user) {
+	//     if (err) throw err;
 
-	    // test a matching password
-	    user.comparePassword(req.body.password, function(err, isMatch) {
-	        if (err) throw err;
-	        console.log('Password check: ', isMatch);
-	        if (isMatch === true) {
-	        	res.send(200, 'player logged in');
-	        }
-	        if (isMatch === false) {
-	        	res.send(403, 'Forbidden');
-	        }
-	    });
-	});
+	//     // test a matching password
+	//     user.comparePassword(req.body.password, function(err, isMatch) {
+	//         if (err) throw err;
+	//         console.log('Password check: ', isMatch);
+	//         if (isMatch) {
+	//         	res.send(200, 'player logged in');
+	//         }
+	//         if (isMatch) {
+	//         	res.send(403, 'Forbidden');
+	//         }
+	//     });
+	// });
 });
 
 app.post('/api/player/messages', function(req, res){
