@@ -24,8 +24,10 @@ Lane = React.createClass({
       var CurrentSongTime = Date.now() - start;
       var avgOffSet = this.props.songState.state.avgOffset;
 
-      g.selectAll('rect')
-        .data(notes)
+      var notes = g.selectAll('rect')
+        .data(notes, function(d){return d;})
+       
+      notes
         .enter()
         .append('rect')
         .attr('class', 'note')
@@ -37,6 +39,9 @@ Lane = React.createClass({
         .delay(function(d){return d - CurrentSongTime + avgOffSet - 2500 ;})
         .ease('linear')
 
+      notes  
+        .exit()
+        .remove();
     },
     render: function() {
         var triggered = this.props.songState.state['lane'+this.props.laneNum];

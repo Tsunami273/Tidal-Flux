@@ -23,6 +23,8 @@ SongPlay = React.createClass({
         lane3: false,
         lane4: false,
         lane5: false,
+        score: 0,
+        message: '',
       };
     },
     play: function(event) {
@@ -33,18 +35,21 @@ SongPlay = React.createClass({
     },
     componentDidMount: function() {
       var scope = this;
+
       listener.register_many([
         {"keys": "s",
           "on_keydown": function(event){
             this.setState({lane0: true});
             var currTime = Date.now() - start - this.state.avgOffset;
-            // for(var i = 0; i < this.state.notes[0].length; i++){
-            console.log(this.state.notes[0]);
-            if(this.state.notes[0][0] > currTime - 200 && this.state.notes[0][0] < currTime + 200){
-              console.log('hit note');
+            if(this.state.notes[0][0] > currTime - 150 && this.state.notes[0][0] < currTime + 150){
               var notes = this.state.notes.slice();
+              var batting = Math.abs(this.state.notes[0][0] - currTime);
+              console.log(batting);
+              var judge = batting < 50 ? 'Perfect' : 'Good';
               notes[0].shift()
-              this.setState({notes: notes})
+              this.setState({notes: notes,
+              score: this.state.score + 100,
+              message: judge});
             }
           },
           "on_keyup": function(event){
@@ -55,6 +60,17 @@ SongPlay = React.createClass({
         {"keys": "d",
           "on_keydown": function(event){
             this.setState({lane1: true});
+            var currTime = Date.now() - start - this.state.avgOffset;
+            if(this.state.notes[1][0] > currTime - 150 && this.state.notes[1][0] < currTime + 150){
+              var notes = this.state.notes.slice();
+              var batting = Math.abs(this.state.notes[1][0] - currTime);
+              console.log(batting);
+              var judge = batting < 50 ? 'Perfect' : 'Good';
+              notes[1].shift()
+              this.setState({notes: notes,
+              score: this.state.score + 100,
+              message: judge});
+            }
           },
           "on_keyup": function(event){
             this.setState({lane1: false});
@@ -64,6 +80,17 @@ SongPlay = React.createClass({
         {"keys": "f",
           "on_keydown": function(event){
             this.setState({lane2: true});
+            var currTime = Date.now() - start - this.state.avgOffset;
+            if(this.state.notes[2][0] > currTime - 150 && this.state.notes[2][0] < currTime + 150){
+              var notes = this.state.notes.slice();
+              var batting = Math.abs(this.state.notes[2][0] - currTime);
+              console.log(batting);
+              var judge = batting < 50 ? 'Perfect' : 'Good';
+              notes[2].shift()
+              this.setState({notes: notes,
+              score: this.state.score + 100,
+              message: judge});
+            }
           },
           "on_keyup": function(event){
             this.setState({lane2: false});
@@ -73,6 +100,17 @@ SongPlay = React.createClass({
         {"keys": "j",
           "on_keydown": function(event){
             this.setState({lane3: true});
+            var currTime = Date.now() - start - this.state.avgOffset;
+            if(this.state.notes[3][0] > currTime - 150 && this.state.notes[3][0] < currTime + 150){
+              var notes = this.state.notes.slice();
+              var batting = Math.abs(this.state.notes[3][0] - currTime);
+              console.log(batting);
+              var judge = batting < 50 ? 'Perfect' : 'Good';
+              notes[3].shift()
+              this.setState({notes: notes,
+              score: this.state.score + 100,
+              message: judge});
+            }
           },
           "on_keyup": function(event){
             this.setState({lane3: false});
@@ -82,6 +120,17 @@ SongPlay = React.createClass({
         {"keys": "k",
           "on_keydown": function(event){
             this.setState({lane4: true});
+            var currTime = Date.now() - start - this.state.avgOffset;
+            if(this.state.notes[4][0] > currTime - 150 && this.state.notes[4][0] < currTime + 150){
+              var notes = this.state.notes.slice();
+              var batting = Math.abs(this.state.notes[4][0] - currTime);
+              console.log(batting);
+              var judge = batting < 50 ? 'Perfect' : 'Good';
+              notes[4].shift()
+              this.setState({notes: notes,
+              score: this.state.score + 100,
+              message: judge});
+            }
           },
           "on_keyup": function(event){
             this.setState({lane4: false});
@@ -91,6 +140,17 @@ SongPlay = React.createClass({
         {"keys": "l",
           "on_keydown": function(event){
             this.setState({lane5: true});
+            var currTime = Date.now() - start - this.state.avgOffset;
+            if(this.state.notes[5][0] > currTime - 150 && this.state.notes[5][0] < currTime + 150){
+              var notes = this.state.notes.slice();
+              var batting = Math.abs(this.state.notes[5][0] - currTime);
+              console.log(batting);
+              var judge = batting < 50 ? 'Perfect' : 'Good';
+              notes[5].shift()
+              this.setState({notes: notes,
+              score: this.state.score + 100,
+              message: judge});
+            }
           },
           "on_keyup": function(event){
             this.setState({lane5: false});
@@ -112,14 +172,22 @@ SongPlay = React.createClass({
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
-      // var polling = setInterval(function(){ // dont use this.state.timer since setInterval can lag.
-      //                         // if you want to calculate the current progress at the time of an event
-      //                         // use Date.now() - start
-      //   var offset = that.state.offset
-      //   var time = Date.now() - start;
-      //   that.setState({timer: time});
-      //   that.setState({offsetTime: time - offset});
-      // }, 10);
+      var polling = setInterval(function(){ // dont use this.state.timer since setInterval can lag.
+                              // if you want to calculate the current progress at the time of an event
+                              // use Date.now() - start
+        var currTime = Date.now() - start - that.state.avgOffset;
+        var notes = that.state.notes.slice();
+        var message = that.state.message;
+        for(var i = 0 ; i < 6; i++){
+          if(notes[i][0] + 150 < currTime){
+              notes[i].shift();
+              message = 'Miss';
+          }
+        }
+        that.setState({notes: notes,
+          message: message});
+        // that.setState({timer: time});
+      }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
         var grabTime = Date.now()-start + 3500;
@@ -164,11 +232,10 @@ SongPlay = React.createClass({
         <div>
           <h1>Song Play</h1>
           <div>playhead: {this.state.playhead}</div>
-          <div>progress: {this.state.timer}</div>
-          <div> time + offset: {this.state.offsetTime} </div>
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
-          <div>{this.state.skey}</div>
+          <div>{this.state.score}</div>
+          <h1>{this.state.message}</h1>
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
@@ -181,7 +248,5 @@ SongPlay = React.createClass({
         );
     }
 });
-          // {this.state.notes.map(function(e,i,c){  
-          //   return e.map(function(e,i,c){return <span className={i}>{e}<br /></span>});
-          // })}
+
 module.exports = SongPlay;
