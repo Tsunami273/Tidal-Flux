@@ -1,6 +1,9 @@
 'use strict';
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://tidal:tidal@ds047355.mongolab.com:47355/tidal');
+mongoose.connect('mongodb://tidal:tidal@ds047355.mongolab.com:47355/tidal', function(err, result) {
+    if (err) return err;
+    console.log('Successfully connected to DB')
+}););
 
 var db = mongoose.connection;
 var Schema = mongoose.Schema;
@@ -24,6 +27,7 @@ PlayerSchema.methods.comparePassword = function(candidatePassword, cb) {
         cb(null, isMatch);
     });
 };
+
 
 
 PlayerSchema.pre('save', function(next) {

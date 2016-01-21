@@ -7,7 +7,7 @@ var router     = express.Router();
 var logger     = require('morgan');
 var path       = require('path');
 var Player     = require("./mongodb");
-var mongoose = require('mongoose');
+var mongoose   = require('mongoose');
 
 var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
 var messages = [];
@@ -31,26 +31,26 @@ app.post('/api/player/signup', function(req, res){
 });
 
 app.post('/api/player/signin', function(req, res){
-	// var signinUser = req.body.username;
-	// var signinPassword = req.body.password;
+	var signinUser = req.body.username;
+	var signinPassword = req.body.password;
 
-	// //Fetch and validate user
-	// Player.findOne({ username: signinUser }, function(err, user) {
-	//     if (err) throw err;
+	//Fetch and validate user
+	Player.findOne({ username: signinUser }, function(err, user) {
+	    if (err) throw err;
 
-	//     // test a matching password
-	//     user.comparePassword(signinPassword, function(err, isMatch) {
-	//         if(err) throw err;
-	//         //Matching password
-	//         if(isMatch === true) {
-	//         	res.send(200, 'player logged in');
-	//         }
-	//         //Failing password
-	//         if(isMatch === false) {
-	//         	res.send(403, 'Forbidden');
-	//         }
-	//     });
-	// });
+	    // test a matching password
+	    user.comparePassword(signinPassword, function(err, isMatch) {
+	        if(err) throw err;
+	        //Matching password
+	        if(isMatch === true) {
+	        	res.send(200, 'player logged in');
+	        }
+	        //Failing password
+	        if(isMatch === false) {
+	        	res.send(403, 'Forbidden');
+	        }
+	    });
+	});
 });
 
 app.post('/api/player/messages', function(req, res){
