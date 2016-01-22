@@ -5,7 +5,7 @@ const main = function(state, action){
   selectedSong:{title:'Reflection (Sanaas Remix)', 
                 artist:'Clion & Kamistory',
                 id: 1,
-                BPM: 173},
+                BPM: 173},//173
   username:'',
   keyBinds: ['s','d','f', 'j', 'k','l']
   }; 

@@ -9,6 +9,7 @@ var offsetArr = [];
 var intervalID = [];
 var noteTimes = findNoteTimes(timedBeatMap);
 var makeKeyBinds = require('./keys.js');
+var Judgement = require('./Judgement.js');
 
 
 SongPlay = React.createClass({
@@ -27,6 +28,7 @@ SongPlay = React.createClass({
         lane5: false,
         score: 0,
         message: '',
+        messageArray: [],
         judgements: {
           Perfect: 0,
           Good: 0,
@@ -73,17 +75,20 @@ SongPlay = React.createClass({
         var notes = that.state.notes.slice();
         var message = that.state.message;
         var judgements = {};
+        var messageArray = that.state.messageArray.slice();
         Object.assign(judgements,that.state.judgements);
         for(var i = 0 ; i < 6; i++){
           if(notes[i][0] + 150 < currTime){
               notes[i].shift();
               message = 'Miss';
-              judgements.Miss++
+              judgements.Miss++;
+              messageArray = ['Miss' + judgements.Miss];
           }
         }
         that.setState({notes: notes,
           message: message,
-          judgements: judgements});
+          judgements: judgements,
+          messageArray: messageArray});
         // that.setState({timer: time});
       }, 10);
       var staging = setInterval(function(){
@@ -133,7 +138,7 @@ SongPlay = React.createClass({
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
           <div>{this.state.score}</div>
-          <h1 className="judgetext">{this.state.message}</h1>
+          <Judgement messages={this.state.messageArray} />
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
