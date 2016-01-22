@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/Tsunami273/Tidal-Flux#readme",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.0.1",
     "browserify": "^13.0.0",

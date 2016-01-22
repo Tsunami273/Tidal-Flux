@@ -13,9 +13,6 @@ var jwt        = require('jwt-simple');
 var mysecret   = require('./secret');
 
 
-var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
-var messages = [];
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
@@ -23,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/api/player/signup', function(req, res){
-	// Create ne player to save user to database
+	// Create ne player to save player to database
 	var player = new Player();
 
 	player.email = req.body.email;
@@ -31,8 +28,8 @@ app.post('/api/player/signup', function(req, res){
 
 	
 	//Encrypt password
+	console.log('Login password: ', req.body.password);
 	bcrypt.hash(req.body.password, 10, function (err, hash) {
-		console.log("Player before saving HASH: ", hash)
 		player.password = hash;
 
 		//Save player to database with hashed password
@@ -49,24 +46,24 @@ app.post('/api/player/signup', function(req, res){
 
 app.post('/api/player/signin', function(req, res){
 
-	//Fetch and validate user
+	//Fetch and validate player
 	Player.findOne({ username: req.body.username })
 	.select('password').select('username')
-    .exec(function (err, user) {
+    .exec(function (err, player) {
     	if (err) { return err }
-    	if (!user) { 
+    	if (!player) { 
     		return res.status(403).send('Forbidden');
     	}
     	//Validate password
+    	
     	bcrypt.compare(req.body.password, player.password, function (err, valid) {
-    		console.log('Is valid status: ', player.password, valid)
+    		console.log('Is valid status: ', valid);
     		if (err) { return err}
     		if(!valid) {
     			return res.status(403).send('Forbidden');
     		}
     		//Generate token
-    		var token = jwt.encode({username: player.username}, mysecret.secret);
-    		console.log('Player token: ', token)
+    		var token = jwt.encode({username: player.username}, mysecret.secret)
     		res.status(200).send(token);
     		console.log('SIGNIN SUCCESSFUL')
     	});
