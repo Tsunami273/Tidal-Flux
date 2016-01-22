@@ -8,15 +8,18 @@ var makeKeyBinds = function(scope, key, i){
             if(this.state.notes[i][0] > currTime - 150 && this.state.notes[i][0] < currTime + 150){
               var notes = this.state.notes.slice();
               var batting = Math.abs(this.state.notes[i][0] - currTime);
-              console.log(batting);
+              var scoreAdd;
               if(batting<40){
                 judge = 'Perfect';
+                scoreAdd = 100
               }
               else if(batting<80){
                 judge = 'Good';
+                scoreAdd = 60;
               }
               else {
                 judge = 'Decent'
+                scoreAdd = 20;
               }
               notes[i].shift()
               var judgements = {};
@@ -24,7 +27,7 @@ var makeKeyBinds = function(scope, key, i){
               judgements[judge]++;
 
               this.setState({notes: notes,
-              score: this.state.score + 100,
+              score: this.state.score + scoreAdd,
               message: judge,
               judgements: judgements});
             }
