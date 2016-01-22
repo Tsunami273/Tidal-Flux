@@ -35,6 +35,7 @@ SongPlay = React.createClass({
       intervalID.forEach(function(e,i,c){
         clearInterval(e);  
       });
+      listener.reset();
       var score = this.state.score
       var judges = this.state.judgements
       store.dispatch(setScore(score, judges));
@@ -56,7 +57,7 @@ SongPlay = React.createClass({
       this.setState({noteTimes: noteTimes});
     },
     componentWillUnmount: function(event){
-      listener.reset()
+      listener.reset();
       console.log('unmounting');
     },
     loadedSong: function(event){
