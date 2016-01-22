@@ -674,37 +674,37 @@ body {
 .lanearea0 {
   position:absolute;
   left:0px;
-  background-color:#262626
+  background-color:#262626;
 }
 
 .lanearea1 {
   position:absolute;
   left:50px;
-  background-color:#262626
+  background-color:#262626;
 }
 
 .lanearea2 {
   position:absolute;
   left:100px;
-  background-color:#262626
+  background-color:#262626;
 }
 
 .lanearea3 {
   position:absolute;
   left:150px;
-  background-color:#262626
+  background-color:#262626;
 }
 
 .lanearea4 {
   position:absolute;
   left:200px;
-  background-color:#262626
+  background-color:#262626;
 }
 
 .lanearea5 {
   position:absolute;
   left:250px;
-  background-color:#262626
+  background-color:#262626;
 } 
 
 .triggered {
@@ -719,7 +719,12 @@ body {
 
 .playarea {
   position:absolute;
-  left:550;
-  top:50;
+  left:550px;
+  top:50px;
+}
+.judgetext {
+  position:absolute;
+  left:500px;
+  color:#298FA3;
 }
 

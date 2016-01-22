@@ -3,6 +3,7 @@ Judgement = React.createClass({
       var el = this.refs.judgement;
       var svg = d3.select(el).append('svg')
       .attr('class', 'judgement')
+      .attr('x', 500)
       .attr('width', 50)
       .attr('height', 200)
 
@@ -21,7 +22,20 @@ Judgement = React.createClass({
       message
         .enter()
         .append('text')
-        .text('Miss')
+        .text(function(d){ 
+          switch(d.charAt(0)){
+            case 'P': 
+              return 'Perfect';
+            case 'G': 
+              return 'Good';
+            case 'D':
+              return 'Decent';
+            case 'M':
+              return 'Miss';
+            default:
+              return undefined;
+          }
+        })
         .attr('x', 0)
         .attr('y', 100)
         .attr('width', 50)
@@ -44,7 +58,7 @@ Judgement = React.createClass({
     },
     render: function() {
         return (
-            <div ref="judgement"></div>
+            <div ref="judgement" className="judgetext"></div>
         );
     }
 });

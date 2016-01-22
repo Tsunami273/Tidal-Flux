@@ -26,10 +26,13 @@ var makeKeyBinds = function(scope, key, i){
               Object.assign(judgements,this.state.judgements);
               judgements[judge]++;
 
+              var messageArray = [judge + judgements[judge]];
+
               this.setState({notes: notes,
               score: this.state.score + scoreAdd,
               message: judge,
-              judgements: judgements});
+              judgements: judgements,
+              messageArray: messageArray});
             }
           },
           "on_keyup": function(event){
