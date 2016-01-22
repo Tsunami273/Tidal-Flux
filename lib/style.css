@@ -674,37 +674,43 @@ body {
 .lanearea0 {
   position:absolute;
   left:0px;
-  background-color:#262626
+  background-color:#262626;
+  z-index:1;
 }
 
 .lanearea1 {
   position:absolute;
   left:50px;
-  background-color:#262626
+  background-color:#262626;
+  z-index:1;
 }
 
 .lanearea2 {
   position:absolute;
   left:100px;
-  background-color:#262626
+  background-color:#262626;
+  z-index:1;
 }
 
 .lanearea3 {
   position:absolute;
   left:150px;
-  background-color:#262626
+  background-color:#262626;
+  z-index:1;
 }
 
 .lanearea4 {
   position:absolute;
   left:200px;
-  background-color:#262626
+  background-color:#262626;
+  z-index:1;
 }
 
 .lanearea5 {
   position:absolute;
   left:250px;
-  background-color:#262626
+  background-color:#262626;
+  z-index:1;
 } 
 
 .triggered {
@@ -719,7 +725,24 @@ body {
 
 .playarea {
   position:absolute;
-  left:550;
-  top:50;
+  left:550px;
+  top:50px;
+  z-index:1;
+}
+
+.judgetext {
+  position:absolute;
+  left:600px;
+  top:300px;
+  color:#298FA3;
+  z-index:2;
+}
+
+.judgemessage {
+  width:200px;
+  height:50px;
+  fill:#298FA3;
+  stroke:#298FA3;
+  font-size: 32;
 }
 
