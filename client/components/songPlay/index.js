@@ -3,13 +3,11 @@ var Notes = require('./Notes.js');
 var beatMaps = require('./maps/');
 var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
-var currSong = store.getState().selectedSong;
-var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1], currSong.BPM);
-var offsetArr = [];
-var intervalID = [];
-var noteTimes = findNoteTimes(timedBeatMap);
 var makeKeyBinds = require('./keys.js');
 var Judgement = require('./Judgement.js');
+
+offSetArr = [];
+intervalID = [];
 
 
 SongPlay = React.createClass({
@@ -41,21 +39,29 @@ SongPlay = React.createClass({
       intervalID.forEach(function(e,i,c){
         clearInterval(e);  
       });
+      listener.reset();
       var score = this.state.score
       var judges = this.state.judgements
       store.dispatch(setScore(score, judges));
       store.dispatch(navigateToPage('SCORE'));
     },
     componentDidMount: function() {
+      start = Date.now();
       var combos = [];
       var keys = store.getState().keyBinds; 
       for(var i = 0 ; i < 6; i++){
-        combos.push(makeKeyBinds(this,keys[i], i))
+        combos.push(makeKeyBinds(this,keys[i], i));
       }
       listener.register_many(combos);
+      var currSong = store.getState().selectedSong;
+      var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1], currSong.BPM);
+      offsetArr = [];
+      intervalID = [];
+      var noteTimes = findNoteTimes(timedBeatMap)
+      this.setState({noteTimes: noteTimes});
     },
     componentWillUnmount: function(event){
-      listener.reset()
+      listener.reset();
       console.log('unmounting');
     },
     loadedSong: function(event){
@@ -94,6 +100,7 @@ SongPlay = React.createClass({
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
         var grabTime = Date.now()-start + 3500;
+        var noteTimes = that.state.noteTimes;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
           for(var k = length-1; k > -1; k--){

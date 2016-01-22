@@ -22,7 +22,6 @@ Judgement = React.createClass({
         .enter()
         .append('text')
         .text('Miss')
-        // .attr("fill", "red")
         .attr('x', 0)
         .attr('y', 100)
         .attr('width', 50)
