@@ -6,23 +6,7 @@ var beatMap = [
   {notes: [0,0,0,0], startTime: 0},
   {notes: [0,0,0,0], startTime: 0},
   {notes: [0,0,0,0], startTime: 0},
-  {notes: [0,0,0,0], startTime: 0}, // 8
-  {notes: [0,0,0,0], startTime: 0},
-  {notes: [0,0,0,0], startTime: 0},
-  {notes: [0,0,0,0], startTime: 0},
-  {notes: [0,0,0,0], startTime: 0}, //12
-  {notes: [32,16,8,4], startTime: 0},  
-  {notes: [2,1,2,4], startTime: 0}, 
-  {notes: [8,16,32,1], startTime: 0},
-  {notes: [32,16,8,4], startTime: 0},  //16
-  {notes: [2,1,2,4], startTime: 0}, 
-  {notes: [8,16,32,1], startTime: 0},
-  {notes: [32,16,8,4], startTime: 0}, 
-  {notes: [2,1,2,4], startTime: 0},  //20
-  {notes: [8,16,32,1], startTime: 0},
-  {notes: [32,16,8,4], startTime: 0}, 
-  {notes: [32,1,16,2], startTime: 0}, 
-  {notes: [8,4,8,4], startTime: 0}, //24
+  {notes: [8,4,8,4], startTime: 0}, //8
   {notes: [16,2,32,1], startTime: 0}, 
   {notes: [32,16,8,1], startTime: 0},
   {notes: [2,4,16,8], startTime: 0},
