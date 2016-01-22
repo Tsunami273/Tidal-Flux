@@ -7,7 +7,8 @@ const main = function(state, action){
                 id: 1,
                 BPM: 173},//173
   username:'',
-  keyBinds: ['s','d','f', 'j', 'k','l']
+  keyBinds: ['s','d','f', 'j', 'k','l'],
+  selectedDiff: 'medium'
   }; 
   switch(action.type){
     case 'NAVIGATE':

@@ -1,4 +1,5 @@
-var beatMap = [
+var easy = [];
+var medium = [
   {notes: [0,0,0,0], startTime: 0}, 
   {notes: [0,0,0,0], startTime: 0},
   {notes: [0,0,0,0], startTime: 0},
@@ -65,5 +66,8 @@ var beatMap = [
   {notes: [1,18,4,18], startTime: 0}, 
   {notes: [1,16,2,8], startTime: 0}, 
 ];
+var hard = [];
 
-module.exports = beatMap;
+module.exports.easy = easy;
+module.exports.medium = medium;
+module.exports.hard = hard;

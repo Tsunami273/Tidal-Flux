@@ -5,8 +5,7 @@ var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
 var makeKeyBinds = require('./keys.js');
 var Judgement = require('./Judgement.js');
-
-offSetArr = [];
+offsetArr = [];
 intervalID = [];
 
 
@@ -53,8 +52,10 @@ SongPlay = React.createClass({
         combos.push(makeKeyBinds(this,keys[i], i));
       }
       listener.register_many(combos);
-      var currSong = store.getState().selectedSong;
-      var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1], currSong.BPM);
+      var curr = store.getState();
+      var currDiff = curr.selectedDiff;
+      var currSong = curr.selectedSong; 
+      var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
       offsetArr = [];
       intervalID = [];
       var noteTimes = findNoteTimes(timedBeatMap)

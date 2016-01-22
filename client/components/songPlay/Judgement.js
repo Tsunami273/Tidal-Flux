@@ -3,8 +3,9 @@ Judgement = React.createClass({
       var el = this.refs.judgement;
       var svg = d3.select(el).append('svg')
       .attr('class', 'judgement')
-      .attr('x', 500)
-      .attr('width', 50)
+      .attr('x', 600)
+      .attr('y', 600)
+      .attr('width', 200)
       .attr('height', 200)
 
       svg.append('g')
@@ -36,10 +37,10 @@ Judgement = React.createClass({
               return undefined;
           }
         })
-        .attr('x', 0)
+        .attr('x', 100)
         .attr('y', 100)
-        .attr('width', 50)
-        .attr('height', 20)
+        .attr('text-anchor', 'middle')
+        .attr('class', 'judgemessage')
         .transition()
         .duration(70)
         .attr('y', 95)
