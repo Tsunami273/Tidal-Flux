@@ -17,3 +17,11 @@ setScore = function(score, judges){
     judges: judges
   };
 }
+
+setDiff = function(diff){
+  return {
+    type:'SET_DIFF',
+    diff: diff,
+  }
+}
+

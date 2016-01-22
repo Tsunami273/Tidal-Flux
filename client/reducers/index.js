@@ -5,9 +5,10 @@ const main = function(state, action){
   selectedSong:{title:'Reflection (Sanaas Remix)', 
                 artist:'Clion & Kamistory',
                 id: 1,
-                BPM: 173},
+                BPM: 173},//173
   username:'',
-  keyBinds: ['s','d','f', 'j', 'k','l']
+  keyBinds: ['s','d','f', 'j', 'k','l'],
+  selectedDiff: 'Medium'
   }; 
   switch(action.type){
     case 'NAVIGATE':
@@ -17,7 +18,9 @@ const main = function(state, action){
     case 'SIGN_IN':
       return Object.assign({}, state, {username: action.username});
     case 'SET_SCORE':
-      return Object.assign({}, state, {score: action.score, judges: action.judges})
+      return Object.assign({}, state, {score: action.score, judges: action.judges});
+    case 'SET_DIFF':
+      return Object.assign({}, state, {selectedDiff: action.diff});
     default:
       return state;
   }

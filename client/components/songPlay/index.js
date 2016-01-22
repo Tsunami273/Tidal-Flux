@@ -4,8 +4,10 @@ var beatMaps = require('./maps/');
 var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
 var makeKeyBinds = require('./keys.js');
-offSetArr = [];
+var Judgement = require('./Judgement.js');
+offsetArr = [];
 intervalID = [];
+
 
 SongPlay = React.createClass({
     getInitialState: function() {
@@ -23,6 +25,7 @@ SongPlay = React.createClass({
         lane5: false,
         score: 0,
         message: '',
+        messageArray: [],
         judgements: {
           Perfect: 0,
           Good: 0,
@@ -35,6 +38,7 @@ SongPlay = React.createClass({
       intervalID.forEach(function(e,i,c){
         clearInterval(e);  
       });
+      listener.reset();
       var score = this.state.score
       var judges = this.state.judgements
       store.dispatch(setScore(score, judges));
@@ -48,16 +52,17 @@ SongPlay = React.createClass({
         combos.push(makeKeyBinds(this,keys[i], i));
       }
       listener.register_many(combos);
-      var currSong = store.getState().selectedSong;
-      var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1], currSong.BPM);
+      var curr = store.getState();
+      var currDiff = curr.selectedDiff;
+      var currSong = curr.selectedSong; 
+      var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
       offsetArr = [];
       intervalID = [];
       var noteTimes = findNoteTimes(timedBeatMap)
       this.setState({noteTimes: noteTimes});
     },
     componentWillUnmount: function(event){
-      listener.reset()
-      console.log('unmounting');
+      listener.reset();
     },
     loadedSong: function(event){
       // this event triggers when the song is ready to be played
@@ -76,17 +81,20 @@ SongPlay = React.createClass({
         var notes = that.state.notes.slice();
         var message = that.state.message;
         var judgements = {};
+        var messageArray = that.state.messageArray.slice();
         Object.assign(judgements,that.state.judgements);
         for(var i = 0 ; i < 6; i++){
           if(notes[i][0] + 150 < currTime){
               notes[i].shift();
               message = 'Miss';
-              judgements.Miss++
+              judgements.Miss++;
+              messageArray = ['Miss' + judgements.Miss];
           }
         }
         that.setState({notes: notes,
           message: message,
-          judgements: judgements});
+          judgements: judgements,
+          messageArray: messageArray});
         // that.setState({timer: time});
       }, 10);
       var staging = setInterval(function(){
@@ -137,7 +145,7 @@ SongPlay = React.createClass({
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
           <div>{this.state.score}</div>
-          <h1 className="judgetext">{this.state.message}</h1>
+          <Judgement messages={this.state.messageArray} />
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
