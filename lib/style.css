@@ -500,12 +500,15 @@ body {
 
 /*====================Song Select============================*/
 
-
 .selectedsong {
   background-color:#373F51;
   color:white;
 }
 
+.selecteddiff {
+  background-color:#373F51;
+  color:white;
+}
 
 
 /*==========================Global Options====================*/

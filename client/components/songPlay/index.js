@@ -55,6 +55,7 @@ SongPlay = React.createClass({
       var curr = store.getState();
       var currDiff = curr.selectedDiff;
       var currSong = curr.selectedSong; 
+      console.log(beatMaps);
       var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
       offsetArr = [];
       intervalID = [];

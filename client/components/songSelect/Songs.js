@@ -4,7 +4,6 @@ Songs = React.createClass({
     },
     render: function() {
       var currSong = store.getState().selectedSong;
-      currSong = currSong ? currSong : {};
       var that = this;
         return (
           <div>
