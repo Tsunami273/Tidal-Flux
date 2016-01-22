@@ -6,7 +6,8 @@ const main = function(state, action){
                 artist:'Clion & Kamistory',
                 id: 1,
                 BPM: 173},
-  username:''
+  username:'',
+  keyBinds: ['s','d','f', 'j', 'k','l']
   }; 
   switch(action.type){
     case 'NAVIGATE':

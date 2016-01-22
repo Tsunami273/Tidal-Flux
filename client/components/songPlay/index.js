@@ -3,12 +3,9 @@ var Notes = require('./Notes.js');
 var beatMaps = require('./maps/');
 var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
-var currSong = store.getState().selectedSong;
-var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1], currSong.BPM);
-var offsetArr = [];
-var intervalID = [];
-var noteTimes = findNoteTimes(timedBeatMap);
-
+var makeKeyBinds = require('./keys.js');
+offSetArr = [];
+intervalID = [];
 
 SongPlay = React.createClass({
     getInitialState: function() {
@@ -44,207 +41,19 @@ SongPlay = React.createClass({
       store.dispatch(navigateToPage('SCORE'));
     },
     componentDidMount: function() {
-      var scope = this;
-
-      listener.register_many([
-        {"keys": "s",
-          "on_keydown": function(event){
-            this.setState({lane0: true});
-            var currTime = Date.now() - start - this.state.avgOffset;
-            if(this.state.notes[0][0] > currTime - 150 && this.state.notes[0][0] < currTime + 150){
-              var notes = this.state.notes.slice();
-              var batting = Math.abs(this.state.notes[0][0] - currTime);
-              console.log(batting);
-              if(batting<40){
-                judge = 'Perfect';
-              }
-              else if(batting<80){
-                judge = 'Good';
-              }
-              else {
-                judge = 'Decent'
-              }
-              notes[0].shift()
-              var judgements = {};
-              Object.assign(judgements,this.state.judgements);
-              judgements[judge]++;
-
-              this.setState({notes: notes,
-              score: this.state.score + 100,
-              message: judge,
-              judgements: judgements});
-            }
-          },
-          "on_keyup": function(event){
-            this.setState({lane0: false});
-          }, 
-          "this": scope
-        },
-        {"keys": "d",
-          "on_keydown": function(event){
-            this.setState({lane1: true});
-            var currTime = Date.now() - start - this.state.avgOffset;
-            if(this.state.notes[1][0] > currTime - 150 && this.state.notes[1][0] < currTime + 150){
-              var notes = this.state.notes.slice();
-              var batting = Math.abs(this.state.notes[1][0] - currTime);
-              console.log(batting);
-              if(batting<40){
-                judge = 'Perfect';
-              }
-              else if(batting<80){
-                judge = 'Good';
-              }
-              else {
-                judge = 'Decent'
-              }
-              notes[1].shift()
-              var judgements = {};
-              Object.assign(judgements,this.state.judgements);
-              judgements[judge]++;
-
-              this.setState({notes: notes,
-              score: this.state.score + 100,
-              message: judge,
-              judgements: judgements});
-            }
-          },
-          "on_keyup": function(event){
-            this.setState({lane1: false});
-          }, 
-          "this": scope
-        },
-        {"keys": "f",
-          "on_keydown": function(event){
-            this.setState({lane2: true});
-            var currTime = Date.now() - start - this.state.avgOffset;
-            if(this.state.notes[2][0] > currTime - 150 && this.state.notes[2][0] < currTime + 150){
-              var notes = this.state.notes.slice();
-              var batting = Math.abs(this.state.notes[2][0] - currTime);
-              console.log(batting);
-              if(batting<40){
-                judge = 'Perfect';
-              }
-              else if(batting<80){
-                judge = 'Good';
-              }
-              else {
-                judge = 'Decent'
-              }
-              notes[2].shift()
-              var judgements = {};
-              Object.assign(judgements,this.state.judgements);
-              judgements[judge]++;
-
-              this.setState({notes: notes,
-              score: this.state.score + 100,
-              message: judge,
-              judgements: judgements});
-            }
-          },
-          "on_keyup": function(event){
-            this.setState({lane2: false});
-          }, 
-          "this": scope
-        },
-        {"keys": "j",
-          "on_keydown": function(event){
-            this.setState({lane3: true});
-            var currTime = Date.now() - start - this.state.avgOffset;
-            if(this.state.notes[3][0] > currTime - 150 && this.state.notes[3][0] < currTime + 150){
-              var notes = this.state.notes.slice();
-              var batting = Math.abs(this.state.notes[3][0] - currTime);
-              console.log(batting);
-              if(batting<40){
-                judge = 'Perfect';
-              }
-              else if(batting<80){
-                judge = 'Good';
-              }
-              else {
-                judge = 'Decent'
-              }
-              notes[3].shift()
-              var judgements = {};
-              Object.assign(judgements,this.state.judgements);
-              judgements[judge]++;
-
-              this.setState({notes: notes,
-              score: this.state.score + 100,
-              message: judge,
-              judgements: judgements});
-            }
-          },
-          "on_keyup": function(event){
-            this.setState({lane3: false});
-          }, 
-          "this": scope
-        },
-        {"keys": "k",
-          "on_keydown": function(event){
-            this.setState({lane4: true});
-            var currTime = Date.now() - start - this.state.avgOffset;
-            if(this.state.notes[4][0] > currTime - 150 && this.state.notes[4][0] < currTime + 150){
-              var notes = this.state.notes.slice();
-              var batting = Math.abs(this.state.notes[4][0] - currTime);
-              console.log(batting);
-              if(batting<40){
-                judge = 'Perfect';
-              }
-              else if(batting<80){
-                judge = 'Good';
-              }
-              else {
-                judge = 'Decent'
-              }
-              notes[4].shift()
-             var judgements = {};
-              Object.assign(judgements,this.state.judgements);
-              judgements[judge]++;
-
-              this.setState({notes: notes,
-              score: this.state.score + 100,
-              message: judge,
-              judgements: judgements});
-            }
-          },
-          "on_keyup": function(event){
-            this.setState({lane4: false});
-          }, 
-          "this": scope
-        },
-        {"keys": "l",
-          "on_keydown": function(event){
-            this.setState({lane5: true});
-            var currTime = Date.now() - start - this.state.avgOffset;
-            if(this.state.notes[5][0] > currTime - 150 && this.state.notes[5][0] < currTime + 150){
-              var notes = this.state.notes.slice();
-              var batting = Math.abs(this.state.notes[5][0] - currTime);
-              console.log(batting);
-              if(batting<40){
-                judge = 'Perfect';
-              }
-              else if(batting<80){
-                judge = 'Good';
-              }
-              else {
-                judge = 'Decent'
-              }
-              notes[5].shift()
-              var judgements = {};
-              Object.assign(judgements,this.state.judgements);
-              judgements[judge]++;
-
-              this.setState({notes: notes,
-              score: this.state.score + 100,
-              message: judge,
-              judgements: judgements});
-            }
-          },
-          "on_keyup": function(event){
-            this.setState({lane5: false});
-          }, 
-          "this": scope
-        }]);
+      start = Date.now();
+      var combos = [];
+      var keys = store.getState().keyBinds; 
+      for(var i = 0 ; i < 6; i++){
+        combos.push(makeKeyBinds(this,keys[i], i));
+      }
+      listener.register_many(combos);
+      var currSong = store.getState().selectedSong;
+      var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1], currSong.BPM);
+      offsetArr = [];
+      intervalID = [];
+      var noteTimes = findNoteTimes(timedBeatMap)
+      this.setState({noteTimes: noteTimes});
     },
     componentWillUnmount: function(event){
       listener.reset()
@@ -283,6 +92,7 @@ SongPlay = React.createClass({
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
         var grabTime = Date.now()-start + 3500;
+        var noteTimes = that.state.noteTimes;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
           for(var k = length-1; k > -1; k--){
@@ -327,7 +137,7 @@ SongPlay = React.createClass({
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
           <div>{this.state.score}</div>
-          <h1>{this.state.message}</h1>
+          <h1 className="judgetext">{this.state.message}</h1>
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
