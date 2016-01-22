@@ -15,7 +15,6 @@ Judgement = React.createClass({
       var el = this.refs.judgement;
       var g = d3.select(el).selectAll('.judgement-g');
       var judgements = this.props.messages;
-      console.log('judgement', judgements);
 
       var message = g.selectAll('text')
         .data(judgements, function(d){return d;});
