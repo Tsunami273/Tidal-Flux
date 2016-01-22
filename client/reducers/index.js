@@ -18,7 +18,9 @@ const main = function(state, action){
     case 'SIGN_IN':
       return Object.assign({}, state, {username: action.username});
     case 'SET_SCORE':
-      return Object.assign({}, state, {score: action.score, judges: action.judges})
+      return Object.assign({}, state, {score: action.score, judges: action.judges});
+    case 'SET_DIFF':
+      return Object.assign({}, state, {selectedDiff: action.diff});
     default:
       return state;
   }
