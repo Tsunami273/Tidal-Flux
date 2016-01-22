@@ -55,7 +55,6 @@ SongPlay = React.createClass({
       var curr = store.getState();
       var currDiff = curr.selectedDiff;
       var currSong = curr.selectedSong; 
-      console.log(beatMaps);
       var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
       offsetArr = [];
       intervalID = [];
@@ -64,7 +63,6 @@ SongPlay = React.createClass({
     },
     componentWillUnmount: function(event){
       listener.reset();
-      console.log('unmounting');
     },
     loadedSong: function(event){
       // this event triggers when the song is ready to be played
