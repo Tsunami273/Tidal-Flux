@@ -8,7 +8,9 @@ var logger     = require('morgan');
 var path       = require('path');
 var Player     = require("./mongodb");
 var mongoose   = require('mongoose');
-var bcrypt     = require('bcrypt-nodejs');
+var bcrypt     = require('bcryptjs');
+var jwt        = require('jwt-simple');
+var mysecret   = require('./secret');
 
 
 var player = [{email: 'email@email.com', username: 'fest', password: '123'}];
@@ -19,46 +21,59 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/api/player/signup', function(req, res){
-	// save user to database
-	var player = new Player();
 
-	
+app.post('/api/player/signup', function(req, res){
+	// Create ne player to save user to database
+	var player = new Player();
 
 	player.email = req.body.email;
 	player.username = req.body.username;
-	player.password = req.body.password;
 
-	//save new player in Database
-	player.save(function ( err, player) {
-		if (err) {
-			return err;
-		}
-		res.send(200, 'player logged in');
+	
+	//Encrypt password
+	bcrypt.hash(req.body.password, 10, function (err, hash) {
+		console.log("Player before saving HASH: ", hash)
+		player.password = hash;
+
+		//Save player to database with hashed password
+		player.save(function (err, player) {
+			if(err) {
+				return err;
+			}
+			res.status(200).send(json(player))
+			console.log('SIGNUP SUCCESSFUL')
+		})
 	});
 });
-
 
 
 app.post('/api/player/signin', function(req, res){
-	var signinPassword = req.body.password;
 
 	//Fetch and validate user
-	Player.findOne({ username: req.body.username }, function(err, user) {
-		var user = JSON.stringify(user);
-	    if (err) {
-	    	return err;
-	    }
-	    //Saved passsword in database
-	    var savedPassword = user.password;
+	Player.findOne({ username: req.body.username })
+	.select('password').select('username')
+    .exec(function (err, user) {
+    	if (err) { return err }
+    	if (!user) { 
+    		return res.status(403).send('Forbidden');
+    	}
+    	//Validate password
+    	bcrypt.compare(req.body.password, player.password, function (err, valid) {
+    		console.log('Is valid status: ', player.password, valid)
+    		if (err) { return err}
+    		if(!valid) {
+    			return res.status(403).send('Forbidden');
+    		}
+    		//Generate token
+    		var token = jwt.encode({username: player.username}, mysecret.secret);
+    		console.log('Player token: ', token)
+    		res.status(200).send(token);
+    		console.log('SIGNIN SUCCESSFUL')
+    	});
+    });
+ });
 
-	    if (savedPassword === signinPassword) {
-	    	res.send(200, 'player logged in');
-	    } else {
-	    	res.send(403, 'Forbidden');
-	    }
-	});
-});
+
 
 app.post('/api/player/messages', function(req, res){
 	messages(req, res, res.send)

@@ -19,11 +19,4 @@ var PlayerSchema = new Schema({
     avatar	   : String
 })
 
-
-
-// PlayerSchema.pre('save', function(next) {
-//     var user = this;
-//     next();
-// });
-
 module.exports = mongoose.model('Player', PlayerSchema);
