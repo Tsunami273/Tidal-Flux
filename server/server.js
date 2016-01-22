@@ -20,25 +20,31 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/api/player/signup', function(req, res){
+	console.log('Player Details: ', req.body)
 	// Create ne player to save player to database
 	var player = new Player();
+	
 
 	player.email = req.body.email;
 	player.username = req.body.username;
+	 // req.body.password;
+
+	console.log('New Player', player)
 
 	
 	//Encrypt password
-	console.log('Login password: ', req.body.password);
-	bcrypt.hash(req.body.password, 10, function (err, hash) {
-		player.password = hash;
+	bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
+		player.password = hashPassword;
 
 		//Save player to database with hashed password
 		player.save(function (err, player) {
 			if(err) {
-				return err;
+				console.log(err);
+				return res.status(403).json(err);
+			} else {
+				return res.status(200).json(player)
+				console.log('SIGNUP SUCCESSFUL')
 			}
-			res.status(200).send(json(player))
-			console.log('SIGNUP SUCCESSFUL')
 		})
 	});
 });
@@ -58,7 +64,9 @@ app.post('/api/player/signin', function(req, res){
     	
     	bcrypt.compare(req.body.password, player.password, function (err, valid) {
     		console.log('Is valid status: ', valid);
-    		if (err) { return err}
+    		if (err) {
+    			return res.status(403).json(err);
+    		}
     		if(!valid) {
     			return res.status(403).send('Forbidden');
     		}

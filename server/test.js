@@ -28,34 +28,35 @@ describe("Server unit tests",function(){
     });
   });
 
-  // it("should be able to sign up",function(done){
+  it("should be able to sign up",function(done){
+    server
+    .post('/api/player/signup')
+    .send(JSON.stringify(player))
+    .set('Content-type', 'application/json')
+    .expect(200)
+    .end(function(err,res){
+      console.log('Singup Respnose: ', res.body)
+      if (err) {
+        throw error;
+      }
+      done();
+    });
+  });
+
+
+  // it("should be able to sign in",function(done){
   //   server
-  //   .post('/api/player/signup')
+  //   .post('/api/player/signin')
   //   .send(JSON.stringify(player))
   //   .set('Content-type', 'application/json')
-  //   .expect(200)
   //   .end(function(err,res){
   //     if (err) {
   //       throw err;
   //     }
+  //     expect(res.status).to.equal(200);
   //     done();
   //   });
   // });
-
-
-  it("should be able to sign in",function(done){
-    server
-    .post('/api/player/signin')
-    .send(JSON.stringify(player))
-    .set('Content-type', 'application/json')
-    .end(function(err,res){
-      if (err) {
-        throw err;
-      }
-      expect(res.status).to.equal(200);
-      done();
-    });
-  });
 
   // it("should NOT BE ABLE to sign in with wrong username/password",function(done){
   //   server
