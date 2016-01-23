@@ -1,4 +1,4 @@
-var Diffs = React.createClass({
+var Scroll = React.createClass({
     getInitialState: function(diff){
       var currScroll = store.getState().scrollSpeed;
       return {
@@ -24,4 +24,4 @@ var Diffs = React.createClass({
         );
     }
 });
-module.exports = Diffs;
+module.exports = Scroll;
