@@ -13,7 +13,6 @@ SongSelect = React.createClass({
     play: function(event) {
       var diff = this.refs.diff.state.diff
       var scroll = this.refs.scroll.state.scroll;
-      console.log(scroll);
       store.dispatch(navigateToPage('PLAY'));
       store.dispatch(setScroll(scroll));
       store.dispatch(setDiff(diff));
