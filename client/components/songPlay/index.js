@@ -5,6 +5,7 @@ var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
 var makeKeyBinds = require('./keys.js');
 var Judgement = require('./Judgement.js');
+var Health = require('./Health.js')
 offsetArr = [];
 intervalID = [];
 
@@ -30,7 +31,8 @@ SongPlay = React.createClass({
           Perfect: 0,
           Good: 0,
           Decent: 0,
-          Miss: 0
+          Miss: 0,
+          health: 100
         }
       };
     },
@@ -63,6 +65,9 @@ SongPlay = React.createClass({
     },
     componentWillUnmount: function(event){
       listener.reset();
+      intervalID.forEach(function(e,i,c){
+        clearInterval(e);  
+      });
     },
     loadedSong: function(event){
       // this event triggers when the song is ready to be played
@@ -85,17 +90,20 @@ SongPlay = React.createClass({
         Object.assign(judgements,that.state.judgements);
         for(var i = 0 ; i < 6; i++){
           if(notes[i][0] + 150 < currTime){
-              notes[i].shift();
-              message = 'Miss';
-              judgements.Miss++;
-              messageArray = ['Miss' + judgements.Miss];
+            notes[i].shift();
+            message = 'Miss';
+            judgements.Miss++;
+            messageArray = ['Miss' + judgements.Miss];
+            judgements.health = judgements.health - 5;
+            if(judgements.health < 0){
+              return that.play();
+            }
           }
         }
         that.setState({notes: notes,
           message: message,
           judgements: judgements,
           messageArray: messageArray});
-        // that.setState({timer: time});
       }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
@@ -141,6 +149,7 @@ SongPlay = React.createClass({
         return (
         <div>
           <h1>Song Play</h1>
+          <Health health={this.state.judgements.health}/>
           <div>playhead: {this.state.playhead}</div>
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
