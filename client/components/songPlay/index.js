@@ -11,6 +11,8 @@ intervalID = [];
 
 SongPlay = React.createClass({
     getInitialState: function() {
+      var globalState = store.getState()
+      var scrollSpeed = globalState.durations[globalState.scrollSpeed-1];
       return {
         playhead: 0,
         timer: 0,
@@ -31,7 +33,8 @@ SongPlay = React.createClass({
           Good: 0,
           Decent: 0,
           Miss: 0
-        }
+        },
+        scrollSpeed: scrollSpeed,
       };
     },
     play: function(event) {
@@ -152,7 +155,6 @@ SongPlay = React.createClass({
           onTimeUpdate={this.updatePlayhead}
           ref='audio'
           ></audio>
-          <br />
           <Notes songState={this} stagedNotes={this.state.notes} />
         </div>
         );
