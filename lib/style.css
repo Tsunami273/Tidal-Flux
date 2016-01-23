@@ -433,6 +433,7 @@ LIGHT BLUE  //==> #A9BCD0
 MEDIUM BLUE //==> #298FA3
 DARK BLUE   //==> #373F56
 BLACK       //==> #262626
+RED         //==> #EF307E
 */
 
 
@@ -502,14 +503,32 @@ body {
 
 .selectedsong {
   background-color:#373F51;
-  color:white;
+  color:#ECEEF1;
 }
 
 .selecteddiff {
   background-color:#373F51;
-  color:white;
+  color:#ECEEF1;
 }
 
+.selectedscroll {
+  background-color:#373F51;
+  color:#ECEEF1;
+}
+
+.song-options-container {
+  float:right;
+  background-color:#A9BCD0;
+  color:#373F56;
+  display: inline-block;
+  padding:5px;
+  border-radius:8px;
+}
+
+.song-options-container h3{
+  margin-top:0px;
+  margin-bottom:5px;
+}
 
 /*==========================Global Options====================*/
 
@@ -621,6 +640,19 @@ body {
   cursor: pointer;
   text-shadow: 2px 2px 8px #404040; 
 }
+
+.signInError {
+  background-color:#EF307E;
+  color:#ECEEF1;
+  text-shadow: 2px 2px 8px #404040; 
+}
+
+.signUpError {
+  background-color:#EF307E;
+  color:#ECEEF1;
+  text-shadow: 2px 2px 8px #404040; 
+}
+
 
 /*=============Sign Up=================*/
 

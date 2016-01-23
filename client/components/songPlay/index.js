@@ -12,6 +12,8 @@ intervalID = [];
 
 SongPlay = React.createClass({
     getInitialState: function() {
+      var globalState = store.getState()
+      var scrollSpeed = globalState.durations[globalState.scrollSpeed-1];
       return {
         playhead: 0,
         timer: 0,
@@ -34,6 +36,7 @@ SongPlay = React.createClass({
           Miss: 0,
           health: 100
         }
+        scrollSpeed: scrollSpeed
       };
     },
     play: function(event) {
@@ -107,7 +110,7 @@ SongPlay = React.createClass({
       }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
-        var grabTime = Date.now()-start + 3500;
+        var grabTime = Date.now()-start + 4100;
         var noteTimes = that.state.noteTimes;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
@@ -161,7 +164,6 @@ SongPlay = React.createClass({
           onTimeUpdate={this.updatePlayhead}
           ref='audio'
           ></audio>
-          <br />
           <Notes songState={this} stagedNotes={this.state.notes} />
         </div>
         );

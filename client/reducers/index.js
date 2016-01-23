@@ -9,6 +9,7 @@ const main = function(state, action){
   username:'',
   keyBinds: ['s','d','f', 'j', 'k','l'],
   selectedDiff: 'Medium',
+<<<<<<< HEAD
   judges: {
           Perfect: 0,
           Good: 0,
@@ -16,6 +17,10 @@ const main = function(state, action){
           Miss: 0,
           health: 100
         }
+=======
+  scrollSpeed: 1,
+  durations: [4000,3000,2000,1500,1100,750],
+>>>>>>> master
   }; 
   switch(action.type){
     case 'NAVIGATE':
@@ -28,6 +33,8 @@ const main = function(state, action){
       return Object.assign({}, state, {score: action.score, judges: action.judges});
     case 'SET_DIFF':
       return Object.assign({}, state, {selectedDiff: action.diff});
+    case 'SET_SCROLL':
+      return Object.assign({}, state, {scrollSpeed: action.scroll})
     default:
       return state;
   }

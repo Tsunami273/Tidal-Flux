@@ -10,6 +10,7 @@ Signup = React.createClass({
       emailError: '',
       usernameError: '',
       passwordError: '',
+      signUpError: '',
       hide:'hidden'
       };
     },
@@ -73,11 +74,9 @@ Signup = React.createClass({
         success: function(data) {
           store.dispatch( { type:'SIGN_IN', username : data.username } );
           store.dispatch( navigateToPage('MAIN') );
-          console.log('sign up succes');
         }.bind(this),
         error: function(xhr, status, err) {
-          console.log('sign up error: ', err);
-          console.log('Signup Error Status: ', status)
+          this.setState({signUpError: 'This username already exists'});
         }.bind(this)
       });
     },
@@ -107,9 +106,10 @@ Signup = React.createClass({
                 <br />
                 <input type="submit" id="subButton" className={hide}/>
               </form>
-                {passwordError}
-                {emailError}
-                {usernameError}
+                <div>{passwordError}</div>
+                <div>{emailError}</div>
+                <div>{usernameError}</div>
+                <div className="signUpError">{this.state.signUpError}</div>
                 <br />
                 <br />
                 <div id="alreadyUser" onClick={this.goToLogin}>Already a user? Click here.</div>
