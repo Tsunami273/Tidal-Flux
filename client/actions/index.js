@@ -25,3 +25,10 @@ setDiff = function(diff){
   }
 }
 
+setScroll = function(scroll){
+  return {
+    type:'SET_SCROLL',
+    scroll: scroll
+  }
+}
+

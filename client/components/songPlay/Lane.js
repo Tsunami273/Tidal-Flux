@@ -11,9 +11,9 @@ Lane = React.createClass({
       .attr('class', 'd3-points')
         .append("line")
         .attr("x1", 0)
-        .attr("y1", 790)
+        .attr("y1", 795)
         .attr("x2", 50)
-        .attr("y2", 790)
+        .attr("y2", 795)
         .attr("stroke-width", 10)
         .attr("stroke", "#EF307E");
     },
@@ -23,7 +23,7 @@ Lane = React.createClass({
       var notes = this.props.stagedNotes;
       var CurrentSongTime = Date.now() - start;
       var avgOffSet = this.props.songState.state.avgOffset;
-
+      var duration = this.props.songState.state.scrollSpeed;
       var notes = g.selectAll('rect')
         .data(notes, function(d){return d;})
        
@@ -35,8 +35,8 @@ Lane = React.createClass({
         .attr('y', 0)
         .transition()
         .attr('y',790)
-        .duration(2500)
-        .delay(function(d){return d - CurrentSongTime + avgOffSet - 2500 ;})
+        .duration(duration)
+        .delay(function(d){return d - CurrentSongTime + avgOffSet - duration;})
         .ease('linear')
 
       notes  

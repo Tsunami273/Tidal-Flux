@@ -13,6 +13,7 @@ var Diffs = React.createClass({
       var that = this;
         return (
           <div>
+          <h3>Difficulty: </h3>
           {this.state.diffs.map(function(e,i,c){
             var selected = classNames(e, {'selecteddiff': that.state.diff === e});
             return (<span key={i} onClick={that.selectDiff.bind(that, e)} className={selected}>{e}  </span>);

@@ -503,14 +503,32 @@ body {
 
 .selectedsong {
   background-color:#373F51;
-  color:white;
+  color:#ECEEF1;
 }
 
 .selecteddiff {
   background-color:#373F51;
-  color:white;
+  color:#ECEEF1;
 }
 
+.selectedscroll {
+  background-color:#373F51;
+  color:#ECEEF1;
+}
+
+.song-options-container {
+  float:right;
+  background-color:#A9BCD0;
+  color:#373F56;
+  display: inline-block;
+  padding:5px;
+  border-radius:8px;
+}
+
+.song-options-container h3{
+  margin-top:0px;
+  margin-bottom:5px;
+}
 
 /*==========================Global Options====================*/
 

@@ -2,6 +2,7 @@
 var NavButton = require('../navButton.js');
 var Songs = require('./Songs.js');
 var Diffs = require('./Diffs.js');
+var Scroll = require('./Scroll.js');
 songList = require('./songList.js');
 SongSelect = React.createClass({
     getInitialState: function(){
@@ -11,7 +12,9 @@ SongSelect = React.createClass({
     },
     play: function(event) {
       var diff = this.refs.diff.state.diff
+      var scroll = this.refs.scroll.state.scroll;
       store.dispatch(navigateToPage('PLAY'));
+      store.dispatch(setScroll(scroll));
       store.dispatch(setDiff(diff));
     },
     render: function() {
@@ -19,7 +22,11 @@ SongSelect = React.createClass({
         return (
         <div>
           <h1>Song Select</h1>
-          <Diffs ref="diff" diffs={this.state.diffs}/>
+          <div className="song-options-container">
+            <Diffs ref="diff" diffs={this.state.diffs}/>
+            <br />
+            <Scroll ref="scroll" />
+          </div>
           <br />
           <Songs songList={songList} />
           <br />
