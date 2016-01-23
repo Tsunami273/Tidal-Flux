@@ -8,14 +8,14 @@ var server = supertest.agent("http://localhost:4000");
 
 describe("Server unit tests",function(){
   var player = {
-    "username": "festus",
-    "email": "email@emasjil.com",  
-    "password": "123sdf"
+    "username": "iasssddasdsa",
+    "email": "bcryasdsapt@emassjil.com",  
+    "password": "1sssm2s3sdf"
   };
 
   var wrongPasswordPlayer = {
-    "username": "dfsfsdfdsfsd",
-    "password": "sdsdsd"
+    "username": "dfsfsdsfdsfsd",
+    "password": "sdsdsxhhxd"
   }
 
   it("should return homepage",function(done){
@@ -36,7 +36,7 @@ describe("Server unit tests",function(){
     .expect(200)
     .end(function(err,res){
       if (err) {
-        throw err;
+        throw error;
       }
       done();
     });

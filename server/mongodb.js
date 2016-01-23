@@ -12,18 +12,7 @@ var Schema = mongoose.Schema;
 var PlayerSchema = new Schema({
 	username   : { type: String, required: true, unique: true },
 	email      : { type: String, required: true, unique: true },
-	password   : { type: String, required: true },
-	age 	   : Number,
-	created_at : Date,
-    updated_at : Date, 
-    avatar	   : String
+	password   : { type: String, required: true }
 })
-
-
-
-// PlayerSchema.pre('save', function(next) {
-//     var user = this;
-//     next();
-// });
 
 module.exports = mongoose.model('Player', PlayerSchema);

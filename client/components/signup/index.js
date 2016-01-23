@@ -69,7 +69,7 @@ Signup = React.createClass({
         url: '/api/player/signup',
         dataType: 'json',
         type: 'POST',
-        data: { username : this.state.username, password : this.state.password },
+        data: { email: this.state.email, username : this.state.username, password : this.state.password },
         success: function(data) {
           store.dispatch( { type:'SIGN_IN', username : data.username } );
           store.dispatch( navigateToPage('MAIN') );
@@ -77,6 +77,7 @@ Signup = React.createClass({
         }.bind(this),
         error: function(xhr, status, err) {
           console.log('sign up error: ', err);
+          console.log('Signup Error Status: ', status)
         }.bind(this)
       });
     },
