@@ -9,6 +9,13 @@ const main = function(state, action){
     username:'',
     keyBinds: ['s','d','f', 'j', 'k','l'],
     selectedDiff: 'Medium',
+      judges: {
+          Perfect: 0,
+          Good: 0,
+          Decent: 0,
+          Miss: 0,
+          health: 100
+        },
     scrollSpeed: 1,
     durations: [4000,3000,2000,1500,1100,750],
     globalOffset: -30,
