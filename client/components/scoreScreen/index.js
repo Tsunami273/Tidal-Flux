@@ -8,9 +8,15 @@ ScoreScreen = React.createClass({
     render: function() {
       var score = store.getState().score;
       var judges = store.getState().judges;
-        return (
+      var health = judges.health;
+      var message = '';
+      if(health <= 0){
+        message = <h2>Hey Festus, you lose!</h2>;
+      }
+      return (
         <div>
           <h1>Score Screen</h1>
+          <div>{message}</div>
           <br />
           <div>{score}</div>
           <div>Perfect: {judges.Perfect}</div>
