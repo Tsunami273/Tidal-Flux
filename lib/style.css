@@ -433,6 +433,7 @@ LIGHT BLUE  //==> #A9BCD0
 MEDIUM BLUE //==> #298FA3
 DARK BLUE   //==> #373F56
 BLACK       //==> #262626
+RED         //==> #EF307E
 */
 
 
@@ -621,6 +622,19 @@ body {
   cursor: pointer;
   text-shadow: 2px 2px 8px #404040; 
 }
+
+.signInError {
+  background-color:#EF307E;
+  color:#ECEEF1;
+  text-shadow: 2px 2px 8px #404040; 
+}
+
+.signUpError {
+  background-color:#EF307E;
+  color:#ECEEF1;
+  text-shadow: 2px 2px 8px #404040; 
+}
+
 
 /*=============Sign Up=================*/
 
