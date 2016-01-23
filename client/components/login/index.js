@@ -6,6 +6,7 @@ Login = React.createClass({
       username: '', 
       password: '', 
       usernameError: '',
+      signInError: '',
       hide:'hidden'
       };
     },
@@ -46,14 +47,11 @@ Login = React.createClass({
         type: 'POST',
         data: { username : this.state.username, password : this.state.password },
         success: function(data) {
-          console.log('Loging Response Data: ', data)
-          store.dispatch( { type:'SIGN_IN', username : data} );
-           store.dispatch( navigateToPage('MAIN') );
-          console.log('sign in succes')
+          store.dispatch( { type:'SIGN_IN', username : data.username} );
+          store.dispatch( navigateToPage('MAIN') );
         }.bind(this),
         error: function(xhr, status, err) {
-          console.error(status, err.toString());
-          console.log('sign in error');
+          this.setState({signInError: 'Invalid Username / Password'});
         }.bind(this)
       });
     },
@@ -75,7 +73,8 @@ Login = React.createClass({
               <br />
               <input type="submit" id="subButton" className={hide}/>
             </form>
-              {usernameError}
+              <div>{usernameError}</div>
+              <div className='signInError'>{this.state.signInError}</div>
               <br />
               <br />
               <div id="notUser" onClick={this.goToSignup}>Not yet a user? Click here.</div>
