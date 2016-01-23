@@ -18,7 +18,7 @@ var PlayerSchema = new Schema({
 var ScoresSchema = new Schema({
 	username   : { type: String, required: true, unique: true },
 	scores 	   : {
-		song: String,
+		songtitle: String,
 		score: Number
 	}
 })

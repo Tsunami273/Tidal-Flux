@@ -6,7 +6,8 @@ var port       = process.env.PORT || 4000;
 var router     = express.Router();
 var logger     = require('morgan');
 var path       = require('path');
-var Player     = require("./mongodb");
+var Player     = require("./mongodb").Player;
+var Score 	   = require("./mongodb").Score;
 var mongoose   = require('mongoose');
 var bcrypt     = require('bcryptjs');
 var jwt        = require('jwt-simple');
@@ -38,7 +39,7 @@ app.post('/api/player/signup', function(req, res){
 				return res.status(200).json(player)
 				console.log('SIGNUP SUCCESSFUL')
 			}
-		})
+		});
 	});
 });
 
@@ -73,8 +74,44 @@ app.post('/api/player/signin', function(req, res) {
 
 
 
-app.post('/api/player/messages', function(req, res){
-	messages(req, res, res.send)
+app.post('/api/player/scores', function(req, res){
+	//Find player in the song table
+	Score.findOne({ username: req.body.username })
+	.select('username').select('scores')
+    .exec(function (err, player) {
+    	if (err) { 
+    		return err 
+    	}
+    	if (!player) {                                //If this is the first time the player is playing
+    		var score = new Score();
+    		score.save(function (err, score) {
+    			if(err) {
+    				return res.status(403).json(err);
+    			} else {
+    				return res.status(200).json(score);
+    			}
+    		});
+    	} 
+    	//For a player that has played before
+    	if (player) {
+    		//Compare current score with the one saved in the database
+    		if (req.body.scores < player.scores) {   //New score lower than the existing one
+    			res.status(200).send('Nice try')
+    		}
+    		//New high score
+    		if (req.body.scores > player.scores) {
+    			score.modified = new Score();
+
+    			score.update(function (err, score) { //Updates score with new high score
+    				if(err) {
+    					return res.status(403).json(err);
+    				} else {
+    					return res.status(200).json(score);
+    				}
+    			});
+    		} 
+    	}
+    });
 })
 
 app.post('/api/player/profile', function (req, res) {
