@@ -35,7 +35,7 @@ SongPlay = React.createClass({
           Decent: 0,
           Miss: 0,
           health: 100
-        }
+        },
         scrollSpeed: scrollSpeed
       };
     },
@@ -110,7 +110,7 @@ SongPlay = React.createClass({
       }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
-        var grabTime = Date.now()-start + 4100;
+        var grabTime = Date.now()-start + 4500;
         var noteTimes = that.state.noteTimes;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
