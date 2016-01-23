@@ -46,7 +46,9 @@ Login = React.createClass({
         type: 'POST',
         data: { username : this.state.username, password : this.state.password },
         success: function(data) {
-          store.dispatch( { type:'SIGN_IN', username : data.username } );
+          console.log('Loging Response Data: ', data)
+          store.dispatch( { type:'SIGN_IN', username : data} );
+           store.dispatch( navigateToPage('MAIN') );
           console.log('sign in succes')
         }.bind(this),
         error: function(xhr, status, err) {
@@ -71,8 +73,8 @@ Login = React.createClass({
               <div className="loginfield">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
               <br />
               <br />
-            </form>
               <input type="submit" id="subButton" className={hide}/>
+            </form>
               {usernameError}
               <br />
               <br />

@@ -20,16 +20,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/api/player/signup', function(req, res){
-	console.log('Player Details: ', req.body)
 	// Create ne player to save player to database
 	var player = new Player();
-	
-
 	player.email = req.body.email;
 	player.username = req.body.username;
-	 // req.body.password;
-
-	console.log('New Player', player)
 
 	
 	//Encrypt password
@@ -39,7 +33,6 @@ app.post('/api/player/signup', function(req, res){
 		//Save player to database with hashed password
 		player.save(function (err, player) {
 			if(err) {
-				console.log(err);
 				return res.status(403).json(err);
 			} else {
 				return res.status(200).json(player)
@@ -50,7 +43,7 @@ app.post('/api/player/signup', function(req, res){
 });
 
 
-app.post('/api/player/signin', function(req, res){
+app.post('/api/player/signin', function(req, res) {
 
 	//Fetch and validate player
 	Player.findOne({ username: req.body.username })
@@ -61,19 +54,20 @@ app.post('/api/player/signin', function(req, res){
     		return res.status(403).send('Forbidden');
     	}
     	//Validate password
-    	
     	bcrypt.compare(req.body.password, player.password, function (err, valid) {
-    		console.log('Is valid status: ', valid);
     		if (err) {
     			return res.status(403).json(err);
     		}
     		if(!valid) {
     			return res.status(403).send('Forbidden');
-    		}
-    		//Generate token
-    		var token = jwt.encode({username: player.username}, mysecret.secret)
-    		res.status(200).send(token);
-    		console.log('SIGNIN SUCCESSFUL')
+    		} 
+    		if(valid) {
+    			//Generate token
+    		    // var token = jwt.encode({username: player.username}, mysecret.secret)
+    		    console.log("Login in Player: ", player`);
+    		    res.status(200).json(player);
+    		    console.log('SIGNIN SUCCESSFUL');
+    		} 
     	});
     });
  });
