@@ -510,7 +510,22 @@ body {
   color:white;
 }
 
+#difficulty {
 
+}
+
+#carouselContain {
+  margin: 0 auto;
+  width: 800;
+  height: 400;
+  position: relative;
+  -webkit-perspective: 1000px;
+}
+
+#carousel {
+  height: 100%;
+  width: 100%;
+}
 /*==========================Global Options====================*/
 
 #opContain {

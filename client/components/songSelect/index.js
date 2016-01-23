@@ -3,6 +3,9 @@ var NavButton = require('../navButton.js');
 var Songs = require('./Songs.js');
 var Diffs = require('./Diffs.js');
 songList = require('./songList.js');
+
+var currdeg = 0;
+
 SongSelect = React.createClass({
     getInitialState: function(){
       return {
@@ -14,14 +17,26 @@ SongSelect = React.createClass({
       store.dispatch(navigateToPage('PLAY'));
       store.dispatch(setDiff(diff));
     },
+    rotatePrev: function() {
+
+    },
+    rotateNext: function() {
+
+    },
     render: function() {
       var audioSource = store.getState().selectedSong;
         return (
         <div>
           <h1>Song Select</h1>
-          <Diffs ref="diff" diffs={this.state.diffs}/>
+          <div id="carouselContain">
+            <div id="carousel">
+            <Songs songList={songList} />
+            </div>
+          </div>  
+          <div id="difficulty">
+            <Diffs ref="diff" diffs={this.state.diffs}/>
+          </div>
           <br />
-          <Songs songList={songList} />
           <br />
           <NavButton dest="Play Song" onClick={this.play} />
           <br />
