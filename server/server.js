@@ -6,8 +6,7 @@ var port       = process.env.PORT || 4000;
 var router     = express.Router();
 var logger     = require('morgan');
 var path       = require('path');
-var Player     = require("./mongodb").Player;
-var Score 	   = require("./mongodb").Score;
+var models     = require("./mongodb");
 var mongoose   = require('mongoose');
 var bcrypt     = require('bcryptjs');
 var jwt        = require('jwt-simple');
@@ -22,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/api/player/signup', function(req, res){
 	// Create ne player to save player to database
-	var player = new Player();
+	var player = new models.Player();
 	player.email = req.body.email;
 	player.username = req.body.username;
 
@@ -47,7 +46,7 @@ app.post('/api/player/signup', function(req, res){
 app.post('/api/player/signin', function(req, res) {
 
 	//Fetch and validate player
-	Player.findOne({ username: req.body.username })
+	models.Player.findOne({ username: req.body.username })
 	.select('password').select('username')
     .exec(function (err, player) {
     	if (err) { return err }
@@ -74,10 +73,11 @@ app.post('/api/player/signin', function(req, res) {
 
 
 
-app.post('/api/player/scores', function(req, res){
+app.post('/api/player/score', function(req, res){
+	console.log('New scores: ', req.body);
 	//Find player in the song table
-	Score.findOne({ username: req.body.username })
-	.select('username').select('scores')
+	models.Score.findOne({ username: req.body.username })
+	.select('username').select('score')
     .exec(function (err, player) {
     	if (err) { 
     		return err 
@@ -95,12 +95,12 @@ app.post('/api/player/scores', function(req, res){
     	//For a player that has played before
     	if (player) {
     		//Compare current score with the one saved in the database
-    		if (req.body.scores < player.scores) {   //New score lower than the existing one
+    		if (req.body.score < player.score) {   //New score lower than the existing one
     			res.status(200).send('Nice try')
     		}
     		//New high score
-    		if (req.body.scores > player.scores) {
-    			score.modified = new Score();
+    		if (req.body.score > player.score) {
+    			score.modified = new models.Score();
 
     			score.update(function (err, score) { //Updates score with new high score
     				if(err) {

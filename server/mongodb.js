@@ -18,10 +18,10 @@ var PlayerSchema = new Schema({
 var ScoresSchema = new Schema({
 	username   : { type: String, required: true, unique: true },
 	scores 	   : {
-		songtitle: String,
+		song: String,
 		score: Number
 	}
 })
 
-module.exports = mongoose.model('Player', PlayerSchema);
-module.exports = mongoose.model('Scores', ScoresSchema);
+module.exports.Player = mongoose.model('Player', PlayerSchema);
+module.exports.Score = mongoose.model('Score', ScoresSchema);
