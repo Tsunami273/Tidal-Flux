@@ -15,4 +15,13 @@ var PlayerSchema = new Schema({
 	password   : { type: String, required: true }
 })
 
+var ScoresSchema = new Schema({
+	username   : { type: String, required: true, unique: true },
+	scores 	   : {
+		song: String,
+		score: Number
+	}
+})
+
 module.exports = mongoose.model('Player', PlayerSchema);
+module.exports = mongoose.model('Scores', ScoresSchema);
