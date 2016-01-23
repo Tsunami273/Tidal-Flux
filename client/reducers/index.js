@@ -11,6 +11,7 @@ const main = function(state, action){
   selectedDiff: 'Medium',
   scrollSpeed: 1,
   durations: [4000,3000,2000,1500,1100,750],
+  globalOffset: -30,
   }; 
   switch(action.type){
     case 'NAVIGATE':

@@ -58,10 +58,11 @@ SongPlay = React.createClass({
       var curr = store.getState();
       var currDiff = curr.selectedDiff;
       var currSong = curr.selectedSong; 
+      var currOffset = curr.globalOffset;
       var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
       offsetArr = [];
       intervalID = [];
-      var noteTimes = findNoteTimes(timedBeatMap)
+      var noteTimes = findNoteTimes(timedBeatMap, currOffset);
       this.setState({noteTimes: noteTimes});
     },
     componentWillUnmount: function(event){
@@ -73,7 +74,6 @@ SongPlay = React.createClass({
       // you will get errors if you try to move the playhead because the interval will not be cleared.
       // the user will not be able to move the playhead so fixing this is not important atm. 
 
-      // store.getState().globalOffset() //==> add this to start
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
@@ -98,7 +98,6 @@ SongPlay = React.createClass({
           message: message,
           judgements: judgements,
           messageArray: messageArray});
-        // that.setState({timer: time});
       }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
@@ -121,7 +120,6 @@ SongPlay = React.createClass({
     updatePlayhead: function(event){
       var playhead = this.refs.audio.currentTime;
       var timeNoOffset = Date.now() - start;
-      var offsetTime = timeNoOffset - this.state.offset;
       if(timeNoOffset !== playhead){  
         var offset = timeNoOffset - (playhead*1000);
         this.setState({offset: offset});
