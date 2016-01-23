@@ -8,7 +8,7 @@ Songs = React.createClass({
         return (
           <div>
           {this.props.songList.map(function(result, i){
-            var selected = classNames('songlistitem', result.id.toString(), {'selectedsong': currSong.id === result.id});
+            var selected = classNames('songlistitem'+result.id.toString(), {'selectedsong': currSong.id === result.id});
             return <div className={selected} onClick={that.select.bind(that, i)} key={i} data={result.id}>{result.title} - {result.artist} <br /></div>
           })}
           </div>
