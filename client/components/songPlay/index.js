@@ -97,7 +97,7 @@ SongPlay = React.createClass({
             message = 'Miss';
             judgements.Miss++;
             messageArray = ['Miss' + judgements.Miss];
-            judgements.health = judgements.health - 5;
+            judgements.health = judgements.health - 10;
             if(judgements.health < 0){
               return that.play();
             }
