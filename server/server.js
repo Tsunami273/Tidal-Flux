@@ -64,7 +64,6 @@ app.post('/api/player/signin', function(req, res) {
     		if(valid) {
     			//Generate token
     		    // var token = jwt.encode({username: player.username}, mysecret.secret)
-    		    console.log("Login in Player: ", player`);
     		    res.status(200).json(player);
     		    console.log('SIGNIN SUCCESSFUL');
     		} 
