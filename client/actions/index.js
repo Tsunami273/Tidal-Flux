@@ -32,3 +32,10 @@ setScroll = function(scroll){
   }
 }
 
+setOffset = function(offset){
+  return {
+    type:'SET_OFFSET',
+    offset: offset
+  }
+}
+
