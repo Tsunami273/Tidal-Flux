@@ -15,8 +15,9 @@ describe("Server unit tests",function(){
 
   var scores = {
     "username": "Mithril",
-    "song": "dog",
-    "score": "56"
+    "song": "down",
+    "points": "5",
+    "difficulty": "easy"
   }
 
   var wrongPasswordPlayer = {
@@ -87,9 +88,23 @@ describe("Server unit tests",function(){
   //   });
   // });
 
-  it("Should be able to add a New Score",function(done){
+  // it("Should be able to add a New Score",function(done){
+  //   server
+  //   .post('/api/player/score')
+  //   .send(JSON.stringify(scores))
+  //   .set('Content-type', 'application/json')
+  //   .end(function(err,res){
+  //     if (err) {
+  //       throw err;
+  //     }
+  //     expect(res.status).to.equal(200);
+  //     done();
+  //   });
+  // });
+
+  it("Should not update score if New Score is low",function(done){
     server
-    .post('/api/player/scores')
+    .post('/api/player/score')
     .send(JSON.stringify(scores))
     .set('Content-type', 'application/json')
     .end(function(err,res){

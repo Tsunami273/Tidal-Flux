@@ -74,42 +74,79 @@ app.post('/api/player/signin', function(req, res) {
 
 
 app.post('/api/player/score', function(req, res){
-	console.log('New scores: ', req.body);
 	//Find player in the song table
-	models.Score.findOne({ username: req.body.username })
-	.select('username').select('score')
-    .exec(function (err, player) {
+	models.Score.find({ username: req.body.username, song: req.body.song, difficulty: req.body.difficulty})
+    .exec(function (err, record) {
+    	// console.log('If username exists in the database: ', player.username);
     	if (err) { 
-    		return err 
+    		return res.status(403).json(err); 
+    		console.log('Error');
     	}
-    	if (!player) {                                //If this is the first time the player is playing
-    		var score = new Score();
+    	if (!record) {                                //If this is the first time the player is playing
+    		var score = new models.Score();
+
+
+    		score.username = req.body.username;
+    		score.points = req.body.points;
+    		score.song = req.body.song;
+    		score.difficulty = req.body.difficulty;
+
     		score.save(function (err, score) {
     			if(err) {
-    				return res.status(403).json(err);
+    				console.log("error du: ", err)
+    				res.status(403).json(err);
+    				console.log('Error');
     			} else {
-    				return res.status(200).json(score);
+    				res.status(200).json(score);
     			}
     		});
     	} 
     	//For a player that has played before
-    	if (player) {
-    		//Compare current score with the one saved in the database
-    		if (req.body.score < player.score) {   //New score lower than the existing one
-    			res.status(200).send('Nice try')
-    		}
-    		//New high score
-    		if (req.body.score > player.score) {
-    			score.modified = new models.Score();
+    	if (record ) {
+    		//If it is the first time Playing that song
+    		if(req.body.song !== record.song) {
+    			var score = new models.Score();
 
-    			score.update(function (err, score) { //Updates score with new high score
-    				if(err) {
-    					return res.status(403).json(err);
-    				} else {
-    					return res.status(200).json(score);
-    				}
-    			});
-    		} 
+    			score.username = req.body.username;
+    		    score.points = req.body.points;
+    		    score.song = req.body.song;
+    		    score.difficulty = req.body.difficulty;
+
+    		    console.log('Scores for new song....: ', score);
+				score.save(function (err, score) {
+					if(err) {
+						console.log('Error: ', err);
+						res.status(403).json(err);
+						
+					} else {
+						res.status(200).json(score);
+					}
+				});
+    		}
+
+    		//If it is the first time playing that 
+    		// if ()
+
+    		//Make sure correct song is located in the database
+    		// if (req.body.song === player.song && req.body.difficulty === player.difficulty) { 
+    		// 	if (req.body.points < player.points) {  //New score lower than the existing one
+    		// 		res.status(200).send('Nice try')
+    		// 		console.log('Nice Try:')
+    		// 	}          
+    		// }
+    		// //New high score
+    		// if (req.body.score > player.score) {
+    		// 	score = new models.Score();
+
+    		// 	score.update(function (err, score) { //Updates score with new high score
+    		// 		if(err) {
+    		// 			return res.status(403).json(err);
+    		// 			console.log('Error');
+    		// 		} else {
+    		// 			return res.status(200).json(score);
+    		// 		}
+    		// 	});
+    		// } 
     	}
     });
 })
