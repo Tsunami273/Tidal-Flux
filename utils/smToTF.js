@@ -22,6 +22,7 @@ fs.readFile('./sm.txt', 'utf8', function(err, data){
   for(var i = 0 ; i < notes.length ; i++){
     measures.push(smToTF(notes[i]));
   }
-  return console.log(measures);
+  console.log(measures);
+  return measures;
 })
 
