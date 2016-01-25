@@ -88,8 +88,9 @@ app.post('/api/player/signin', function(req, res) {
 
 
 app.post('/api/player/score', function(req, res){
+	console.log('Score request after game play: ', req.body);
 	//Find player in the song table
-	models.Score.findOne({ username: req.body.username, song: req.body.song, difficulty: req.body.difficulty})
+	models.Score.findOne({ username: req.body.username, songId: req.body.songId, difficulty: req.body.difficulty})
     .exec(function (err, player) {
     	if (err) { 
     		res.status(403).json(err);
@@ -99,7 +100,7 @@ app.post('/api/player/score', function(req, res){
 
     		score.username = req.body.username;
     		score.points = req.body.points;
-    		score.song = req.body.song;
+    		score.songId = req.body.songId;
     		score.difficulty = req.body.difficulty;
 
     		score.save(function (err, score) {
