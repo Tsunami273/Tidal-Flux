@@ -4,6 +4,9 @@ var Songs = require('./Songs.js');
 var Diffs = require('./Diffs.js');
 var Scroll = require('./Scroll.js');
 songList = require('./songList.js');
+
+var currdeg = 0;
+
 SongSelect = React.createClass({
     getInitialState: function(){
       var selectedSong = store.getState().selectedSong;
@@ -20,17 +23,47 @@ SongSelect = React.createClass({
       store.dispatch(setScroll(scroll));
       store.dispatch(setDiff(diff));
     },
+    rotatePrev: function() {
+      currdeg = currdeg + 60;
+      if(currdeg === 360) {
+        currdeg = 0;
+      }
+      console.log(currdeg);
+      this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
+      var currsong = songList[currdeg / 6];
+      this.setState({selectedSong: currsong})
+    },
+    rotateNext: function() {
+      currdeg = currdeg - 60;
+      if(currdeg === -360) {
+        currdeg = 0;
+      }
+      console.log(currdeg);
+      this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
+      var currsong = songList[currdeg*-1 / 6];
+      this.setState({selectedSong: currsong})
+    },
     render: function() {
         return (
         <div>
+          <div id="songSelectLogo">
           <h1>Song Select</h1>
+          </div>
+          <div id="carouselContain">
+            <div id="carousel" ref="carousel">
+            <Songs songList={songList} />
+            </div>
+          </div>  
           <div className="song-options-container">
             <Diffs ref="diff" diffs={this.state.diffs}/>
             <br />
             <Scroll ref="scroll" />
           </div>
           <br />
-          <Songs songSelect={this} songList={songList} />
+          <br />
+          <br />
+          <div id="next" onClick={this.rotateNext}>Next</div>
+          <div id="prev" onClick={this.rotatePrev}>Prev</div>
           <br />
           <NavButton dest="Play Song" onClick={this.play} />
           <br />
