@@ -15,9 +15,9 @@ describe("Server unit tests",function(){
 
   var scores = {
     "username": "Mithril",
-    "song": "down",
-    "points": "5",
-    "difficulty": "easy"
+    "song": "dog",
+    "points": "78",
+    "difficulty": "Hard"
   }
 
   var wrongPasswordPlayer = {
