@@ -20,26 +20,40 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/api/player/signup', function(req, res){
-	// Create ne player to save player to database
-	var player = new models.Player();
-	player.email = req.body.email;
-	player.username = req.body.username;
+	//Check if the player is in the database
+	models.Player.findOne({ username: req.body.username})
+    .exec(function (err, player) {
+    	if (err) { 
+    		res.status(403).json(err);
+    	}
 
-	
-	//Encrypt password
-	bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
-		player.password = hashPassword;
+    	if (player) {                             //Notify if the player player is already registered
+    		res.status(200).send('User already exists');
+    	}
 
-		//Save player to database with hashed password
-		player.save(function (err, player) {
-			if(err) {
-				res.status(403).json(err);
-			} else {
-				res.status(200).json(player)
-				console.log('SIGNUP SUCCESSFUL')
-			}
-		});
-	});
+    	if (!player) {
+			// Create ne player to save player to database
+			var player = new models.Player();
+			player.email = req.body.email;
+			player.username = req.body.username;
+
+			
+			//Encrypt password
+			bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
+				player.password = hashPassword;
+
+				//Save player to database with hashed password
+				player.save(function (err, player) {
+					if(err) {
+						res.status(403).json(err);
+					} else {
+						res.status(200).json(player)
+						console.log('SIGNUP SUCCESSFUL')
+					}
+				});
+			});
+    	}
+    });
 });
 
 
@@ -53,21 +67,23 @@ app.post('/api/player/signin', function(req, res) {
     	if (!player) { 
     		res.status(403).send('Forbidden');
     	}
-    	//Validate password
-    	bcrypt.compare(req.body.password, player.password, function (err, valid) {
-    		if (err) {
-    			res.status(403).json(err);
-    		}
-    		if(!valid) {
-    			res.status(403).send('Forbidden');
-    		} 
-    		if(valid) {
-    			//Generate token
-    		    // var token = jwt.encode({username: player.username}, mysecret.secret)
-    		    res.status(200).json(player);
-    		    console.log('SIGNIN SUCCESSFUL');
-    		} 
-    	});
+    	if (player) {
+	    	//Validate password
+	    	bcrypt.compare(req.body.password, player.password, function (err, valid) {
+	    		if (err) {
+	    			res.status(403).json(err);
+	    		}
+	    		if(!valid) {
+	    			res.status(403).send('Forbidden');
+	    		} 
+	    		if(valid) {
+	    			//Generate token
+	    		    // var token = jwt.encode({username: player.username}, mysecret.secret)
+	    		    res.status(200).json(player);
+	    		    console.log('SIGNIN SUCCESSFUL');
+	    		} 
+	    	});
+	    }
     });
  });
 

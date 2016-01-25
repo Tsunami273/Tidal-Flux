@@ -20,7 +20,27 @@ describe("Server unit tests",function(){
 
   it("should be able to sign up",function(done){
     var player = {
-      "username": "iasssda",
+      "username": "iasssd",
+      "email": "bcryasdsapt@emassjil.com",  
+      "password": "1sssm2s3sdf"
+    };
+
+    server
+    .post('/api/player/signup')
+    .send(JSON.stringify(player))
+    .set('Content-type', 'application/json')
+    .expect(200)
+    .end(function(err,res){
+      if (err) {
+        throw error;
+      }
+      done();
+    });
+  });
+
+  it("should not allow duplicate signup",function(done){
+    var player = {
+      "username": "iasssd",
       "email": "bcryasdsapt@emassjil.com",  
       "password": "1sssm2s3sdf"
     };
@@ -41,7 +61,7 @@ describe("Server unit tests",function(){
 
   it("should be able to sign in",function(done){
     var player = {
-      "username": "iasssda",
+      "username": "iasssd",
       "email": "bcryasdsapt@emassjil.com",  
       "password": "1sssm2s3sdf"
     };
