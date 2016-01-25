@@ -63,7 +63,6 @@ Judgement = React.createClass({
         .exit()
         .remove();
 
-      message.selectAll('text').append('tspan').text('dog').attr('class', 'judgemessage');
     },
     render: function() {
         return (
