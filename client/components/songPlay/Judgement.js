@@ -15,13 +15,20 @@ Judgement = React.createClass({
       var el = this.refs.judgement;
       var g = d3.select(el).selectAll('.judgement-g');
       var judgements = this.props.messages;
-
+      var combo = this.props.combo;
       var message = g.selectAll('text')
         .data(judgements, function(d){return d;});
        
       message
         .enter()
         .append('text')
+        .append('tspan')
+        .attr('x', 100)
+        .attr('y', 150)
+        .attr('text-anchor', 'middle')
+        .attr('class', 'combomessage')
+        .text('Combo: ' + combo)
+        .append('tspan')
         .text(function(d){ 
           switch(d.charAt(0)){
             case 'P': 
@@ -55,6 +62,8 @@ Judgement = React.createClass({
       message  
         .exit()
         .remove();
+
+      message.selectAll('text').append('tspan').text('dog').attr('class', 'judgemessage');
     },
     render: function() {
         return (

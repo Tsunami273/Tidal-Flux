@@ -34,9 +34,10 @@ SongPlay = React.createClass({
           Good: 0,
           Decent: 0,
           Miss: 0,
-          health: 100
+          health: 100,
+          combo: 0,
         },
-        scrollSpeed: scrollSpeed
+        scrollSpeed: scrollSpeed,
       };
     },
     play: function(event) {
@@ -82,12 +83,11 @@ SongPlay = React.createClass({
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
-      var polling = setInterval(function(){ // dont use this.state.timer since setInterval can lag.
-                              // if you want to calculate the current progress at the time of an event
-                              // use Date.now() - start
+      var polling = setInterval(function(){ 
         var currTime = Date.now() - start - that.state.avgOffset;
         var notes = that.state.notes.slice();
         var message = that.state.message;
+        var combo = that.state.combo;
         var judgements = {};
         var messageArray = that.state.messageArray.slice();
         Object.assign(judgements,that.state.judgements);
@@ -98,6 +98,7 @@ SongPlay = React.createClass({
             judgements.Miss++;
             messageArray = ['Miss' + judgements.Miss];
             judgements.health = judgements.health - 10;
+            judgements.combo = 0; 
             if(judgements.health < 0){
               return that.play();
             }
@@ -156,7 +157,7 @@ SongPlay = React.createClass({
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
           <div>{this.state.score}</div>
-          <Judgement messages={this.state.messageArray} />
+          <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
