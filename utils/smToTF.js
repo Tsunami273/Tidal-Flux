@@ -7,7 +7,7 @@ function smToTF(measure){
   return {notes: result, startTime: 0};
 }
 
-fs.readFile('./smtest.txt', 'utf8', function(err, data){
+fs.readFile('./sm.txt', 'utf8', function(err, data){
   var measures = data.split(',');
   var notes = measures.map(function(e,i,c){
     return e.split('\n');
@@ -22,6 +22,7 @@ fs.readFile('./smtest.txt', 'utf8', function(err, data){
   for(var i = 0 ; i < notes.length ; i++){
     measures.push(smToTF(notes[i]));
   }
-  return console.log(measures);
+  console.log(measures);
+  return measures;
 })
 

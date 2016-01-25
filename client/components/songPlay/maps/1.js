@@ -1,3 +1,4 @@
+// Reflection (sanaas remix)
 var Easy = [
 {notes: [0,0,0,0], startTime: 0},
 {notes: [0,0,0,0], startTime: 0}, 
