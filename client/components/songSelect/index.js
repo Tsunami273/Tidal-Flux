@@ -9,29 +9,39 @@ var currdeg = 0;
 
 SongSelect = React.createClass({
     getInitialState: function(){
+      var selectedSong = store.getState().selectedSong;
       return {
-        diffs: ['Easy', 'Medium', 'Hard']
+        diffs: ['Easy', 'Medium', 'Hard'],
+        selectedSong: selectedSong
       }
     },
     play: function(event) {
       var diff = this.refs.diff.state.diff
       var scroll = this.refs.scroll.state.scroll;
+      store.dispatch(selectSong(this.state.selectedSong));
       store.dispatch(navigateToPage('PLAY'));
       store.dispatch(setScroll(scroll));
       store.dispatch(setDiff(diff));
     },
     rotatePrev: function() {
       currdeg = currdeg + 60;
+      if(currdeg === 360) {
+        currdeg = 0;
+      }
       console.log(currdeg);
       this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
+
+      this.setState({selectedSong: currsong})
     },
     rotateNext: function() {
       currdeg = currdeg - 60;
+      if(currdeg === -360) {
+        currdeg = 0;
+      }
       console.log(currdeg);
       this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
     },
     render: function() {
-      var audioSource = store.getState().selectedSong;
         return (
         <div>
           <div id="songSelectLogo">
@@ -54,6 +64,11 @@ SongSelect = React.createClass({
           <audio controls src={'./songs/' + audioSource.id + '/'+  audioSource.id + '.ogg'} autoPlay></audio>
           <div id="next" onClick={this.rotateNext}>Next</div>
           <div id="prev" onClick={this.rotatePrev}>Prev</div>
+          <Songs songSelect={this} songList={songList} />
+          <br />
+          <NavButton dest="Play Song" onClick={this.play} />
+          <br />
+          <audio controls src={'./songs/' + this.state.selectedSong.id + '/'+  this.state.selectedSong.id + '.ogg'} autoPlay></audio>
         </div>
         );
     }
