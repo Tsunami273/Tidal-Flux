@@ -25,3 +25,17 @@ setDiff = function(diff){
   }
 }
 
+setScroll = function(scroll){
+  return {
+    type:'SET_SCROLL',
+    scroll: scroll
+  }
+}
+
+setOffset = function(offset){
+  return {
+    type:'SET_OFFSET',
+    offset: offset
+  }
+}
+

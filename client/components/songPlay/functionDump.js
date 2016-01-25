@@ -15,7 +15,7 @@ var findMeasureStartTimes = function(beatMap, beatsPerMinute){
   return beatMap;
 }
 
-var findNoteTimes = function(timedBeatMap){
+var findNoteTimes = function(timedBeatMap, offset){
   var millisecondsPerMeasure = timedBeatMap[1].startTime;
   var noteTimes = [[],[],[],[],[],[]];
   for(var measure = timedBeatMap.length-1; measure > -1; measure--){
@@ -34,7 +34,7 @@ var findNoteTimes = function(timedBeatMap){
       }
       for(var i = 0; i < 6; i++){
         if(laneString.charAt(i) === '1'){
-          noteTimes[i].push(noteTime);
+          noteTimes[i].push(noteTime+offset);
         }
       }
     }        

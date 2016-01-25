@@ -5,12 +5,15 @@ var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
 var makeKeyBinds = require('./keys.js');
 var Judgement = require('./Judgement.js');
+var Health = require('./Health.js')
 offsetArr = [];
 intervalID = [];
 
 
 SongPlay = React.createClass({
     getInitialState: function() {
+      var globalState = store.getState()
+      var scrollSpeed = globalState.durations[globalState.scrollSpeed-1];
       return {
         playhead: 0,
         timer: 0,
@@ -30,8 +33,10 @@ SongPlay = React.createClass({
           Perfect: 0,
           Good: 0,
           Decent: 0,
-          Miss: 0
-        }
+          Miss: 0,
+          health: 100
+        },
+        scrollSpeed: scrollSpeed
       };
     },
     play: function(event) {
@@ -55,14 +60,18 @@ SongPlay = React.createClass({
       var curr = store.getState();
       var currDiff = curr.selectedDiff;
       var currSong = curr.selectedSong; 
+      var currOffset = curr.globalOffset;
       var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
       offsetArr = [];
       intervalID = [];
-      var noteTimes = findNoteTimes(timedBeatMap)
+      var noteTimes = findNoteTimes(timedBeatMap, currOffset);
       this.setState({noteTimes: noteTimes});
     },
     componentWillUnmount: function(event){
       listener.reset();
+      intervalID.forEach(function(e,i,c){
+        clearInterval(e);  
+      });
     },
     loadedSong: function(event){
       // this event triggers when the song is ready to be played
@@ -70,7 +79,6 @@ SongPlay = React.createClass({
       // you will get errors if you try to move the playhead because the interval will not be cleared.
       // the user will not be able to move the playhead so fixing this is not important atm. 
 
-      // store.getState().globalOffset() //==> add this to start
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
@@ -85,21 +93,24 @@ SongPlay = React.createClass({
         Object.assign(judgements,that.state.judgements);
         for(var i = 0 ; i < 6; i++){
           if(notes[i][0] + 150 < currTime){
-              notes[i].shift();
-              message = 'Miss';
-              judgements.Miss++;
-              messageArray = ['Miss' + judgements.Miss];
+            notes[i].shift();
+            message = 'Miss';
+            judgements.Miss++;
+            messageArray = ['Miss' + judgements.Miss];
+            judgements.health = judgements.health - 10;
+            if(judgements.health < 0){
+              return that.play();
+            }
           }
         }
         that.setState({notes: notes,
           message: message,
           judgements: judgements,
           messageArray: messageArray});
-        // that.setState({timer: time});
       }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
-        var grabTime = Date.now()-start + 3500;
+        var grabTime = Date.now()-start + 4500;
         var noteTimes = that.state.noteTimes;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
@@ -118,7 +129,6 @@ SongPlay = React.createClass({
     updatePlayhead: function(event){
       var playhead = this.refs.audio.currentTime;
       var timeNoOffset = Date.now() - start;
-      var offsetTime = timeNoOffset - this.state.offset;
       if(timeNoOffset !== playhead){  
         var offset = timeNoOffset - (playhead*1000);
         this.setState({offset: offset});
@@ -141,6 +151,7 @@ SongPlay = React.createClass({
         return (
         <div>
           <h1>Song Play</h1>
+          <Health health={this.state.judgements.health}/>
           <div>playhead: {this.state.playhead}</div>
           <div>offset: {this.state.offset}</div>
           <div>average offset: {this.state.avgOffset}</div>
@@ -152,7 +163,6 @@ SongPlay = React.createClass({
           onTimeUpdate={this.updatePlayhead}
           ref='audio'
           ></audio>
-          <br />
           <Notes songState={this} stagedNotes={this.state.notes} />
         </div>
         );
