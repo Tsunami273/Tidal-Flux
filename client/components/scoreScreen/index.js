@@ -8,14 +8,17 @@ ScoreScreen = React.createClass({
       var username = globalState.username;
       var score = globalState.score;
       var judges = globalState.judges;
-      var songId = globalState.selectedSong
+      var songId = globalState.selectedSong.id
+      var difficulty = globalState.selectedDiff
       return {
         username: username,
         score: score,
         judges: judges,
+        songId: songId,
+        difficulty: difficulty
       }
     },
-    
+
     componentWillMount: function(){
       this.sendScoretoServer();
     },
@@ -30,8 +33,6 @@ ScoreScreen = React.createClass({
       var judges = this.state.judges;
       var health = judges.health;
       var message = '';
-      console.log('User name: ', !username)
-      console.log('Health: ', health)
       if(health <= 0){
         if (username) {
           message = <h2>Hey, {username} you lose!</h2>;
@@ -63,14 +64,14 @@ ScoreScreen = React.createClass({
         );
     },
 
-    sendScoretoServer: function(event){
+    sendScoretoServer: function(){
       $.ajax({
         url: '/api/player/score',
         dataType: 'json',
         type: 'POST',
         data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
         success: function(data) {
-          store.dispatch( navigateToPage('MAIN') );
+          console.log('Score update Ajax: ', data);
         }.bind(this),
         error: function(xhr, status, err) {
           console.log('Error: ', err);
