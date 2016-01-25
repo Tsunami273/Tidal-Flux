@@ -16,7 +16,7 @@ describe("Server unit tests",function(){
   var scores = {
     "username": "Mithril",
     "song": "dog",
-    "points": "78",
+    "points": "50",
     "difficulty": "Hard"
   }
 
@@ -102,7 +102,7 @@ describe("Server unit tests",function(){
   //   });
   // });
 
-  it("Should not update score if New Score is low",function(done){
+  it("Should add new score, update new high score or notify low score",function(done){
     server
     .post('/api/player/score')
     .send(JSON.stringify(scores))

@@ -76,15 +76,12 @@ app.post('/api/player/signin', function(req, res) {
 app.post('/api/player/score', function(req, res){
 	//Find player in the song table
 	models.Score.findOne({ user: req.body.username, song: req.body.song, difficulty: req.body.difficulty})
-    .exec(function (err, record) {
-    	console.log('Player record retrieval: ', !record)
+    .exec(function (err, player) {
     	if (err) { 
-    		res.status(403).json(err); 
-    		console.log('Error during Find: ', err);
+    		res.status(403).json(err);
     	}
-    	if (!record) {                            //If this is the first time the player is playing
+    	if (!player) {                            //If this is the first time the player is playing
     		var score = new models.Score();
-
 
     		score.user = req.body.username;
     		score.points = req.body.points;
@@ -94,31 +91,22 @@ app.post('/api/player/score', function(req, res){
     		score.save(function (err, score) {
     			if(err) {
     				res.status(403).json(err);
-    				console.log('Error During adding Duplicate Record: ', err);
     			} else {
     				res.status(200).json(score);
     			}
     		});
     	} 
-    	// For a player that has played before
-    	if (record) {
-    		//New score lower than the existing one
-    		if (req.body.points <= record.points) { 
+    	if (player) {     // If the player has played played before
+    		if (req.body.points <= player.points) {  //New score lower than the existing one
 				res.status(200).send('Nice try')
 				console.log('Nice Try:')
 			}
 
-			//New High Score
-    		if(req.body.score > record.score) {
-    			var score = new models.Score();
+    		if(req.body.points > player.points) {   //New High Score
 
-    			score.user = req.body.username;
-    		    score.points = req.body.points;
-    		    score.song = req.body.song;
-    		    score.difficulty = req.body.difficulty;
+    		    player.points = req.body.points;
 
-    		    console.log('Scores for new song....: ', score);
-				score.update(function (err, score) {
+				player.save(function (err, score) {
 					if(err) {
 						console.log('Error: ', err);
 						res.status(403).json(err);
