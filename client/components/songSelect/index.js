@@ -6,19 +6,21 @@ var Scroll = require('./Scroll.js');
 songList = require('./songList.js');
 SongSelect = React.createClass({
     getInitialState: function(){
+      var selectedSong = store.getState().selectedSong;
       return {
-        diffs: ['Easy', 'Medium', 'Hard']
+        diffs: ['Easy', 'Medium', 'Hard'],
+        selectedSong: selectedSong
       }
     },
     play: function(event) {
       var diff = this.refs.diff.state.diff
       var scroll = this.refs.scroll.state.scroll;
+      store.dispatch(selectSong(this.state.selectedSong));
       store.dispatch(navigateToPage('PLAY'));
       store.dispatch(setScroll(scroll));
       store.dispatch(setDiff(diff));
     },
     render: function() {
-      var audioSource = store.getState().selectedSong;
         return (
         <div>
           <h1>Song Select</h1>
@@ -28,11 +30,11 @@ SongSelect = React.createClass({
             <Scroll ref="scroll" />
           </div>
           <br />
-          <Songs songList={songList} />
+          <Songs songSelect={this} songList={songList} />
           <br />
           <NavButton dest="Play Song" onClick={this.play} />
           <br />
-          <audio controls src={'./songs/' + audioSource.id + '/'+  audioSource.id + '.ogg'} autoPlay></audio>
+          <audio controls src={'./songs/' + this.state.selectedSong.id + '/'+  this.state.selectedSong.id + '.ogg'} autoPlay></audio>
         </div>
         );
     }

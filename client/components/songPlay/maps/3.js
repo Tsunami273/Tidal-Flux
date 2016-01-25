@@ -186,6 +186,7 @@ var Medium = [ { notes: [ 0, 0, 0, 0 ], startTime: 0 },
   { notes: [ 8, 2, 1, 8 ], startTime: 0 },
   { notes: [ 32, 0, 16, 4, 2, 1, 2, 4 ], startTime: 0 },
   { notes: [ 8, 16, 32, 0, 0, 0, 0 ], startTime: 0 } ];
+
 var Hard = [ { notes: [ 0, 0, 0, 0 ], startTime: 0 },
   { notes: [ 0, 0, 0, 0 ], startTime: 0 },
   { notes: [ 0, 0, 0, 0 ], startTime: 0 },

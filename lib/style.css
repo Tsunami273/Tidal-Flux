@@ -716,7 +716,7 @@ body {
 .lanearea1 {
   position:absolute;
   left:50px;
-  background-color:#262626;
+  background-color:#333333;
   z-index:1;
 }
 
@@ -737,7 +737,7 @@ body {
 .lanearea4 {
   position:absolute;
   left:200px;
-  background-color:#262626;
+  background-color:#333333;
   z-index:1;
 }
 
@@ -748,9 +748,27 @@ body {
   z-index:1;
 } 
 
-.triggered {
+.lanearea0.triggered {
   background: linear-gradient(to top, #298FA3, #262626, #262626);
 }
+.lanearea1.triggered {
+  background: linear-gradient(to top, #298FA3, #333333, #333333);
+}
+.lanearea2.triggered {
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
+}
+.lanearea3.triggered {
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
+}
+.lanearea4.triggered {
+  background: linear-gradient(to top, #298FA3, #333333, #333333);
+}
+.lanearea5.triggered {
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
+}
+/*.triggered {*/
+  /*background: linear-gradient(to top, #298FA3, #262626, #262626);*/
+/*}*/
 
 .note {
     fill:#ECEEF1;
@@ -778,7 +796,16 @@ body {
   height:50px;
   fill:#298FA3;
   stroke:#298FA3;
-  font-size: 32;
+  font-size: 38;
+}
+
+
+.combomessage {
+  width:200px;
+  height:50px;
+  fill:#298FA3;
+  stroke:#298FA3;
+  font-size: 26;
 }
 
 .healthBar {

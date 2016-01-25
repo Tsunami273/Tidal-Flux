@@ -14,9 +14,10 @@ const main = function(state, action){
           Good: 0,
           Decent: 0,
           Miss: 0,
-          health: 100
+          health: 100,
+          combo: 0,
         },
-    scrollSpeed: 1,
+    scrollSpeed: 2,
     durations: [4000,3000,2000,1500,1100,750],
     globalOffset: -30,
   }; 
