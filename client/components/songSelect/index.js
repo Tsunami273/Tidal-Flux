@@ -35,14 +35,13 @@ SongSelect = React.createClass({
         return (
         <div>
           <div id="songSelectLogo">
-          <img src="TidalFlux.svg" alt="Tidal Flux"></img>
+          <h1>Song Select</h1>
           </div>
           <div id="carouselContain">
             <div id="carousel" ref="carousel">
             <Songs songList={songList} />
             </div>
           </div>  
-          <h1>Song Select</h1>
           <div className="song-options-container">
             <Diffs ref="diff" diffs={this.state.diffs}/>
             <br />

@@ -522,11 +522,16 @@ body {
   width: 727px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
+}
+
+#songSelectLogo h1 {
+  font-size: 350%;
 }
 
 #carouselContain {
   margin: 0 auto;
-  width: 375px;
+  width: 500px;
   height: 175px;
   position: relative;
   -webkit-perspective: 1000px;
@@ -545,15 +550,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 375px;
-  height: 175px;
+  width: 500px;
+  height: 250px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(0deg) translateZ(400px);
+  -webkit-transform: rotateY(0deg) translateZ(450px);
   background: #298FA3;
 }
 
@@ -562,15 +567,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 375px;
-  height: 175px;
+  width: 500px;
+  height: 250px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(60deg) translateZ(400px);
+  -webkit-transform: rotateY(60deg) translateZ(450px);
   background: #298FA3;
 }
 
@@ -579,15 +584,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 375px;
-  height: 175px;
+  width: 500px;
+  height: 250px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(120deg) translateZ(400px);
+  -webkit-transform: rotateY(120deg) translateZ(450px);
   background: #298FA3;
 }
 
@@ -596,15 +601,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 375px;
-  height: 175px;
+  width: 500px;
+  height: 250px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(180deg) translateZ(400px);
+  -webkit-transform: rotateY(180deg) translateZ(450px);
   background: #298FA3;
 }
 
@@ -613,15 +618,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 375px;
-  height: 175px;
+  width: 500px;
+  height: 250px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(240deg) translateZ(400px);
+  -webkit-transform: rotateY(240deg) translateZ(450px);
   background: #298FA3;
 }
 
@@ -630,15 +635,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 375px;
-  height: 175px;
+  width: 500px;
+  height: 250px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(300deg) translateZ(400px);
+  -webkit-transform: rotateY(300deg) translateZ(450px);
   background: #298FA3;
 
 .selectedscroll {
