@@ -9,10 +9,17 @@ Songs = React.createClass({
           <div>
           {this.props.songList.map(function(result, i){
             var selected = classNames('songlistitem'+result.id.toString(), {'selectedsong': currSong.id === result.id});
-            return <div className={selected} onClick={that.select.bind(that, i)} key={i} data={result.id}>{result.title} - {result.artist} <br /></div>
+            return <div className={selected}  onClick={that.select.bind(that, i)} key={i} data={result.id}>
+            <div >{result.title} - {result.artist}</div>
+            <div>BPM - {result.BPM}</div>
+
+            </div>
           })}
           </div>
         );
     }
 });
 module.exports = Songs;
+
+
+

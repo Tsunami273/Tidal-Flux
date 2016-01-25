@@ -524,8 +524,8 @@ body {
 
 #carouselContain {
   margin: 0 auto;
-  width: 450px;
-  height: 240px;
+  width: 375px;
+  height: 175px;
   position: relative;
   -webkit-perspective: 1000px;
 }
@@ -539,98 +539,104 @@ body {
 }
 
 .songlistitem1 {
+  padding: 1px;
   display: block;
   position: absolute;
   background: #000;
-  width: 450px;
-  height: 240px;
+  width: 375px;
+  height: 175px;
   /*line-height: 200px;*/
-  /*font-size: 65%;*/
+  font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.95;
+  opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(0deg) translateZ(395px);
+  -webkit-transform: rotateY(0deg) translateZ(400px);
   background: #298FA3;
 }
 
 .songlistitem2 {
+  padding: 1px;
   display: block;
   position: absolute;
   background: #000;
-  width: 450px;
-  height: 240px;
+  width: 375px;
+  height: 175px;
   /*line-height: 200px;*/
-  /*font-size: 65%;*/
+  font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.95;
+  opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(60deg) translateZ(395px);
+  -webkit-transform: rotateY(60deg) translateZ(400px);
   background: #298FA3;
 }
 
 .songlistitem3 {
+  padding: 1px;
   display: block;
   position: absolute;
   background: #000;
-  width: 450px;
-  height: 240px;
+  width: 375px;
+  height: 175px;
   /*line-height: 200px;*/
-  /*font-size: 65%;*/
+  font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.95;
+  opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(120deg) translateZ(395px);
+  -webkit-transform: rotateY(120deg) translateZ(400px);
   background: #298FA3;
 }
 
 .songlistitem4 {
+  padding: 1px;
   display: block;
   position: absolute;
   background: #000;
-  width: 450px;
-  height: 240px;
+  width: 375px;
+  height: 175px;
   /*line-height: 200px;*/
-  /*font-size: 65%;*/
+  font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.95;
+  opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(180deg) translateZ(395px);
+  -webkit-transform: rotateY(180deg) translateZ(400px);
   background: #298FA3;
 }
 
 .songlistitem5 {
+  padding: 1px;
   display: block;
   position: absolute;
   background: #000;
-  width: 450px;
-  height: 240px;
+  width: 375px;
+  height: 175px;
   /*line-height: 200px;*/
-  /*font-size: 65%;*/
+  font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.95;
+  opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(240deg) translateZ(395px);
+  -webkit-transform: rotateY(240deg) translateZ(400px);
   background: #298FA3;
 }
 
 .songlistitem6 {
+  padding: 1px;
   display: block;
   position: absolute;
   background: #000;
-  width: 450px;
-  height: 240px;
+  width: 375px;
+  height: 175px;
   /*line-height: 200px;*/
-  /*font-size: 65%;*/
+  font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.95;
+  opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(300deg) translateZ(395px);
+  -webkit-transform: rotateY(300deg) translateZ(400px);
   background: #298FA3;
 }
 
