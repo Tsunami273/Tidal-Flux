@@ -925,7 +925,7 @@ body {
 .playarea {
   position:absolute;
   left:550px;
-  top:50px;
+  top:10px;
   z-index:1;
 }
 

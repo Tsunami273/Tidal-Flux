@@ -55,21 +55,29 @@ SongPlay = React.createClass({
     },
     componentDidMount: function() {
       start = Date.now();
-      var combos = [];
-      var keys = store.getState().keyBinds; 
-      for(var i = 0 ; i < 6; i++){
-        combos.push(makeKeyBinds(this,keys[i], i));
-      }
-      listener.register_many(combos);
       var curr = store.getState();
       var currDiff = curr.selectedDiff;
       var currSong = curr.selectedSong; 
       var currOffset = curr.globalOffset;
       var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
+      var noteTimes = findNoteTimes(timedBeatMap, currOffset);
+      var combos = [];
+      var keys = store.getState().keyBinds; 
+      var totalNotes = 0;
+      var noteScoreValue;
+      for(var i = 0 ; i < 6; i++){
+        combos.push(makeKeyBinds(this,keys[i], i));
+        totalNotes += noteTimes[i].length;
+      }
+      noteScoreValue = Math.round(1000000 / totalNotes);
+      var noteScoreValues = {perfect: noteScoreValue, 
+        good: Math.round(noteScoreValue * .6),
+        decent: Math.round(noteScoreValue * .2)};
+      listener.register_many(combos);
       offsetArr = [];
       intervalID = [];
-      var noteTimes = findNoteTimes(timedBeatMap, currOffset);
-      this.setState({noteTimes: noteTimes});
+      this.setState({noteTimes: noteTimes,
+        noteScoreValues: noteScoreValues});
     },
     componentWillUnmount: function(event){
       listener.reset();

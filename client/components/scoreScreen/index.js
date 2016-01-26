@@ -22,7 +22,7 @@ ScoreScreen = React.createClass({
       return (
         <div>
           <h1>Score Screen</h1>
-          <div>{this.state.message}</div>
+          <div>{message}</div>
           <br />
           <div>{this.state.currSong.title} - {this.state.currSong.artist}</div>
           <div>{this.state.currDiff}</div>
