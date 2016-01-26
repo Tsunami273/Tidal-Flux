@@ -28,16 +28,16 @@ app.post('/api/player/signup', function(req, res){
     	}
 
     	if (player) {                             //Notify if the player player is already registered
-    		res.status(200).send('User already exists');
+    		res.status(200).json({ message: 'User already exists'});
     	}
 
     	if (!player) {
 			// Create ne player to save player to database
 			var player = new models.Player();
+
 			player.email = req.body.email;
 			player.username = req.body.username;
 
-			
 			//Encrypt password
 			bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
 				player.password = hashPassword;
@@ -47,8 +47,7 @@ app.post('/api/player/signup', function(req, res){
 					if(err) {
 						res.status(403).json(err);
 					} else {
-						res.status(200).json(player)
-						console.log('SIGNUP SUCCESSFUL')
+						res.status(200).json(player);
 					}
 				});
 			});
@@ -65,7 +64,7 @@ app.post('/api/player/signin', function(req, res) {
     .exec(function (err, player) {
     	if (err) { return err }
     	if (!player) { 
-    		res.status(403).send('Forbidden');
+    		res.status(403).json({ message: 'Forbidden'});
     	}
     	if (player) {
 	    	//Validate password
@@ -74,13 +73,12 @@ app.post('/api/player/signin', function(req, res) {
 	    			res.status(403).json(err);
 	    		}
 	    		if(!valid) {
-	    			res.status(403).send('Forbidden');
+	    			res.status(403).json({ message: 'Forbidden'});
 	    		} 
 	    		if(valid) {
 	    			//Generate token
 	    		    // var token = jwt.encode({username: player.username}, mysecret.secret)
 	    		    res.status(200).json(player);
-	    		    console.log('SIGNIN SUCCESSFUL');
 	    		} 
 	    	});
 	    }
@@ -90,8 +88,9 @@ app.post('/api/player/signin', function(req, res) {
 
 
 app.post('/api/player/score', function(req, res){
+	console.log('Score request after game play: ', req.body);
 	//Find player in the song table
-	models.Score.findOne({ user: req.body.username, song: req.body.song, difficulty: req.body.difficulty})
+	models.Score.findOne({ username: req.body.username, songId: req.body.songId, difficulty: req.body.difficulty})
     .exec(function (err, player) {
     	if (err) { 
     		res.status(403).json(err);
@@ -99,9 +98,9 @@ app.post('/api/player/score', function(req, res){
     	if (!player) {                            //If this is the first time the player is playing
     		var score = new models.Score();
 
-    		score.user = req.body.username;
+    		score.username = req.body.username;
     		score.points = req.body.points;
-    		score.song = req.body.song;
+    		score.songId = req.body.songId;
     		score.difficulty = req.body.difficulty;
 
     		score.save(function (err, score) {
@@ -114,21 +113,19 @@ app.post('/api/player/score', function(req, res){
     	} 
     	if (player) {     // If the player has played played before
     		if (req.body.points <= player.points) {  //New score lower than the existing one
-				res.status(200).send('Nice try')
-				console.log('Nice Try:')
+				res.status(200).json({message:'low'});
 			}
 
     		if(req.body.points > player.points) {   //New High Score
 
     		    player.points = req.body.points;
 
+    		    //Save the new high score
 				player.save(function (err, score) {
 					if(err) {
-						console.log('Error: ', err);
 						res.status(403).json(err);
-						
 					} else {
-						res.status(200).json(score);
+						res.status(200).json({message:'high'});
 					}
 				});
     		}

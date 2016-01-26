@@ -106,6 +106,9 @@ SongPlay = React.createClass({
           message: message,
           judgements: judgements,
           messageArray: messageArray});
+        if(judgements.health < 0){
+          return that.play();
+        };
       }, 10);
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
