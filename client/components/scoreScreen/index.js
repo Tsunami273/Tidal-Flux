@@ -8,29 +8,40 @@ ScoreScreen = React.createClass({
       var username = globalState.username;
       var score = globalState.score;
       var judges = globalState.judges;
-      var songId = globalState.selectedSong.id
-      var difficulty = globalState.selectedDiff
+      var songId = globalState.selectedSong.id;
+      var difficulty = globalState.selectedDiff;
       return {
         username: username,
         score: score,
         judges: judges,
         songId: songId,
-        difficulty: difficulty
+        difficulty: difficulty,
+        response: undefined
       }
     },
 
     componentWillMount: function(){
-      this.sendScoretoServer();
-    },
-
-    play: function(event) {
-      store.dispatch(navigateToPage('SELECT'));
+      $.ajax({
+        var self = this;
+        url: '/api/player/score',
+        dataType: 'json',
+        type: 'POST',
+        data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
+        success: function(data) {
+          console.log('Score update Ajax: ', data);
+          self.setState({response: data.points});
+        }.bind(self),
+        error: function(xhr, status, err) {
+          console.log('Error: ', err);
+        }.bind(this)
+      });
     },
 
     render: function() {
       var username = this.state.username;
       var score = this.state.score;
       var judges = this.state.judges;
+      var response = this.state.response;
       var health = judges.health;
       var message = '';
       if(health <= 0){
@@ -54,6 +65,7 @@ ScoreScreen = React.createClass({
           <div>{message}</div>
           <br />
           <div>{score}</div>
+          <h4>CommentList data={response} </h4>
           <div>{username}</div>
           <div>Perfect: {judges.Perfect}</div>
           <div>Good: {judges.Good} </div>
@@ -64,19 +76,8 @@ ScoreScreen = React.createClass({
         );
     },
 
-    sendScoretoServer: function(){
-      $.ajax({
-        url: '/api/player/score',
-        dataType: 'json',
-        type: 'POST',
-        data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
-        success: function(data) {
-          console.log('Score update Ajax: ', data);
-        }.bind(this),
-        error: function(xhr, status, err) {
-          console.log('Error: ', err);
-        }.bind(this)
-      });
+    play: function(event) {
+      store.dispatch(navigateToPage('SELECT'));
     }
 
 });
