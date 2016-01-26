@@ -10,6 +10,7 @@ ScoreScreen = React.createClass({
       var judges = store.getState().judges;
       var health = judges.health;
       var message = '';
+      console.log('score', score);
       if(health <= 0){
         message = <h2>Hey Festus, you lose!</h2>;
       }
