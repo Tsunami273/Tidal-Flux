@@ -1012,18 +1012,14 @@ progress::-webkit-progress-bar {
 }
 progress::-webkit-progress-value { 
     background-image:
-     -webkit-linear-gradient(-55deg, 
-                             transparent 33%, rgba(0, 0, 0, .1) 33%, 
-                             rgba(0,0, 0, .1) 66%, transparent 66%),
-     -webkit-linear-gradient(top, 
+    -webkit-linear-gradient(top, 
                              rgba(255, 255, 255, .25), 
                              rgba(0, 0, 0, .25)),
-     -webkit-linear-gradient(right, #298FA3,#EF307E);
+    -webkit-linear-gradient(right, #298FA3, #262626);
     border-radius: 8px; 
     background-size: 35px 20px, 100% 100%, 100% 100%;
     -webkit-transition: width 0.8s;
 }
-
 
 /*===============Credits=================*/
 
@@ -1045,8 +1041,3 @@ progress::-webkit-progress-value {
 .credit-block a {
   color:#ECEEF1;
 }
-
-
-
-
-
