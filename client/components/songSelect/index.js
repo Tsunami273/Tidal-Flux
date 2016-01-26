@@ -103,18 +103,31 @@ SongSelect = React.createClass({
             <Songs songSelect={this} songList={songList} />
           </div>
           </div>
+
+          <div id="carouselButtons">
+            <div id="prev" onClick={this.rotatePrev}>
+              <img src="prev.svg" alt="Prev"></img>
+            </div>  
+
+            <div id="next" onClick={this.rotateNext}>
+            <img src="next.svg" alt="Next"></img>
+            </div>
+          </div>
+
           <div className="song-options-container">
             <Diffs ref="diff" diffs={this.state.diffs}/>
             <br />
             <Scroll ref="scroll" />
           <audio src={'./songs/' + this.state.selectedSong.id + '/'+  this.state.selectedSong.id + '.ogg'} autoPlay></audio>
-          <div id="playsong" onClick={this.play}>Play</div>
+          <div id="playsong" onClick={this.play}>
+          <h3>Play</h3>
+          </div>
+          <div id="back" onClick={this.back}>
+          <h3>Back</h3>
+          </div>
           </div>
           <br />
           <br />
-          <div id="next" onClick={this.rotateNext}>Next</div>
-          <div id="prev" onClick={this.rotatePrev}>Prev</div>  
-          <NavButton dest="Back" onClick={this.back} />
           <br />
         </div>
         );

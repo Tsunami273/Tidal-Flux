@@ -13,19 +13,19 @@ var makeKeyBinds = function(scope, key, i){
               Object.assign(judgements,this.state.judgements);
               if(batting<40){
                 judge = 'Perfect';
-                scoreAdd = 100;
+                scoreAdd = this.state.noteScoreValues.perfect;
                 healthAdd = 5;
                 judgements.combo++;
               }
               else if(batting<80){
                 judge = 'Good';
-                scoreAdd = 60;
+                scoreAdd = this.state.noteScoreValues.good;
                 healthAdd = 3;
                 judgements.combo++;
               }
               else {
                 judge = 'Decent'
-                scoreAdd = 20;
+                scoreAdd = this.state.noteScoreValues.decent;
                 healthAdd = 0;
                 judgements.combo = 0; 
               }
