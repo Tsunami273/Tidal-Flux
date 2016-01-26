@@ -4,13 +4,36 @@ var NavButton = require('../navButton.js');
 ScoreScreen = React.createClass({
     getInitialState: function(){
       var dog = store.getState();
+      var grade;
+      if(dog.score === 1000000){
+        grade = 'SS';
+      }
+      else if(dog.score > 990000){
+        grade = 'S';
+      }
+      else if(dog.score > 950000){
+        grade = 'A+';
+      }
+      else if(dog.score > 900000){
+        grade = 'A';
+      }
+      else if(dog.score > 800000){
+        grade = 'B';
+      }
+      else if(dog.score > 700000){
+        grade = 'C';
+      }
+      else {
+        grade = 'F';
+      }
       return {
         judges: dog.judges,
         username: dog.username, 
         score: dog.score,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
-        response: {message: ''}
+        response: {message: ''},
+        grade: grade
       };
     },
 
@@ -61,7 +84,7 @@ ScoreScreen = React.createClass({
           <div>{this.state.currSong.title} - {this.state.currSong.artist}</div>
           <div>{this.state.currDiff}</div>
           <br />
-          <div>{this.state.score}</div>
+          <div>Score: {this.state.score} - Rank: {this.state.grade} </div>
           <div>Perfect: {this.state.judges.Perfect}</div>
           <div>Good: {this.state.judges.Good} </div>
           <div>Decent: {this.state.judges.Decent}</div>
@@ -71,4 +94,4 @@ ScoreScreen = React.createClass({
         );
     }
 });
-module.exports = MainMenu;
+module.exports = ScoreScreen;
