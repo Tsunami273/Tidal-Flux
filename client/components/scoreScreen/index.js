@@ -2,34 +2,30 @@
 var NavButton = require('../navButton.js');
 
 ScoreScreen = React.createClass({
-    getInitialState: function() {
-      var globalState = store.getState();
-
-      var username = globalState.username;
-      var score = globalState.score;
-      var judges = globalState.judges;
-      var songId = globalState.selectedSong.id;
-      var difficulty = globalState.selectedDiff;
-      var response = globalState.response;
+    getInitialState: function(){
+      var dog = store.getState();
       return {
-        username: username,
-        score: score,
-        judges: judges,
-        songId: songId,
-        difficulty: difficulty,
-        response: ''
-      }
+        judges: dog.judges,
+        username: dog.username, 
+        score: dog.score,
+        currSong: dog.selectedSong,
+        currDiff: dog.selectedDiff,
+        response: {message: ''}
+      };
     },
 
-    componentWillMount: function(){
-      var username = this.state.username;
+    play: function(event) {
+      store.dispatch(navigateToPage('SELECT'));
+    },
+
+    componentDidMount: function(){
       //Check first if user is logged in
-      if (username) {
+      if (this.state.username) {
         $.ajax({
           url: '/api/player/score',
           dataType: 'json',
           type: 'POST',
-          data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
+          data: { username : this.state.username, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
           success: function(data) {
             this.setState({response: data});
           }.bind(this), 
@@ -41,22 +37,17 @@ ScoreScreen = React.createClass({
     },
 
     render: function() {
-      var username = this.state.username;
-      var score = this.state.score;
-      var judges = this.state.judges;
-      var response = this.state.response.message;
-      var health = judges.health;
       var message = '';
-      if(health <= 0){
-        if (username) {
-          message = <h2>Hey, {username} you lose! Score is {response}</h2>;
+      if(this.state.judges.health <= 0){
+        if (this.state.username) {
+          message = <h2>Hey, {this.state.username} you lose! Score is {this.state.response.message}</h2>;
         } else {
           message = <h2>Hey, you lose!</h2>;
         }
       }
-      if (health > 0) {
-        if (username) {
-          message = <h2>Nice play, {username}! Score is {response}</h2>;
+      if (this.state.judges.health > 0) {
+        if (this.state.username) {
+          message = <h2>Nice play, {this.state.username}! Score is {this.state.response.message}</h2>;
         } else {
           message = <h2>Nice Play!</h2>;
         }
@@ -67,20 +58,17 @@ ScoreScreen = React.createClass({
           <h1>Score Screen</h1>
           <div>{message}</div>
           <br />
-          <div>{score}</div>
-          <div>{username}</div>
-          <div>Perfect: {judges.Perfect}</div>
-          <div>Good: {judges.Good} </div>
-          <div>Decent: {judges.Decent}</div>
-          <div>Miss: {judges.Miss}</div>
+          <div>{this.state.currSong.title} - {this.state.currSong.artist}</div>
+          <div>{this.state.currDiff}</div>
+          <br />
+          <div>{this.state.score}</div>
+          <div>Perfect: {this.state.judges.Perfect}</div>
+          <div>Good: {this.state.judges.Good} </div>
+          <div>Decent: {this.state.judges.Decent}</div>
+          <div>Miss: {this.state.judges.Miss}</div>
           <NavButton dest="Done" onClick={this.play} />
         </div>
         );
-    },
-
-    play: function(event) {
-      store.dispatch(navigateToPage('SELECT'));
     }
-
 });
 module.exports = MainMenu;

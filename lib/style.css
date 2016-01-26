@@ -985,6 +985,28 @@ progress::-webkit-progress-value {
 }
 
 
+/*===============Credits=================*/
+
+.credit-block {
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color:#298FA3;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius:20px;
+  color: #ECEEF1;
+  text-shadow: 2px 2px 5px #404040;
+  padding:5px;
+  width:600px;
+  font-size:16px;
+}
+
+.credit-block a {
+  color:#ECEEF1;
+}
+
+
 
 
 
