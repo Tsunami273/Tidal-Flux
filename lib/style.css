@@ -535,7 +535,7 @@ body {
 .song-options-container {
   /*background-color:#A9BCD0;*/
   color:#373F56;
-  margin-top: 25px;
+  margin-top: 100px;
   width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -670,13 +670,14 @@ display: inline;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(0deg) translateZ(350px);
+  -webkit-transform: rotateY(0deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem2 {
@@ -687,13 +688,14 @@ display: inline;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(60deg) translateZ(350px);
+  -webkit-transform: rotateY(60deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem3 {
@@ -704,13 +706,14 @@ display: inline;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(120deg) translateZ(350px);
+  -webkit-transform: rotateY(120deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem4 {
@@ -721,13 +724,14 @@ display: inline;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(180deg) translateZ(350px);
+  -webkit-transform: rotateY(180deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem5 {
@@ -738,13 +742,14 @@ display: inline;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(240deg) translateZ(350px);
+  -webkit-transform: rotateY(240deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem6 {
@@ -755,13 +760,14 @@ display: inline;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(300deg) translateZ(350px);
+  -webkit-transform: rotateY(300deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 /*==========================Global Options====================*/
