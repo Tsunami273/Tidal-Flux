@@ -4,13 +4,36 @@ var NavButton = require('../navButton.js');
 ScoreScreen = React.createClass({
     getInitialState: function(){
       var dog = store.getState();
+      var grade;
+      if(dog.score === 1000000){
+        grade = 'SS';
+      }
+      else if(dog.score > 990000){
+        grade = 'S';
+      }
+      else if(dog.score > 950000){
+        grade = 'A+';
+      }
+      else if(dog.score > 900000){
+        grade = 'A';
+      }
+      else if(dog.score > 800000){
+        grade = 'B';
+      }
+      else if(dog.score > 700000){
+        grade = 'C';
+      }
+      else {
+        grade = 'F';
+      }
       return {
         judges: dog.judges,
         username: dog.username, 
         score: dog.score,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
-        response: {message: ''}
+        response: {message: ''},
+        grade: grade
       };
     },
 
@@ -54,21 +77,25 @@ ScoreScreen = React.createClass({
       }
 
       return (
-        <div>
+        <div className="score-screen-container">
           <h1>Score Screen</h1>
-          <div>{message}</div>
-          <br />
-          <div>{this.state.currSong.title} - {this.state.currSong.artist}</div>
-          <div>{this.state.currDiff}</div>
-          <br />
-          <div>{this.state.score}</div>
-          <div>Perfect: {this.state.judges.Perfect}</div>
-          <div>Good: {this.state.judges.Good} </div>
-          <div>Decent: {this.state.judges.Decent}</div>
-          <div>Miss: {this.state.judges.Miss}</div>
+          <div className="message-container">{message}</div>
+          <div className="song-info-container">
+            <div className="ss-song-title">{this.state.currSong.title}</div>
+            <div className="ss-song-artist">{this.state.currSong.artist}</div>
+          </div>
+          <div className="ss-song-diff">{this.state.currDiff}</div>
+          <div className="grade-container">{this.state.grade}</div>
+          <div className="score-container">Score: <span className="score-count">{this.state.score}</span></div>
+          <div className="judge-container">
+            <div>Perfect: <span className="judge-count">{this.state.judges.Perfect}</span></div>
+            <div>Good: <span className="judge-count">{this.state.judges.Good}</span></div>
+            <div>Decent: <span className="judge-count">{this.state.judges.Decent}</span></div>
+            <div>Miss: <span className="judge-count">{this.state.judges.Miss}</span></div>
+          </div>
           <NavButton dest="Done" onClick={this.play} />
         </div>
         );
     }
 });
-module.exports = MainMenu;
+module.exports = ScoreScreen;
