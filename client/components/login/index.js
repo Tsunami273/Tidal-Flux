@@ -1,5 +1,4 @@
 // import child components here.
-
 Login = React.createClass({
     getInitialState: function() {
       return {
@@ -78,7 +77,10 @@ Login = React.createClass({
               <br />
               <br />
               <div id="notUser" onClick={this.goToSignup}>Not yet a user? Click here.</div>
+              <br />
+              <div id="notUser" onClick={this.goToMainMenu}>Back</div>
           </div>
+
         </div>
         );
     }

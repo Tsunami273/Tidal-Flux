@@ -14,6 +14,9 @@ SongSelect = React.createClass({
         selectedSong: selectedSong
       }
     },
+    back: function(){
+      store.dispatch(navigateToPage('MAIN'));
+    },
     play: function(event) {
       var diff = this.refs.diff.state.diff
       var scroll = this.refs.scroll.state.scroll;
@@ -53,7 +56,7 @@ SongSelect = React.createClass({
           break;
       }
       var currsong = songList[index];
-      this.setState({selectedSong: currsong})
+      this.setState({selectedSong: currsong});
     },
     rotateNext: function() {
       currdeg = currdeg - 60;
@@ -86,7 +89,7 @@ SongSelect = React.createClass({
       }
       this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
       var currsong = songList[index];
-      this.setState({selectedSong: currsong})
+      this.setState({selectedSong: currsong});
     },
     render: function() {
         return (
@@ -111,6 +114,8 @@ SongSelect = React.createClass({
           <br />
           <div id="next" onClick={this.rotateNext}>Next</div>
           <div id="prev" onClick={this.rotatePrev}>Prev</div>  
+          <NavButton dest="Back" onClick={this.back} />
+          <br />
         </div>
         );
     }

@@ -28,6 +28,8 @@ const main = function(state, action){
       return Object.assign({}, state, {selectedSong: action.selected});
     case 'SIGN_IN':
       return Object.assign({}, state, {username: action.username});
+    case 'LOG_OUT':
+      return Object.assign({}, state, {username: ''});
     case 'SET_SCORE':
       return Object.assign({}, state, {score: action.score, judges: action.judges});
     case 'SET_DIFF':
