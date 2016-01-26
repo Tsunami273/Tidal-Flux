@@ -12,7 +12,7 @@ var Scroll = React.createClass({
     render: function() {
       var that = this;
         return (
-          <div> 
+          <div id="scroll"> 
           <h3>Scroll Speed: </h3>
           (slower)  
           {this.state.scrolls.map(function(e,i,c){

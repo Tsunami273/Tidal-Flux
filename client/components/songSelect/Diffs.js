@@ -12,7 +12,7 @@ var Diffs = React.createClass({
     render: function() {
       var that = this;
         return (
-          <div>
+          <div id="diff">
           <h3>Difficulty: </h3>
           {this.state.diffs.map(function(e,i,c){
             var selected = classNames(e, {'selecteddiff': that.state.diff === e});
