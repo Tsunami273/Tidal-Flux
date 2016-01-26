@@ -1,5 +1,4 @@
 // import child components here.
-var NavButton = require('../navButton.js');
 Login = React.createClass({
     getInitialState: function() {
       return {
