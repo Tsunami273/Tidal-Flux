@@ -102,7 +102,7 @@ describe("Server unit tests",function(){
   it("Should be able to add a new score(Including first time playing song, level)",function(done){
     var scores = {
       "username": "Juice",
-      "song": "dog",
+      "songId": "12",
       "points": "5",
       "difficulty": "Hard"
     }
@@ -124,7 +124,7 @@ describe("Server unit tests",function(){
   it("Should notify new score is lower than high score",function(done){
     var scores = {
       "username": "Juice",
-      "song": "dog",
+      "songId": "12",
       "points": "5",
       "difficulty": "Hard"
     }
@@ -145,7 +145,7 @@ describe("Server unit tests",function(){
   it("Should add new high score",function(done){
     var scores = {
       "username": "Juice",
-      "song": "dog",
+      "songId": "12",
       "points": "50",
       "difficulty": "Hard"
     }
