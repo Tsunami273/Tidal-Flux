@@ -1,8 +1,13 @@
 // import child components here.
 // var combos = require('./keybinds.js');
 var NavButton = require('../navButton.js');
+var User = require('./User.js');
 
 MainMenu = React.createClass({
+    getInitialState: function(){
+      var user = store.getState().username; 
+      return {user: user};
+    },
     play: function(event) {
       store.dispatch(navigateToPage('SELECT'));
     },
@@ -16,8 +21,9 @@ MainMenu = React.createClass({
       store.dispatch(navigateToPage('GOPTIONS'))
     },
     render: function() {
-      // listener.register_many[{}]
         return (
+        <div>
+        <User className="userbox" login={this.goToLogin} signup={this.goToSignup} />
         <div id="menucontain">
 
           <div id="title">
@@ -40,6 +46,7 @@ MainMenu = React.createClass({
             <h3>Signup</h3>
           </div>
 
+        </div>
         </div>
         );
     }
