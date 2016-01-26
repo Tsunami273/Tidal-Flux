@@ -50,6 +50,9 @@ SongPlay = React.createClass({
       store.dispatch(setScore(score, judges));
       store.dispatch(navigateToPage('SCORE'));
     },
+    back: function(){
+      store.dispatch(navigateToPage('SELECT'));
+    },
     componentDidMount: function() {
       start = Date.now();
       var combos = [];
@@ -75,11 +78,6 @@ SongPlay = React.createClass({
       });
     },
     loadedSong: function(event){
-      // this event triggers when the song is ready to be played
-      // AND when user moves the playhead. 
-      // you will get errors if you try to move the playhead because the interval will not be cleared.
-      // the user will not be able to move the playhead so fixing this is not important atm. 
-
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
@@ -154,9 +152,8 @@ SongPlay = React.createClass({
           <h1>Song Play</h1>
           <Health health={this.state.judgements.health}/>
           <div>playhead: {this.state.playhead}</div>
-          <div>offset: {this.state.offset}</div>
-          <div>average offset: {this.state.avgOffset}</div>
           <div>{this.state.score}</div>
+          <div onClick={this.back}>Back</div>
           <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
