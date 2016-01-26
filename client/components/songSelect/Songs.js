@@ -1,15 +1,19 @@
 Songs = React.createClass({
-    select: function(i) {
-      store.dispatch(selectSong(this.props.songList[i]));
+    getInitialState: function(){
+      var currSong = store.getState().selectedSong;
+      return {currSong: currSong};
+    },
+    select: function(song) {
+      this.setState({currSong: song});
+      this.props.songSelect.setState({selectedSong: song});
     },
     render: function() {
-      var currSong = store.getState().selectedSong;
       var that = this;
         return (
           <div>
-          {this.props.songList.map(function(result, i){
-            var selected = classNames('songlistitem', {'selectedsong': currSong.id === result.id});
-            return <span className={selected} onClick={that.select.bind(that, i)} key={i} data={result.id}>{result.title} - {result.artist} <br /></span>
+          {this.props.songList.map(function(e, i, c){
+            var selected = classNames('songlistitem'+e.id.toString(), {'selectedsong': e.id === that.state.currSong.id});
+            return <span className={selected} onClick={that.select.bind(that, e)} key={i} data={e.id}>{e.title} - {e.artist} <br /></span>
           })}
           </div>
         );

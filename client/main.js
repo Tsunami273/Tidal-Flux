@@ -1,4 +1,4 @@
-// putting these on global scope so our components in other files can use them.
+// putting these on global scope so components in other files can use them.
 React = require('react');
 ReactDOM = require('react-dom');
 Redux = require('redux');
@@ -48,6 +48,14 @@ var render = function(){
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<GOptions />, domContainerNode); 
       return; 
+    case 'CREDITS':
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Credits />, domContainerNode); 
+      return; 
+    default:
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<MainMenu />, domContainerNode);
+      return;
   }
 }
 

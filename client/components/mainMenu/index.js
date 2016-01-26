@@ -1,23 +1,32 @@
 // import child components here.
 // var combos = require('./keybinds.js');
 var NavButton = require('../navButton.js');
+var User = require('./User.js');
 
 MainMenu = React.createClass({
+    getInitialState: function(){
+      var user = store.getState().username; 
+      return {user: user};
+    },
     play: function(event) {
       store.dispatch(navigateToPage('SELECT'));
     },
-    goToLogin: function(event){
+    goToCredits: function(){
+      store.dispatch(navigateToPage('CREDITS'));
+    },
+    goToLogin: function(){
       store.dispatch(navigateToPage('LOGIN'));
     },
-    goToSignup: function(event){
+    goToSignup: function(){
       store.dispatch(navigateToPage('SIGNUP'));
     },
-    goToOptions: function(event){
+    goToOptions: function(){
       store.dispatch(navigateToPage('GOPTIONS'))
     },
     render: function() {
-      // listener.register_many[{}]
         return (
+        <div>
+        <User login={this.goToLogin} signup={this.goToSignup} />
         <div id="menucontain">
 
           <div id="title">
@@ -40,6 +49,11 @@ MainMenu = React.createClass({
             <h3>Signup</h3>
           </div>
 
+          <div id="credits" className="clicky" onClick={this.goToCredits}>
+            <h3>Credits</h3>
+          </div>
+
+        </div>
         </div>
         );
     }

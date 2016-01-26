@@ -499,6 +499,21 @@ body {
 
 .clicky { cursor: pointer; }
 
+.userbox {
+  display:inline-block;
+  background-color:#A9BCD0;
+  color:#373F56;
+  padding:5px;
+  margin-top:10px;
+  margin-left:5px;
+}
+
+.userbox-button {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
 /*====================Song Select============================*/
 
 .selectedsong {
@@ -528,6 +543,137 @@ body {
 .song-options-container h3{
   margin-top:0px;
   margin-bottom:5px;
+}
+
+#songSelectLogo {
+  margin-top: 100px;
+  margin-bottom: 150px;
+  width: 727px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#songSelectLogo h1 {
+  font-size: 350%;
+}
+
+#carouselContain {
+  margin: 0 auto;
+  width: 500px;
+  height: 175px;
+  position: relative;
+  -webkit-perspective: 1000px;
+}
+
+#carousel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: transform 1s;
+}
+
+.songlistitem1 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(0deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem2 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(60deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem3 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(120deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem4 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(180deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem5 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(240deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem6 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(300deg) translateZ(450px);
+  background: #298FA3;
 }
 
 /*==========================Global Options====================*/
@@ -583,7 +729,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 /*#loginA img {
@@ -661,7 +807,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 #signUpContain {
@@ -716,7 +862,7 @@ body {
 .lanearea1 {
   position:absolute;
   left:50px;
-  background-color:#262626;
+  background-color:#333333;
   z-index:1;
 }
 
@@ -737,7 +883,7 @@ body {
 .lanearea4 {
   position:absolute;
   left:200px;
-  background-color:#262626;
+  background-color:#333333;
   z-index:1;
 }
 
@@ -748,9 +894,27 @@ body {
   z-index:1;
 } 
 
-.triggered {
+.lanearea0.triggered {
   background: linear-gradient(to top, #298FA3, #262626, #262626);
 }
+.lanearea1.triggered {
+  background: linear-gradient(to top, #298FA3, #333333, #333333);
+}
+.lanearea2.triggered {
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
+}
+.lanearea3.triggered {
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
+}
+.lanearea4.triggered {
+  background: linear-gradient(to top, #298FA3, #333333, #333333);
+}
+.lanearea5.triggered {
+  background: linear-gradient(to top, #298FA3, #262626, #262626);
+}
+/*.triggered {*/
+  /*background: linear-gradient(to top, #298FA3, #262626, #262626);*/
+/*}*/
 
 .note {
     fill:#ECEEF1;
@@ -778,7 +942,16 @@ body {
   height:50px;
   fill:#298FA3;
   stroke:#298FA3;
-  font-size: 32;
+  font-size: 38;
+}
+
+
+.combomessage {
+  width:200px;
+  height:50px;
+  fill:#298FA3;
+  stroke:#298FA3;
+  font-size: 26;
 }
 
 .healthBar {
@@ -808,3 +981,23 @@ progress::-webkit-progress-value {
     -webkit-transition: width 0.8s;
 }
 
+/*===============Credits=================*/
+
+.credit-block {
+  margin-top:10px;
+  margin-bottom:10px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color:#298FA3;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius:20px;
+  color: #ECEEF1;
+  text-shadow: 2px 2px 5px #404040;
+  padding:5px;
+  width:600px;
+  font-size:16px;
+}
+
+.credit-block a {
+  color:#ECEEF1;
+}
