@@ -11,13 +11,16 @@ MainMenu = React.createClass({
     play: function(event) {
       store.dispatch(navigateToPage('SELECT'));
     },
-    goToLogin: function(event){
+    goToCredits: function(){
+      store.dispatch(navigateToPage('CREDITS'));
+    },
+    goToLogin: function(){
       store.dispatch(navigateToPage('LOGIN'));
     },
-    goToSignup: function(event){
+    goToSignup: function(){
       store.dispatch(navigateToPage('SIGNUP'));
     },
-    goToOptions: function(event){
+    goToOptions: function(){
       store.dispatch(navigateToPage('GOPTIONS'))
     },
     render: function() {
@@ -44,6 +47,10 @@ MainMenu = React.createClass({
 
           <div id="signup" className="clicky" onClick={this.goToSignup}>
             <h3>Signup</h3>
+          </div>
+
+          <div id="credits" className="clicky" onClick={this.goToCredits}>
+            <h3>Credits</h3>
           </div>
 
         </div>
