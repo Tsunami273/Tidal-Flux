@@ -530,6 +530,137 @@ body {
   margin-bottom:5px;
 }
 
+#songSelectLogo {
+  margin-top: 100px;
+  margin-bottom: 150px;
+  width: 727px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#songSelectLogo h1 {
+  font-size: 350%;
+}
+
+#carouselContain {
+  margin: 0 auto;
+  width: 500px;
+  height: 175px;
+  position: relative;
+  -webkit-perspective: 1000px;
+}
+
+#carousel {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: transform 1s;
+}
+
+.songlistitem1 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(0deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem2 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(60deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem3 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(120deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem4 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(180deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem5 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(240deg) translateZ(450px);
+  background: #298FA3;
+}
+
+.songlistitem6 {
+  padding: 1px;
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 500px;
+  height: 250px;
+  /*line-height: 200px;*/
+  font-size: 65%;
+  /*text-align: center;*/
+  color: #FFF;
+  opacity: 0.98;
+  border-radius: 2px;
+  -webkit-transform: rotateY(300deg) translateZ(450px);
+  background: #298FA3;
+}
+
 /*==========================Global Options====================*/
 
 #opContain {

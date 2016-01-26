@@ -10,7 +10,19 @@ var songList = [
   {title:'Rosarium feat. 瑤山百霊',
   artist:'himmel',
   id:3,
-  BPM: 148}
+  BPM: 148},
+  {title:'Quickdraw',
+  artist:'Sanaas',
+  id:4,
+  BPM: 150},
+  {title:'song5',
+  artist:'dog',
+  id:5,
+  BPM: 150},
+  {title:'song6',
+  artist:'cat',
+  id:6,
+  BPM: 170},
 ];
 
 module.exports = songList;

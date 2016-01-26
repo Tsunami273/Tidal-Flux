@@ -4,6 +4,8 @@ var Songs = require('./Songs.js');
 var Diffs = require('./Diffs.js');
 var Scroll = require('./Scroll.js');
 songList = require('./songList.js');
+var currdeg = 0;
+
 SongSelect = React.createClass({
     getInitialState: function(){
       var selectedSong = store.getState().selectedSong;
@@ -20,6 +22,72 @@ SongSelect = React.createClass({
       store.dispatch(setScroll(scroll));
       store.dispatch(setDiff(diff));
     },
+    rotatePrev: function() {
+      currdeg = currdeg + 60;
+      this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
+      var index;
+      var dogdeg = currdeg % 360;
+      switch(dogdeg){
+        case -300:
+        case 60: 
+          index = 5; 
+          break;
+        case -240:
+        case 120: 
+          index = 4;
+          break
+        case -180:
+        case 180:
+          index = 3;
+          break;
+        case -120:
+        case 240:
+          index = 2;
+          break;
+        case -60:
+        case 300:
+          index = 1;
+          break;
+        case 0:
+          index = 0;
+          break;
+      }
+      var currsong = songList[index];
+      this.setState({selectedSong: currsong})
+    },
+    rotateNext: function() {
+      currdeg = currdeg - 60;
+      console.log(currdeg);
+      var dogdeg = currdeg % 360;
+      switch(dogdeg){
+        case 300:
+        case -60: 
+          index = 1; 
+          break;
+        case 240:
+        case -120: 
+          index = 2;
+          break
+        case 180:
+        case -180:
+          index = 3;
+          break;
+        case 120:
+        case -240:
+          index = 4;
+          break;
+        case 60:
+        case -300:
+          index = 5;
+          break;
+        case 0:
+          index = 0;
+          break;
+      }
+      this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
+      var currsong = songList[index];
+      this.setState({selectedSong: currsong})
+    },
     render: function() {
         return (
         <div>
@@ -30,7 +98,13 @@ SongSelect = React.createClass({
             <Scroll ref="scroll" />
           </div>
           <br />
-          <Songs songSelect={this} songList={songList} />
+          <div id="carouselContain">
+            <div id="carousel" ref="carousel">
+            <Songs songSelect={this} songList={songList} />
+          </div>
+          </div>
+          <div id="next" onClick={this.rotateNext}>Next</div>
+          <div id="prev" onClick={this.rotatePrev}>Prev</div>  
           <br />
           <NavButton dest="Play Song" onClick={this.play} />
           <br />
