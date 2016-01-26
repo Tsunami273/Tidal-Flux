@@ -94,26 +94,28 @@ SongSelect = React.createClass({
     render: function() {
         return (
         <div>
-          <h1>Song Select</h1>
-          <div className="song-options-container">
-            <Diffs ref="diff" diffs={this.state.diffs}/>
-            <br />
-            <Scroll ref="scroll" />
-          </div>
+            <div id="songSelectLogo">
+              <h1>Song Select</h1>
+            </div>
           <br />
           <div id="carouselContain">
             <div id="carousel" ref="carousel">
             <Songs songSelect={this} songList={songList} />
           </div>
           </div>
+          <div className="song-options-container">
+            <Diffs ref="diff" diffs={this.state.diffs}/>
+            <br />
+            <Scroll ref="scroll" />
+          <audio src={'./songs/' + this.state.selectedSong.id + '/'+  this.state.selectedSong.id + '.ogg'} autoPlay></audio>
+          <div id="playsong" onClick={this.play}>Play</div>
+          </div>
+          <br />
+          <br />
           <div id="next" onClick={this.rotateNext}>Next</div>
           <div id="prev" onClick={this.rotatePrev}>Prev</div>  
-          <br />
-          <NavButton dest="Play Song" onClick={this.play} />
-          <br />
           <NavButton dest="Back" onClick={this.back} />
           <br />
-          <audio controls src={'./songs/' + this.state.selectedSong.id + '/'+  this.state.selectedSong.id + '.ogg'} autoPlay></audio>
         </div>
         );
     }
