@@ -22,20 +22,22 @@ ScoreScreen = React.createClass({
     },
 
     componentWillMount: function(){
-      $.ajax({
-        url: '/api/player/score',
-        dataType: 'json',
-        type: 'POST',
-        data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
-        success: function(data) {
-          console.log('Ajax response: ', data);
-          this.setState({response: data});
-        
-        }.bind(this), 
-        error: function(xhr, status, err) {
-          console.log('Error: ', err);
-        }.bind(this)
-      });
+      var username = this.state.username;
+      //Check first if user is logged in
+      if (username) {
+        $.ajax({
+          url: '/api/player/score',
+          dataType: 'json',
+          type: 'POST',
+          data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
+          success: function(data) {
+            this.setState({response: data});
+          }.bind(this), 
+          error: function(xhr, status, err) {
+            console.log('Error: ', err);
+          }.bind(this)
+        });
+      }
     },
 
     render: function() {
@@ -43,19 +45,18 @@ ScoreScreen = React.createClass({
       var score = this.state.score;
       var judges = this.state.judges;
       var response = this.state.response.message;
-      console.log('Server response to render: ', response);
       var health = judges.health;
       var message = '';
       if(health <= 0){
         if (username) {
-          message = <h2>Hey, {username} you lose!</h2>;
+          message = <h2>Hey, {username} you lose! Score is {response}</h2>;
         } else {
           message = <h2>Hey, you lose!</h2>;
         }
       }
       if (health > 0) {
         if (username) {
-          message = <h2>Nice play, {username}!</h2>;
+          message = <h2>Nice play, {username}! Score is {response}</h2>;
         } else {
           message = <h2>Nice Play!</h2>;
         }
@@ -67,7 +68,6 @@ ScoreScreen = React.createClass({
           <div>{message}</div>
           <br />
           <div>{score}</div>
-          <h4>CommentList: {response} </h4>
           <div>{username}</div>
           <div>Perfect: {judges.Perfect}</div>
           <div>Good: {judges.Good} </div>
