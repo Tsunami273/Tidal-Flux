@@ -113,7 +113,7 @@ app.post('/api/player/score', function(req, res){
     	} 
     	if (player) {     // If the player has played played before
     		if (req.body.points <= player.points) {  //New score lower than the existing one
-				res.status(200).json({message:'low'});
+				res.status(200).json({message:'low score', highscore: player.points});
 			}
 
     		if(req.body.points > player.points) {   //New High Score
@@ -125,7 +125,7 @@ app.post('/api/player/score', function(req, res){
 					if(err) {
 						res.status(403).json(err);
 					} else {
-						res.status(200).json({message:'high'});
+						res.status(200).json({message:'New high score', highscore: player.points});
 					}
 				});
     		}
