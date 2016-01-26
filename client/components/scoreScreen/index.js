@@ -6,19 +6,53 @@ ScoreScreen = React.createClass({
       var dog = store.getState();
       return {
         judges: dog.judges,
+        username: dog.username, 
         score: dog.score,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
+        response: {message: ''}
       };
     },
+
     play: function(event) {
       store.dispatch(navigateToPage('SELECT'));
     },
-    render: function() {
-      var message = ''
-      if(this.state.judges.health <= 0){
-        message = <h2>Hey Festus, you lose!</h2>;
+
+    componentDidMount: function(){
+      //Check first if user is logged in
+      if (this.state.username) {
+        $.ajax({
+          url: '/api/player/score',
+          dataType: 'json',
+          type: 'POST',
+          data: { username : this.state.username, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
+          success: function(data) {
+            this.setState({response: data});
+          }.bind(this), 
+          error: function(xhr, status, err) {
+            console.log('Error: ', err);
+          }.bind(this)
+        });
       }
+    },
+
+    render: function() {
+      var message = '';
+      if(this.state.judges.health <= 0){
+        if (this.state.username) {
+          message = <h2>Hey, {this.state.username} you lose! Score is {this.state.response.message}</h2>;
+        } else {
+          message = <h2>Hey, you lose!</h2>;
+        }
+      }
+      if (this.state.judges.health > 0) {
+        if (this.state.username) {
+          message = <h2>Nice play, {this.state.username}! Score is {this.state.response.message}</h2>;
+        } else {
+          message = <h2>Nice Play!</h2>;
+        }
+      }
+
       return (
         <div>
           <h1>Score Screen</h1>
