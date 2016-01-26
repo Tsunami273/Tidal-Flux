@@ -50,6 +50,9 @@ SongPlay = React.createClass({
       store.dispatch(setScore(score, judges));
       store.dispatch(navigateToPage('SCORE'));
     },
+    back: function(){
+      store.dispatch(navigateToPage('SELECT'));
+    },
     componentDidMount: function() {
       start = Date.now();
       var combos = [];
@@ -154,9 +157,8 @@ SongPlay = React.createClass({
           <h1>Song Play</h1>
           <Health health={this.state.judgements.health}/>
           <div>playhead: {this.state.playhead}</div>
-          <div>offset: {this.state.offset}</div>
-          <div>average offset: {this.state.avgOffset}</div>
           <div>{this.state.score}</div>
+          <div onClick={this.back}>Back</div>
           <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
