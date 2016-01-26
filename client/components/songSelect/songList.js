@@ -14,7 +14,7 @@ var songList = [
   {title:'Quickdraw',
   artist:'Sanaas',
   id:4,
-  BPM: 150},
+  BPM: 175},
   {title:'song5',
   artist:'dog',
   id:5,
