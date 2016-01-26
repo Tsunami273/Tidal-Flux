@@ -10,30 +10,32 @@ ScoreScreen = React.createClass({
       var judges = globalState.judges;
       var songId = globalState.selectedSong.id;
       var difficulty = globalState.selectedDiff;
+      var response = globalState.response;
       return {
         username: username,
         score: score,
         judges: judges,
         songId: songId,
         difficulty: difficulty,
-        response: undefined
+        response: response
       }
     },
 
     componentWillMount: function(){
+      var self = this;
       $.ajax({
-        var self = this;
         url: '/api/player/score',
         dataType: 'json',
         type: 'POST',
         data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
         success: function(data) {
-          console.log('Score update Ajax: ', data);
-          self.setState({response: data.points});
+          this.response = 'data'
+
+          // store.dispatch( {type:'DATA_FROM_SERVER', response : "data"} );
         }.bind(self),
         error: function(xhr, status, err) {
           console.log('Error: ', err);
-        }.bind(this)
+        }.bind(self)
       });
     },
 
