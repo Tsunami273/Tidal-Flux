@@ -23,7 +23,7 @@ MainMenu = React.createClass({
     render: function() {
         return (
         <div>
-        <User className="userbox" login={this.goToLogin} signup={this.goToSignup} />
+        <User login={this.goToLogin} signup={this.goToSignup} />
         <div id="menucontain">
 
           <div id="title">
