@@ -535,21 +535,69 @@ body {
 .song-options-container {
   /*background-color:#A9BCD0;*/
   color:#373F56;
-  margin-top: 100px;
+  margin-top: 25px;
   width: 900px;
   margin-left: auto;
   margin-right: auto;
   border-radius:8px;
+
+}
+
+#carouselButtons {
+  height: 105px;
+  width: 1100px;
+  margin-top: -100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#prev {
+width: 100px;
+height: 100px;
+display: inline;
+}
+
+#playsong h3 {
+padding-top: 3px;
+  font-weight: 1px;
+  font-size: 150%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+#next {
+width: 100px;
+height: 100px;
+float: right;
+display: inline;
+}
+
+#back h3 {
+  padding-top: 3px;
+  font-weight: 1px;
+  font-size: 150%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+#back {
+  height: 40px;
+  width: 450px;
+  background-color: #298FA3;
+  color: #ECEEF1;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius: 1.5px;
+  letter-spacing: 2px;
 }
 
 #playsong {
-  width: 900px;
-  height: 50px;
+ height: 40px;
+  width: 450px;
   background-color: #EF307E;
   color: #ECEEF1;
   text-align: center;
-  font-size: 250%;
-  padding-bottom: 8px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
@@ -600,8 +648,8 @@ body {
 
 #carouselContain {
   margin: 0 auto;
-  width: 500px;
-  height: 200px;
+  width: 325px;
+  height: 125px;
   position: relative;
   -webkit-perspective: 1000px;
 }
@@ -619,15 +667,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 500px;
-  height: 200px;
+  width: 325px;
+  height: 125px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(0deg) translateZ(450px);
+  -webkit-transform: rotateY(0deg) translateZ(350px);
   background: #298FA3;
 }
 
@@ -636,15 +684,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 500px;
-  height: 200px;
+  width: 325px;
+  height: 125px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(60deg) translateZ(450px);
+  -webkit-transform: rotateY(60deg) translateZ(350px);
   background: #298FA3;
 }
 
@@ -653,15 +701,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 500px;
-  height: 200px;
+  width: 325px;
+  height: 125px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(120deg) translateZ(450px);
+  -webkit-transform: rotateY(120deg) translateZ(350px);
   background: #298FA3;
 }
 
@@ -670,15 +718,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 500px;
-  height: 200px;
+  width: 325px;
+  height: 125px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(180deg) translateZ(450px);
+  -webkit-transform: rotateY(180deg) translateZ(350px);
   background: #298FA3;
 }
 
@@ -687,15 +735,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 500px;
-  height: 200px;
+  width: 325px;
+  height: 125px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(240deg) translateZ(450px);
+  -webkit-transform: rotateY(240deg) translateZ(350px);
   background: #298FA3;
 }
 
@@ -704,15 +752,15 @@ body {
   display: block;
   position: absolute;
   background: #000;
-  width: 500px;
-  height: 200px;
+  width: 325px;
+  height: 125px;
   /*line-height: 200px;*/
   font-size: 65%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(300deg) translateZ(450px);
+  -webkit-transform: rotateY(300deg) translateZ(350px);
   background: #298FA3;
 }
 
