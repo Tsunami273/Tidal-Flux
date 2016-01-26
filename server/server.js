@@ -10,7 +10,7 @@ var models     = require("./mongodb");
 var mongoose   = require('mongoose');
 var bcrypt     = require('bcryptjs');
 var jwt        = require('jwt-simple');
-var mysecret   = require('./secret');
+var mysecret   = 'This is my secret';
 
 
 app.use(logger('dev'));
@@ -47,7 +47,8 @@ app.post('/api/player/signup', function(req, res){
 					if(err) {
 						res.status(403).json(err);
 					} else {
-						res.status(200).json(player);
+						var session = {username: player.username, token: jwt.encode({username: player.username}, mysecret)};
+	    		  		res.status(200).json(session);
 					}
 				});
 			});
@@ -77,8 +78,8 @@ app.post('/api/player/signin', function(req, res) {
 	    		} 
 	    		if(valid) {
 	    			//Generate token
-	    		    // var token = jwt.encode({username: player.username}, mysecret.secret)
-	    		    res.status(200).json(player);
+	    		    var session = {username: player.username, token: jwt.encode({username: player.username}, mysecret)};
+	    		    res.status(200).json(session);
 	    		} 
 	    	});
 	    }
@@ -88,7 +89,6 @@ app.post('/api/player/signin', function(req, res) {
 
 
 app.post('/api/player/score', function(req, res){
-	console.log('Score request after game play: ', req.body);
 	//Find player in the song table
 	models.Score.findOne({ username: req.body.username, songId: req.body.songId, difficulty: req.body.difficulty})
     .exec(function (err, player) {
