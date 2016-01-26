@@ -120,11 +120,12 @@ app.post('/api/player/score', function(req, res){
 
     		    player.points = req.body.points;
 
+    		    //Save the new high score
 				player.save(function (err, score) {
 					if(err) {
 						res.status(403).json(err);
 					} else {
-						res.status(200).json(score);
+						res.status(200).json({message:'high'});
 					}
 				});
     		}

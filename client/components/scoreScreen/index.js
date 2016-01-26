@@ -17,25 +17,24 @@ ScoreScreen = React.createClass({
         judges: judges,
         songId: songId,
         difficulty: difficulty,
-        response: response
+        response: ''
       }
     },
 
     componentWillMount: function(){
-      var self = this;
       $.ajax({
         url: '/api/player/score',
         dataType: 'json',
         type: 'POST',
         data: { username : this.state.username, songId : this.state.songId, difficulty : this.state.difficulty, points : this.state.score },
         success: function(data) {
-          this.response = 'data'
-
-          // store.dispatch( {type:'DATA_FROM_SERVER', response : "data"} );
-        }.bind(self),
+          console.log('Ajax response: ', data);
+          this.setState({response: data});
+        
+        }.bind(this), 
         error: function(xhr, status, err) {
           console.log('Error: ', err);
-        }.bind(self)
+        }.bind(this)
       });
     },
 
@@ -43,7 +42,8 @@ ScoreScreen = React.createClass({
       var username = this.state.username;
       var score = this.state.score;
       var judges = this.state.judges;
-      var response = this.state.response;
+      var response = this.state.response.message;
+      console.log('Server response to render: ', response);
       var health = judges.health;
       var message = '';
       if(health <= 0){
@@ -67,7 +67,7 @@ ScoreScreen = React.createClass({
           <div>{message}</div>
           <br />
           <div>{score}</div>
-          <h4>CommentList data={response} </h4>
+          <h4>CommentList: {response} </h4>
           <div>{username}</div>
           <div>Perfect: {judges.Perfect}</div>
           <div>Good: {judges.Good} </div>
