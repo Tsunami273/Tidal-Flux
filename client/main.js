@@ -1,4 +1,4 @@
-// putting these on global scope so our components in other files can use them.
+// putting these on global scope so components in other files can use them.
 React = require('react');
 ReactDOM = require('react-dom');
 Redux = require('redux');

@@ -499,6 +499,21 @@ body {
 
 .clicky { cursor: pointer; }
 
+.userbox {
+  display:inline-block;
+  background-color:#A9BCD0;
+  color:#373F56;
+  padding:5px;
+  margin-top:10px;
+  margin-left:5px;
+}
+
+.userbox-button {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
 /*====================Song Select============================*/
 
 .selectedsong {
@@ -714,7 +729,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 /*#loginA img {
@@ -792,7 +807,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 #signUpContain {

@@ -113,6 +113,8 @@ Signup = React.createClass({
                 <br />
                 <br />
                 <div id="alreadyUser" onClick={this.goToLogin}>Already a user? Click here.</div>
+                <br />
+                <div id="notUser" onClick={this.goToMainMenu}>Back</div>
             </div>
           </div>
         </div>
