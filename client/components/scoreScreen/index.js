@@ -28,7 +28,7 @@ ScoreScreen = React.createClass({
       }
       return {
         judges: dog.judges,
-        username: dog.username, 
+        username: dog.username || window.localStorage.getItem('username'), 
         score: dog.score,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,

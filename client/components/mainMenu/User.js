@@ -1,7 +1,7 @@
 var User = React.createClass({
     getInitialState: function(){
-      var user = store.getState().username;
-      var token = store.getState().token;
+      var user = store.getState().username || window.localStorage.getItem('username');
+      var token = store.getState().token || window.localStorage.getItem('token');
       return {
         user: user,
         token: token
@@ -9,7 +9,8 @@ var User = React.createClass({
     },
     logout: function(){
       store.dispatch({type: 'LOG_OUT'});
-      // window.localStorage.removeItem('token'); //Delete session token from local storage
+      window.localStorage.removeItem('token'); //Delete session token from local storage
+      window.localStorage.removeItem('username');
     },
     render: function() {
       console.log('Token in the main Main Menu: ', this.state.token)
