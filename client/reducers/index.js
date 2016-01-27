@@ -20,6 +20,7 @@ const main = function(state, action){
     scrollSpeed: 2,
     durations: [4000,3000,2000,1500,1100,750],
     globalOffset: -30,
+    noFail: true
   }; 
   switch(action.type){
     case 'NAVIGATE':
@@ -40,6 +41,8 @@ const main = function(state, action){
       return Object.assign({}, state, {globalOffset: action.offset});
     case 'SET_KEY_BINDS':
       return Object.assign({}, state, {keyBinds: action.keyBinds});
+    case 'SET_NO_FAIL':
+      return Object.assign({}, state, {noFail: action.noFail});
     default:
       return state;
   }
