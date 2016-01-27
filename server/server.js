@@ -38,8 +38,8 @@ app.post('/api/player/signup', function(req, res){
 
 			player.email = req.body.email;
 			player.username = req.body.username;
-      player.keybinds = req.body.keybinds;
-      player.offset = req.body.offset;
+	        player.keybinds = req.body.keybinds;
+	        player.offset = req.body.offset;
 
 			//Encrypt password
 			bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
@@ -50,7 +50,10 @@ app.post('/api/player/signup', function(req, res){
 					if(err) {
 						res.status(403).json(err);
 					} else {
-						var session = {username: player.username, token: jwt.encode({username: player.username}, mysecret)};
+						//Generate new token 
+				        var token = jwt.encode({username: player.username}, mysecret);
+				        //Session information
+						var session = {username: player.username, keybinds: player.keybinds, offset: player.offset}
 	    		  		res.status(200).json(session);
 					}
 				});
@@ -80,7 +83,9 @@ app.post('/api/player/signin', function(req, res) {
 	    		} 
 	    		if(valid) {
 	    			//Generate token
-	    		    var session = {keybinds: player.keybinds, offset: player.offset, username: player.username, token: jwt.encode({username: player.username}, mysecret)};
+	    			var token = jwt.encode({username: player.username}, mysecret);
+
+	    			var session = {username: player.username, keybinds: player.keybinds, offset: player.offset}
 	    		    res.status(200).json(session);
 	    		} 
 	    	});
