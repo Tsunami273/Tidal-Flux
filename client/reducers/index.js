@@ -20,7 +20,7 @@ const main = function(state, action){
     scrollSpeed: 2,
     durations: [4000,3000,2000,1500,1100,750],
     globalOffset: -30,
-    noFail: true
+    noFail: false
   }; 
   switch(action.type){
     case 'NAVIGATE':
