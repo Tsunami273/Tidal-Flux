@@ -66,11 +66,18 @@ Signup = React.createClass({
     },
     sendCredentialsToServer: function(event){
       event.preventDefault();
+      var dog = store.getState();
       $.ajax({
         url: '/api/player/signup',
         dataType: 'json',
         type: 'POST',
-        data: { email: this.state.email, username : this.state.username, password : this.state.password },
+        data: { 
+          email: this.state.email,
+          username : this.state.username, 
+          password : this.state.password,
+          keybinds : dog.keyBinds,
+          offset: dog.globalOffset
+          },
         success: function(data) {
           store.dispatch( { type:'SIGN_IN', username : data.username } );
           store.dispatch( navigateToPage('MAIN') );

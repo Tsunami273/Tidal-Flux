@@ -20,9 +20,11 @@ describe("Server unit tests",function(){
 
   it("should be able to sign up",function(done){
     var player = {
-      "username": "iasssd",
-      "email": "bcryasdsapt@emassjil.com",  
-      "password": "1sssm2s3sdf"
+      username: "iasssd",
+      email: "bcryasdsapt@emassjil.com",  
+      password: "1sssm2s3sdf",
+      keybinds: ['s','d','f', 'j', 'k','l'],
+      offset: -30
     };
 
     server
@@ -40,9 +42,11 @@ describe("Server unit tests",function(){
 
   it("should not allow duplicate signup",function(done){
     var player = {
-      "username": "iasssd",
-      "email": "bcryasdsapt@emassjil.com",  
-      "password": "1sssm2s3sdf"
+      username: "iasssd",
+      email: "bcryasdsapt@emassjil.com",  
+      password: "1sssm2s3sdf",
+      keybinds: ['s','d','f', 'j', 'k','l'],
+      offset: -30
     };
 
     server
@@ -62,7 +66,6 @@ describe("Server unit tests",function(){
   it("should be able to sign in",function(done){
     var player = {
       "username": "iasssd",
-      "email": "bcryasdsapt@emassjil.com",  
       "password": "1sssm2s3sdf"
     };
 

@@ -27,16 +27,19 @@ app.post('/api/player/signup', function(req, res){
     		res.status(403).json(err);
     	}
 
-    	if (player) {                             //Notify if the player player is already registered
-    		res.status(200).json({ message: 'User already exists'});
+    	if (player) {          
+      //Notify if the player player is already registered
+    		res.status(401).json({ message: 'User already exists'});
     	}
 
     	if (!player) {
-			// Create ne player to save player to database
+			// Create new player to save player to database
 			var player = new models.Player();
 
 			player.email = req.body.email;
 			player.username = req.body.username;
+      player.keybinds = req.body.keybinds;
+      player.offset = req.body.offset;
 
 			//Encrypt password
 			bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
@@ -61,7 +64,6 @@ app.post('/api/player/signin', function(req, res) {
 
 	//Fetch and validate player
 	models.Player.findOne({ username: req.body.username })
-	.select('password').select('username')
     .exec(function (err, player) {
     	if (err) { return err }
     	if (!player) { 
@@ -95,7 +97,8 @@ app.post('/api/player/score', function(req, res){
     	if (err) { 
     		res.status(403).json(err);
     	}
-    	if (!player) {                            //If this is the first time the player is playing
+    	if (!player) {                            
+      //If this is the first time the player is playing
     		var score = new models.Score();
 
     		score.username = req.body.username;
