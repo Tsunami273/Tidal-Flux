@@ -5,6 +5,7 @@ var User = React.createClass({
     },
     logout: function(){
       store.dispatch({type: 'LOG_OUT'});
+      window.localStorage.removeItem('token'); //Delete session token from local storage
     },
     render: function() {
       var loggedIn = (<div> 
