@@ -452,7 +452,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 34px;
   padding-left: 3px;
   padding-right: 3px;
   text-align: center;
@@ -535,7 +535,7 @@ body {
 .song-options-container {
   /*background-color:#A9BCD0;*/
   color:#373F56;
-  margin-top: 25px;
+  margin-top: 100px;
   width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -665,103 +665,121 @@ display: inline;
 .songlistitem1 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(0deg) translateZ(350px);
+  -webkit-transform: rotateY(0deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem2 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(60deg) translateZ(350px);
+  -webkit-transform: rotateY(60deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem3 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(120deg) translateZ(350px);
+  -webkit-transform: rotateY(120deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem4 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(180deg) translateZ(350px);
+  -webkit-transform: rotateY(180deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem5 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(240deg) translateZ(350px);
+  -webkit-transform: rotateY(240deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 .songlistitem6 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
   height: 125px;
   /*line-height: 200px;*/
-  font-size: 65%;
+  font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
   opacity: 0.98;
   border-radius: 2px;
-  -webkit-transform: rotateY(300deg) translateZ(350px);
+  -webkit-transform: rotateY(300deg) translateZ(287px);
   background: #298FA3;
+  padding: 2px;
 }
 
 /*==========================Global Options====================*/
@@ -817,7 +835,7 @@ display: inline;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 75px;
 }
 
 /*#loginA img {
@@ -1135,6 +1153,12 @@ progress::-webkit-progress-value {
   text-align:center;
 }
 
+.score-count {
+  float:right;
+  margin-right:10px;
+  text-align:center;
+}
+
 .score-container {
   width:200px;
   padding:10px;
@@ -1164,6 +1188,34 @@ progress::-webkit-progress-value {
   color: #262626;
 }
 
+.score-container {
+  width:200px;
+  padding:10px;
+  margin-top:3px;
+  border-radius:20px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  background-color:#373F56;
+  color: #ECEEF1;
+} 
+
+.grade-container {
+  width:200px;
+  padding-left:50px;
+  margin-top:3px;
+  border-radius:20px;
+  color: #298FA3;
+  font-size:72;
+}
+
+.song-info-container {
+  display:inline-block;
+  padding:10px;
+  margin-top:3px;
+  margin-bottom:3px;
+  border-radius:20px;
+  background-color:#A9BCD0;
+  color: #262626;
+}
 
   /* 
 ----==COLOR PALETTE==----
