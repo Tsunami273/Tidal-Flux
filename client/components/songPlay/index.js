@@ -14,6 +14,7 @@ SongPlay = React.createClass({
     getInitialState: function() {
       var globalState = store.getState()
       var scrollSpeed = globalState.durations[globalState.scrollSpeed-1];
+      var noFail = globalState.noFail;
       return {
         playhead: 0,
         timer: 0,
@@ -38,6 +39,7 @@ SongPlay = React.createClass({
           combo: 0,
         },
         scrollSpeed: scrollSpeed,
+        noFail: noFail
       };
     },
     play: function(event) {
@@ -105,7 +107,7 @@ SongPlay = React.createClass({
             messageArray = ['Miss' + judgements.Miss];
             judgements.health = judgements.health - 10;
             judgements.combo = 0; 
-            if(judgements.health < 0){
+            if(judgements.health < 0 && !that.state.noFail){
               return that.play();
             }
           }
@@ -114,7 +116,7 @@ SongPlay = React.createClass({
           message: message,
           judgements: judgements,
           messageArray: messageArray});
-        if(judgements.health < 0){
+        if(judgements.health < 0 && !that.state.noFail){
           return that.play();
         };
       }, 10);
@@ -158,11 +160,13 @@ SongPlay = React.createClass({
     },
     render: function() {
         var audioSource = store.getState().selectedSong;
+        var noFail = this.state.noFail ? 'true' : 'false';
         return (
         <div>
           <h1>Song Play</h1>
           <Health health={this.state.judgements.health}/>
           <div>playhead: {this.state.playhead}</div>
+          <div>No Fail: {noFail}</div>
           <div>{this.state.score}</div>
           <div onClick={this.back}>Back</div>
           <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
