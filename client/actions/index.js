@@ -39,3 +39,18 @@ setOffset = function(offset){
   }
 }
 
+signIn = function(username){
+  return {
+    type:'SIGN_IN',
+    username: username
+  }
+}
+
+setKeyBinds = function(keyBinds){
+  return {
+    type:'SET_KEY_BINDS',
+    keyBinds: keyBinds
+  }
+}
+
+
