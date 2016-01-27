@@ -72,7 +72,6 @@ Signup = React.createClass({
         type: 'POST',
         data: { email: this.state.email, username : this.state.username, password : this.state.password },
         success: function(data) {
-          window.localStorage.setItem(key, data.token);  //Saving token and user name to local storage
           store.dispatch( { type:'SIGN_IN', username : data.username } );
           store.dispatch( navigateToPage('MAIN') );
         }.bind(this),
