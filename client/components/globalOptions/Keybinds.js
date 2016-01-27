@@ -15,13 +15,13 @@ var KeybindOption = React.createClass({
     updateKeyBind: function(event){
       event.preventDefault();
       var keyBinds = [this.state.lane1, this.state.lane2, this.state.lane3, this.state.lane4, this.state.lane5, this.state.lane6];
-      var username = store.getState().username;
+      var token = store.getState().token;
       // ADD SESSION TOKEN VALIDATION HERE.
       $.ajax({
         url: '/api/player/keybinds',
         dataType: 'json',
         type: 'POST',
-        data: { username: username, keybinds: keyBinds },
+        data: { token: token, keybinds: keyBinds },
         success: function(data) {
           console.log('Keybindings saved.');
         }.bind(this),
