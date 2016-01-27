@@ -1153,6 +1153,12 @@ progress::-webkit-progress-value {
   text-align:center;
 }
 
+.score-count {
+  float:right;
+  margin-right:10px;
+  text-align:center;
+}
+
 .score-container {
   width:200px;
   padding:10px;
@@ -1182,6 +1188,34 @@ progress::-webkit-progress-value {
   color: #262626;
 }
 
+.score-container {
+  width:200px;
+  padding:10px;
+  margin-top:3px;
+  border-radius:20px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  background-color:#373F56;
+  color: #ECEEF1;
+} 
+
+.grade-container {
+  width:200px;
+  padding-left:50px;
+  margin-top:3px;
+  border-radius:20px;
+  color: #298FA3;
+  font-size:72;
+}
+
+.song-info-container {
+  display:inline-block;
+  padding:10px;
+  margin-top:3px;
+  margin-bottom:3px;
+  border-radius:20px;
+  background-color:#A9BCD0;
+  color: #262626;
+}
 
   /* 
 ----==COLOR PALETTE==----
