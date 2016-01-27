@@ -29,7 +29,7 @@ app.post('/api/player/signup', function(req, res){
 
     	if (player) {          
       //Notify if the player player is already registered
-    		res.status(200).json({ message: 'User already exists'});
+    		res.status(401).json({ message: 'User already exists'});
     	}
 
     	if (!player) {
@@ -63,7 +63,6 @@ app.post('/api/player/signin', function(req, res) {
 
 	//Fetch and validate player
 	models.Player.findOne({ username: req.body.username })
-	.select('password').select('username')
     .exec(function (err, player) {
     	if (err) { return err }
     	if (!player) { 
