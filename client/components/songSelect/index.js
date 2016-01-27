@@ -4,7 +4,7 @@ var Songs = require('./Songs.js');
 var Diffs = require('./Diffs.js');
 var Scroll = require('./Scroll.js');
 songList = require('./songList.js');
-var currdeg = 0;
+currdeg = 0;
 
 SongSelect = React.createClass({
     getInitialState: function(){
@@ -15,6 +15,7 @@ SongSelect = React.createClass({
       }
     },
     back: function(){
+      store.dispatch(selectSong(this.state.selectedSong));
       store.dispatch(navigateToPage('MAIN'));
     },
     play: function(event) {
@@ -60,7 +61,6 @@ SongSelect = React.createClass({
     },
     rotateNext: function() {
       currdeg = currdeg - 60;
-      console.log(currdeg);
       var dogdeg = currdeg % 360;
       switch(dogdeg){
         case 300:

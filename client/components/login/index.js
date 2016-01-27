@@ -47,6 +47,8 @@ Login = React.createClass({
         data: { username : this.state.username, password : this.state.password },
         success: function(data) {
           store.dispatch( { type:'SIGN_IN', username : data.username} );
+          store.dispatch( setOffset(data.offset) );
+          store.dispatch( setKeyBinds(data.keybinds) );
           store.dispatch( navigateToPage('MAIN') );
         }.bind(this),
         error: function(xhr, status, err) {
