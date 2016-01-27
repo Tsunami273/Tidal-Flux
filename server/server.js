@@ -80,7 +80,7 @@ app.post('/api/player/signin', function(req, res) {
 	    		} 
 	    		if(valid) {
 	    			//Generate token
-	    		    var session = {username: player.username, token: jwt.encode({username: player.username}, mysecret)};
+	    		    var session = {keybinds: player.keybinds, offset: player.offset, username: player.username, token: jwt.encode({username: player.username}, mysecret)};
 	    		    res.status(200).json(session);
 	    		} 
 	    	});
