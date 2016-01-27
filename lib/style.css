@@ -665,6 +665,8 @@ display: inline;
 .songlistitem1 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
@@ -683,6 +685,8 @@ display: inline;
 .songlistitem2 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
@@ -701,6 +705,8 @@ display: inline;
 .songlistitem3 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
@@ -719,6 +725,8 @@ display: inline;
 .songlistitem4 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
@@ -737,6 +745,8 @@ display: inline;
 .songlistitem5 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
@@ -755,6 +765,8 @@ display: inline;
 .songlistitem6 {
   padding: 1px;
   display: block;
+  -webkit-font-smoothing: antialiased !important;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
   width: 325px;
