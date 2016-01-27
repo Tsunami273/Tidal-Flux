@@ -79,7 +79,8 @@ Signup = React.createClass({
           offset: dog.globalOffset
           },
         success: function(data) {
-          store.dispatch( { type:'SIGN_IN', username : data.username } );
+          window.localStorage.setItem('sessionInfo', data);  //Saving token and info name to local storage
+          store.dispatch( { type:'SIGN_IN', username : data.username, token: data.token } );
           store.dispatch( navigateToPage('MAIN') );
         }.bind(this),
         error: function(xhr, status, err) {
