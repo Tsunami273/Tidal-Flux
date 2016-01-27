@@ -46,6 +46,7 @@ Login = React.createClass({
         type: 'POST',
         data: { username : this.state.username, password : this.state.password },
         success: function(data) {
+          console.log(data.keybinds);
           store.dispatch( { type:'SIGN_IN', username : data.username} );
           store.dispatch( setOffset(data.offset) );
           store.dispatch( setKeyBinds(data.keybinds) );
