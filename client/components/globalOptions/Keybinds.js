@@ -15,14 +15,11 @@ var KeybindOption = React.createClass({
     updateKeyBind: function(event){
       event.preventDefault();
       var keyBinds = [this.state.lane1, this.state.lane2, this.state.lane3, this.state.lane4, this.state.lane5, this.state.lane6];
-      console.log('keyBinds', keyBinds);
       store.dispatch({type:'SET_KEY_BINDS', keyBinds: keyBinds});
     },
     setKeyBind: function(event){
       var laneNum = event.target.name;
       var value = event.target.value;
-      console.log('value', value);
-      console.log('lane number', laneNum);
       if(laneNum === '1'){
         if(value === ''){
           this.setState({hide:'hidden'})
