@@ -7,6 +7,20 @@ var OffsetOption = React.createClass({
       this.setState({offset: event.target.value});
     },
     submitOffset:function(){
+      //ADD SESSION TOKEN VALIDATION HERE.
+      var username = store.getState().username;
+      $.ajax({
+        url: '/api/player/offset',
+        dataType: 'json',
+        type: 'POST',
+        data: { username: username, offset: parseInt(this.state.offset) },
+        success: function(data) {
+          console.log('Offset saved.');
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.log('Could not set offset.');
+        }.bind(this)
+      });
       store.dispatch(setOffset(parseInt(this.state.offset)));
     },
     render: function() {

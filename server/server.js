@@ -141,6 +141,32 @@ app.post('/api/player/score', function(req, res){
     });
 })
 
+app.post('/api/player/keybinds', function(req, res) {
+  // NEED TO ADD SOME VALIDATION HERE WITH SESSION TOKEN.
+  models.Player.update({username: req.body.username}, {$set: {keybinds: req.body.keybinds}}, function(err, data){
+    if(err){
+      res.status(500).json({message: 'Something Happened'});
+    }
+    else{
+      res.status(200).json({message:'Updated Keybinds Successfully', data:data});
+    }
+  })
+
+});
+
+app.post('/api/player/offset', function(req, res) {
+  // NEED TO ADD SOME VALIDATION HERE WITH SESSION TOKEN.
+  models.Player.update({username: req.body.username}, {$set: {offset: req.body.offset}}, function(err, data){
+    if(err){
+      res.status(500).json({message: 'Something Happened'});
+    }
+    else{
+      res.status(200).json({message:'Updated Offset Successfully', data:data});
+    }
+  })
+
+});
+
 app.post('/api/player/profile', function (req, res) {
 	playerProfile(req, res);
 });
