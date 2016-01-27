@@ -14,6 +14,9 @@ SongSelect = React.createClass({
         selectedSong: selectedSong
       }
     },
+    setCarousel: function() {
+      this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
+    },
     back: function(){
       store.dispatch(selectSong(this.state.selectedSong));
       store.dispatch(navigateToPage('MAIN'));
@@ -90,6 +93,9 @@ SongSelect = React.createClass({
       this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
       var currsong = songList[index];
       this.setState({selectedSong: currsong});
+    },
+    componentDidMount() {
+      this.setCarousel()
     },
     render: function() {
         return (

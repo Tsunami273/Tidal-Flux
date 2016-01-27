@@ -28,7 +28,7 @@ ScoreScreen = React.createClass({
       }
       return {
         judges: dog.judges,
-        username: dog.username, 
+        username: dog.username || window.localStorage.getItem('username'), 
         score: dog.score,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
@@ -80,6 +80,7 @@ ScoreScreen = React.createClass({
         <div className="score-screen-container">
           <h1>Score Screen</h1>
           <div className="message-container">{message}</div>
+          <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
           <div className="song-info-container">
             <div className="ss-song-title">{this.state.currSong.title}</div>
             <div className="ss-song-artist">{this.state.currSong.artist}</div>

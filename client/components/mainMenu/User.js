@@ -1,10 +1,13 @@
 var User = React.createClass({
     getInitialState: function(){
-      var user = store.getState().username; 
-      return {user: user};
+      var user = store.getState().username
+      return {
+        user: user
+      };
     },
     logout: function(){
       store.dispatch({type: 'LOG_OUT'});
+      window.localStorage.removeItem('sessionInfo'); //Delete session info from local storage
     },
     render: function() {
       var loggedIn = (<div> 
