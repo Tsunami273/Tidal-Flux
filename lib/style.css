@@ -452,7 +452,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 34px;
   padding-left: 3px;
   padding-right: 3px;
   text-align: center;
@@ -835,7 +835,7 @@ display: inline;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 75px;
 }
 
 /*#loginA img {
@@ -1031,7 +1031,7 @@ display: inline;
 .playarea {
   position:absolute;
   left:550px;
-  top:50px;
+  top:10px;
   z-index:1;
 }
 
@@ -1078,18 +1078,14 @@ progress::-webkit-progress-bar {
 }
 progress::-webkit-progress-value { 
     background-image:
-     -webkit-linear-gradient(-55deg, 
-                             transparent 33%, rgba(0, 0, 0, .1) 33%, 
-                             rgba(0,0, 0, .1) 66%, transparent 66%),
-     -webkit-linear-gradient(top, 
+    -webkit-linear-gradient(top, 
                              rgba(255, 255, 255, .25), 
                              rgba(0, 0, 0, .25)),
-     -webkit-linear-gradient(right, #298FA3,#EF307E);
+    -webkit-linear-gradient(right, #298FA3, #262626);
     border-radius: 8px; 
     background-size: 35px 20px, 100% 100%, 100% 100%;
     -webkit-transition: width 0.8s;
 }
-
 
 /*===============Credits=================*/
 
@@ -1111,8 +1107,89 @@ progress::-webkit-progress-value {
 .credit-block a {
   color:#ECEEF1;
 }
+/*====================Score Screen============================*/
+
+.score-screen-container {
+  margin-left:10px;
+}
+
+.score-screen-container h2{
+  margin-bottom:10px;
+}
+
+.message-container {
+
+}
+
+.ss-song-diff {
+  padding:5px;
+  width:75px;
+  margin-bottom:10px;
+  border-radius:20px;
+  background-color:#A9BCD0;
+  color: #262626;
+  text-align:center;
+}
+
+.judge-container {
+  width:200px;
+  padding:10px;
+  margin-top:3px;
+  border-radius:20px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  background-color:#373F56;
+  color: #ECEEF1;
+}
+
+.judge-count {
+  float:right;
+  margin-right:10px;
+  text-align:center;
+}
+
+.score-count {
+  float:right;
+  margin-right:10px;
+  text-align:center;
+}
+
+.score-container {
+  width:200px;
+  padding:10px;
+  margin-top:3px;
+  border-radius:20px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  background-color:#373F56;
+  color: #ECEEF1;
+} 
+
+.grade-container {
+  width:200px;
+  padding-left:50px;
+  margin-top:3px;
+  border-radius:20px;
+  color: #298FA3;
+  font-size:72;
+}
+
+.song-info-container {
+  display:inline-block;
+  padding:10px;
+  margin-top:3px;
+  margin-bottom:3px;
+  border-radius:20px;
+  background-color:#A9BCD0;
+  color: #262626;
+}
 
 
-
-
+  /* 
+----==COLOR PALETTE==----
+WHITE       //==> #ECEEF1
+LIGHT BLUE  //==> #A9BCD0
+MEDIUM BLUE //==> #298FA3
+DARK BLUE   //==> #373F56
+BLACK       //==> #262626
+RED         //==> #EF307E
+*/
 

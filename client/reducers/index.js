@@ -38,6 +38,8 @@ const main = function(state, action){
       return Object.assign({}, state, {scrollSpeed: action.scroll});
     case 'SET_OFFSET':
       return Object.assign({}, state, {globalOffset: action.offset});
+    case 'SET_KEY_BINDS':
+      return Object.assign({}, state, {keyBinds: action.keyBinds});
     default:
       return state;
   }
