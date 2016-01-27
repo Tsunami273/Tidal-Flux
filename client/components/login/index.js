@@ -46,8 +46,8 @@ Login = React.createClass({
         type: 'POST',
         data: { username : this.state.username, password : this.state.password },
         success: function(data) {
-          window.localStorage.setItem('token', data.token);  //Saving token and user name to local storage
-          window.localStorage.setItem('username', data.username);
+          var storage = JSON.stringify(data);
+          window.localStorage.setItem('sessionInfo', storage);  //Saving token and user info to local storage
           store.dispatch( { type:'SIGN_IN', username : data.username, token : data.token} );
           store.dispatch( setOffset(data.offset) );
           store.dispatch( setKeyBinds(data.keybinds) );

@@ -14,6 +14,15 @@ store = Redux.createStore(reducers.main);
 require('./components/');
 
 
+
+
+if(window.localStorage.getItem('sessionInfo')){
+  var data = JSON.parse(window.localStorage.getItem('sessionInfo'));
+  store.dispatch( { type:'SIGN_IN', username : data.username, token : data.token} );
+  store.dispatch( setOffset(data.offset) );
+  store.dispatch( setKeyBinds(data.keybinds) );
+}
+
 var domContainerNode = document.getElementById('content');
 // tell when components should render.
 var render = function(){

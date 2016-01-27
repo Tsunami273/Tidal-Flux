@@ -51,9 +51,9 @@ app.post('/api/player/signup', function(req, res){
 						res.status(403).json(err);
 					} else {
 						//Generate new token 
-				        var token = jwt.encode({username: player.username}, mysecret);
+				        var sessionToken = jwt.encode({username: player.username}, mysecret);
 				        //Session information
-						var session = {username: player.username, keybinds: player.keybinds, offset: player.offset}
+						var session = {token: sessionToken, username: player.username, keybinds: player.keybinds, offset: player.offset}
 	    		  		res.status(200).json(session);
 					}
 				});
@@ -83,9 +83,9 @@ app.post('/api/player/signin', function(req, res) {
 	    		} 
 	    		if(valid) {
 	    			//Generate token
-	    			var token = jwt.encode({username: player.username}, mysecret);
+	    			var sessionToken = jwt.encode({username: player.username}, mysecret);
 
-	    			var session = {username: player.username, keybinds: player.keybinds, offset: player.offset}
+	    			var session = {token: sessionToken, username: player.username, keybinds: player.keybinds, offset: player.offset}
 	    		    res.status(200).json(session);
 	    		} 
 	    	});
