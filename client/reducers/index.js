@@ -27,7 +27,7 @@ const main = function(state, action){
     case 'SELECT_SONG':
       return Object.assign({}, state, {selectedSong: action.selected});
     case 'SIGN_IN':
-      return Object.assign({}, state, {username: action.username});
+      return Object.assign({}, state, {username: action.username, token: action.token});
     case 'LOG_OUT':
       return Object.assign({}, state, {username: ''});
     case 'SET_SCORE':
