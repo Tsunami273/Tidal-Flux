@@ -18,6 +18,11 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/api/player/scores', function(req, res){
+  models.Score.find(req.body).then(function(){
+
+  })
+});
 
 app.post('/api/player/signup', function(req, res){
 	//Check if the player is in the database
