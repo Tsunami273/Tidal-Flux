@@ -51,6 +51,7 @@ Login = React.createClass({
           window.localStorage.setItem('token', data.token); 
           window.localStorage.setItem('offset', data.offset); 
           window.localStorage.setItem('keybinds', keybinds); 
+          
           store.dispatch( { type:'SIGN_IN', username : data.username, token : data.token } );
           store.dispatch( setOffset(data.offset) );
           store.dispatch( setKeyBinds(data.keybinds) );

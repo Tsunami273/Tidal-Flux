@@ -28,8 +28,9 @@ ScoreScreen = React.createClass({
       }
       return {
         judges: dog.judges,
-        username: dog.username || window.localStorage.getItem('username'), 
+        username: dog.username, 
         score: dog.score,
+        token: dog.token,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
         response: {message: ''},
@@ -48,7 +49,7 @@ ScoreScreen = React.createClass({
           url: '/api/player/score',
           dataType: 'json',
           type: 'POST',
-          data: { username : this.state.username, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
+          data: { token : this.state.token, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
           success: function(data) {
             this.setState({response: data});
           }.bind(this), 
