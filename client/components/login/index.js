@@ -69,7 +69,7 @@ Login = React.createClass({
         <div id="loginA">
           <img src="TidalFlux.svg" alt="Tidal Flux" className="logo" onClick={this.goToMainMenu}></img>
           <div id="loginContain">
-            <h1>Login</h1>
+            <div id="loginTitle">Login</div>
             <form onSubmit={this.sendCredentialsToServer}>
               <br />
               <div className="loginfield">Username</div><input type="text" value={this.state.username} onChange={this.validateUsername}/>
@@ -83,9 +83,7 @@ Login = React.createClass({
               <div>{usernameError}</div>
               <div className='signInError'>{this.state.signInError}</div>
               <br />
-              <br />
               <div id="notUser" onClick={this.goToSignup}>Not yet a user? Click here.</div>
-              <br />
               <div id="notUser" onClick={this.goToMainMenu}>Back</div>
           </div>
 

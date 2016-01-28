@@ -42,11 +42,11 @@ MainMenu = React.createClass({
           </div>
 
           <div id="login" className="clicky" onClick={this.goToLogin}>
-            <h3>Login</h3>
+            <h3>Tutorial</h3>
           </div>
 
           <div id="signup" className="clicky" onClick={this.goToSignup}>
-            <h3>Signup</h3>
+            <h3>Leaderboard</h3>
           </div>
 
           <div id="credits" className="clicky" onClick={this.goToCredits}>
