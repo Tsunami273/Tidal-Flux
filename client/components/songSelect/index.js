@@ -11,7 +11,8 @@ SongSelect = React.createClass({
       var selectedSong = store.getState().selectedSong;
       return {
         diffs: ['Easy', 'Medium', 'Hard'],
-        selectedSong: selectedSong
+        selectedSong: selectedSong,
+        scores: [],
       }
     },
     setCarousel: function() {
@@ -94,7 +95,7 @@ SongSelect = React.createClass({
       var currsong = songList[index];
       this.setState({selectedSong: currsong});
     },
-    componentDidMount() {
+    componentDidMount: function() {
       this.setCarousel()
     },
     render: function() {
