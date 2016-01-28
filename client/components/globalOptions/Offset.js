@@ -21,6 +21,7 @@ var OffsetOption = React.createClass({
           console.log('Could not set offset.');
         }.bind(this)
       });
+      window.localStorage.setItem('offset', this.state.offset); 
       store.dispatch(setOffset(parseInt(this.state.offset)));
     },
     render: function() {

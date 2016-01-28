@@ -7,7 +7,10 @@ var User = React.createClass({
     },
     logout: function(){
       store.dispatch({type: 'LOG_OUT'});
-      window.localStorage.removeItem('sessionInfo'); //Delete session info from local storage
+      window.localStorage.removeItem('username');
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('offset');
+      window.localStorage.removeItem('keybinds');
     },
     render: function() {
       var loggedIn = (<div> 
