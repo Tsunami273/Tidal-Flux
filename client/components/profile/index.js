@@ -39,23 +39,16 @@ Profile = React.createClass({
 
     render: function() {
       return (
-        <div className="score-screen-container">
+        <div className="profile-screen-container">
           <h1>My Profile</h1>
-          <h3>{this.state.username}</h3>
-          <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
-          <div className="song-info-container">
-            <div className="ss-song-title">{this.state.currSong.title}</div>
-            <div className="ss-song-artist">{this.state.currSong.artist}</div>
+          <div className="username-container">
+            <span className="username">Hi, {this.state.username}</span>
           </div>
-          <div className="ss-song-diff">{this.state.currDiff}</div>
-          <div className="score-container">Score: <span className="score-count">{this.state.score}</span></div>
-          <div className="judge-container">
-            <div>Perfect: <span className="judge-count">{this.state.judges.Perfect}</span></div>
-            <div>Good: <span className="judge-count">{this.state.judges.Good}</span></div>
-            <div>Decent: <span className="judge-count">{this.state.judges.Decent}</span></div>
-            <div>Miss: <span className="judge-count">{this.state.judges.Miss}</span></div>
+          <div className="songs-scores-container">
+            <h3>My Scores</h3>
           </div>
-          <NavButton dest="Done" onClick={this.play} />
+
+          <NavButton dest="Main Menu" onClick={this.play} />
         </div>
         );
     }
