@@ -21,7 +21,7 @@ if(window.localStorage.getItem('username')){
   var keybinds = JSON.parse( window.localStorage.getItem('keybinds') );
   store.dispatch( { type:'SIGN_IN', username : username, token : token} );
   store.dispatch( setOffset(offset) );
-  store.dispatch( setKeyBinds(keybinds);
+  store.dispatch( setKeyBinds(keybinds));
 }
 
 var domContainerNode = document.getElementById('content');

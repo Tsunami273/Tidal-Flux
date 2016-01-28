@@ -13,8 +13,8 @@ var PlayerSchema = new Schema({
 	username   : { type: String, required: true, unique: true },
 	email      : { type: String, required: true, unique: true },
 	password   : { type: String, required: true },
-  keybinds: [],
-  offset: Number,
+    keybinds   : [],
+    offset     : Number
 })
 
 var ScoresSchema = new Schema({

@@ -101,10 +101,10 @@ app.post('/api/player/signin', function(req, res) {
 
 app.post('/api/player/score', function(req, res){
     //Decode token to get player name 
-    var user = jwt.decode(req.body.token);
+    var userObj = jwt.decode(req.body.token, dog);
 
 	//Find player in the song table
-	models.Score.findOne({ username: user, songId: req.body.songId, difficulty: req.body.difficulty})
+	models.Score.findOne({ username: userObj.username, songId: req.body.songId, difficulty: req.body.difficulty})
     .exec(function (err, player) {
     	if (err) { 
     		res.status(403).json(err);
@@ -113,7 +113,7 @@ app.post('/api/player/score', function(req, res){
       //If this is the first time the player is playing
     		var score = new models.Score();
 
-    		score.username = req.body.username;
+    		score.username = userObj.username;
     		score.points = req.body.points;
     		score.songId = req.body.songId;
     		score.difficulty = req.body.difficulty;
@@ -122,7 +122,7 @@ app.post('/api/player/score', function(req, res){
     			if(err) {
     				res.status(403).json(err);
     			} else {
-    				res.status(200).json(score);
+    				res.status(200).json({ highscore: 0});
     			}
     		});
     	} 
@@ -149,10 +149,9 @@ app.post('/api/player/score', function(req, res){
 })
 
 app.post('/api/player/keybinds', function(req, res) {
-  var user = jwt.decode(req.body.token);
-  console.log('User from the token info Keybinds: ', user);
+  var userObj = jwt.decode(req.body.token, dog);
 
-  models.Player.update({username: user}, {$set: {keybinds: req.body.keybinds}}, function(err, data){
+  models.Player.update({username: userObj.username}, {$set: {keybinds: req.body.keybinds}}, function(err, data){
     if(err){
       res.status(500).json({message: 'Something Happened'});
     }
@@ -164,17 +163,15 @@ app.post('/api/player/keybinds', function(req, res) {
 });
 
 app.post('/api/player/offset', function(req, res) {
-    var user = jwt.decode(req.body.token, dog);
-    console.log('User from the token info Offset a game: ', user);
+    var userObj = jwt.decode(req.body.token, dog);
 
-  models.Player.update({username: user}, {$set: {offset: req.body.offset}}, function(err, data){
-    if(err){
-      res.status(500).json({message: 'Something Happened'});
-    }
-    else{
-      res.status(200).json({message:'Updated Offset Successfully', data:data});
-    }
-  })
+    models.Player.update({username: userObj.username}, {$set: {offset: req.body.offset}}, function(err, data){
+        if(err){
+            res.status(500).json({message: 'Something Happened'});
+        } else {
+            res.status(200).json({message:'Updated Offset Successfully', data:data});
+        }
+    })
 
 });
 

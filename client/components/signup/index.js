@@ -79,8 +79,14 @@ Signup = React.createClass({
           offset: dog.globalOffset
           },
         success: function(data) {
-          window.localStorage.setItem('sessionInfo', data);  //Saving token and info name to local storage
-          store.dispatch( { type:'SIGN_IN', username : data.username, token: data.token } );
+          window.localStorage.setItem('username', data.username); //Saving user info in local storage
+          window.localStorage.setItem('token', data.token); 
+          window.localStorage.setItem('offset', data.offset); 
+          window.localStorage.setItem('keybinds', data.keybinds);
+          
+          store.dispatch( { type:'SIGN_IN', username : data.username, token : data.token } );
+          store.dispatch( setOffset(data.offset) );
+          store.dispatch( setKeyBinds(data.keybinds) );
           store.dispatch( navigateToPage('MAIN') );
         }.bind(this),
         error: function(xhr, status, err) {
