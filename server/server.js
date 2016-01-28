@@ -96,7 +96,7 @@ app.post('/api/player/signin', function(req, res) {
 
 app.post('/api/player/score', function(req, res){
     //Decode token to get player name 
-    var user = jwt.decode(req.body.token, dog);
+    var user = jwt.decode(req.body.token);
 
 	//Find player in the song table
 	models.Score.findOne({ username: user, songId: req.body.songId, difficulty: req.body.difficulty})
@@ -144,7 +144,7 @@ app.post('/api/player/score', function(req, res){
 })
 
 app.post('/api/player/keybinds', function(req, res) {
-  var user = jwt.decode(req.body.token, dog);
+  var user = jwt.decode(req.body.token);
   console.log('User from the token info Keybinds: ', user);
 
   models.Player.update({username: user}, {$set: {keybinds: req.body.keybinds}}, function(err, data){
