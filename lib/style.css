@@ -498,6 +498,11 @@ body {
   color: #ffffff;*/
 }
 
+#play {
+  margin-top: -15px;
+}
+
+
 .clicky { cursor: pointer; }
 
 .userbox {
@@ -591,6 +596,14 @@ display: inline;
   border-radius: 1.5px;
   letter-spacing: 2px;
 }
+#back:hover {
+  /*-webkit-filter: blur(1px);*/
+  box-shadow: 12px 12px 10px #b5bec9;
+}
+#back:active {
+  box-shadow: 4px 4px 10px  #b5bec9;
+  -webkit-filter: blur(.5px);
+}
 
 #playsong {
  height: 40px;
@@ -669,15 +682,15 @@ display: inline;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
-  width: 325px;
-  height: 125px;
+  width: 350px;
+  height: 150px;
   /*line-height: 200px;*/
   font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.98;
+  opacity: 0.85;
   border-radius: 2px;
-  -webkit-transform: rotateY(0deg) translateZ(287px);
+  -webkit-transform: rotateY(0deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -689,15 +702,15 @@ display: inline;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
-  width: 325px;
-  height: 125px;
+  width: 350px;
+  height: 150px;
   /*line-height: 200px;*/
   font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.98;
+  opacity: 0.85;
   border-radius: 2px;
-  -webkit-transform: rotateY(60deg) translateZ(287px);
+  -webkit-transform: rotateY(60deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -709,15 +722,15 @@ display: inline;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
-  width: 325px;
-  height: 125px;
+  width: 350px;
+  height: 150px;
   /*line-height: 200px;*/
   font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.98;
+  opacity: 0.85;
   border-radius: 2px;
-  -webkit-transform: rotateY(120deg) translateZ(287px);
+  -webkit-transform: rotateY(120deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -729,15 +742,15 @@ display: inline;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
-  width: 325px;
-  height: 125px;
+  width: 350px;
+  height: 150px;
   /*line-height: 200px;*/
   font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.98;
+  opacity: 0.85;
   border-radius: 2px;
-  -webkit-transform: rotateY(180deg) translateZ(287px);
+  -webkit-transform: rotateY(180deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -749,15 +762,15 @@ display: inline;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
-  width: 325px;
-  height: 125px;
+  width: 350px;
+  height: 150px;
   /*line-height: 200px;*/
   font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.98;
+  opacity: 0.85;
   border-radius: 2px;
-  -webkit-transform: rotateY(240deg) translateZ(287px);
+  -webkit-transform: rotateY(240deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -769,15 +782,15 @@ display: inline;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
-  width: 325px;
-  height: 125px;
+  width: 350px;
+  height: 150px;
   /*line-height: 200px;*/
   font-size: 100%;
   /*text-align: center;*/
   color: #FFF;
-  opacity: 0.98;
+  opacity: 0.85;
   border-radius: 2px;
-  -webkit-transform: rotateY(300deg) translateZ(287px);
+  -webkit-transform: rotateY(300deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -855,7 +868,7 @@ display: inline;
   text-align: center;
   border-radius: 2.5px;
   background-color: #298FA3;
-  margin-top: 75px;
+  margin-top: 25px;
   box-shadow: 8px 8px 10px  #b5bec9;
 }
 
@@ -913,7 +926,7 @@ display: inline;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 20px;
+  margin-top: 75px;
 }
 
 #signUpContain {
@@ -926,15 +939,16 @@ display: inline;
   text-align: center;
   border-radius: 2.5px;
   background-color: #298FA3;
-  margin-top: 75px;
+  margin-top: 30px;
   box-shadow: 8px 8px 10px  #b5bec9; 
 }
 
-#signUpContain h1 {
+#signUpTitle {
   letter-spacing: 2px;
-  font-size: 200%;
+  font-size: 250%;
   color: #ECEEF1;
   text-shadow: 2px 2px 10px #404040;
+  margin-bottom: 25px;
 }
 
 #signUpContain span {
@@ -950,12 +964,23 @@ display: inline;
   margin-bottom: 5px; 
 }
 
+#uName {
+  margin-top: 100px;
+}
+
+#pError #eError #uError {
+  color: #EF307E;
+}
+
 #alreadyUser {
   color: #ECEEF1;
   cursor: pointer;
   text-shadow: 2px 2px 8px #404040;  
 }
 
+#notUser {
+  margin-top: 5px;
+}
 /*===============Song Play=================*/
 
 .lanearea0 {

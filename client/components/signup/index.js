@@ -98,30 +98,32 @@ Signup = React.createClass({
           <div id="signUpA">
             <img src="TidalFlux.svg" alt="Tidal Flux" className="logo" onClick={this.goToMainMenu}></img>
             <div id="signUpContain">
-              <h1>Sign Up</h1>
+              <div id="signUpTitle">Sign Up</div>
               <form onSubmit={this.sendCredentialsToServer}>
-                <div className="signUpField">Email</div> <input type="input" value={this.state.email} onChange={this.validateEmail}/>
+                <div className="signUpField">Email</div> 
+                <input type="input" value={this.state.email} onChange={this.validateEmail}/>
                 <br />
                 <br />
-                <div className="signUpField">Username</div> <input type="text" value={this.state.username} onChange={this.validateUsername}/>
+                <div className="signUpField">Username</div> 
+                <input type="text" value={this.state.username} onChange={this.validateUsername}/>
                 <br />
                 <br />
-                <div className="signUpField">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
+                <div className="signUpField">Password</div> 
+                <input type="password" value={this.state.password} onChange={this.setPassword}/>
                 <br />
                 <br />
-                <div className="signUpField">Confirm Password</div> <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
+                <div className="signUpField">Confirm Password</div> 
+                <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
                 <br />
                 <br />
                 <input type="submit" id="subButton" className={hide}/>
               </form>
-                <div>{passwordError}</div>
-                <div>{emailError}</div>
-                <div>{usernameError}</div>
+                <div id="pError">{passwordError}</div>
+                <div id="eError">{emailError}</div>
+                <div id="uError">{usernameError}</div>
                 <div className="signUpError">{this.state.signUpError}</div>
                 <br />
-                <br />
                 <div id="alreadyUser" onClick={this.goToLogin}>Already a user? Click here.</div>
-                <br />
                 <div id="notUser" onClick={this.goToMainMenu}>Back</div>
             </div>
           </div>
