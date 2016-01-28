@@ -23,6 +23,9 @@ MainMenu = React.createClass({
     goToOptions: function(){
       store.dispatch(navigateToPage('GOPTIONS'))
     },
+    goToLeaderBoard: function(){
+      store.dispatch(navigateToPage('LEADER'));
+    },
     render: function() {
         return (
         <div>
@@ -51,6 +54,10 @@ MainMenu = React.createClass({
 
           <div id="credits" className="clicky" onClick={this.goToCredits}>
             <h3>Credits</h3>
+          </div>
+
+          <div id="leader" className="clicky" onClick={this.goToLeaderBoard}>
+            <h3>Leader Board</h3>
           </div>
 
         </div>

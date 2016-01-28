@@ -61,7 +61,11 @@ var render = function(){
     case 'CREDITS':
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Credits />, domContainerNode); 
-      return; 
+      return;
+    case 'LEADER':
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Leader />, domContainerNode); 
+      return;    
     default:
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<MainMenu />, domContainerNode);
