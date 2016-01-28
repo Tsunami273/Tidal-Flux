@@ -61,6 +61,10 @@ var render = function(){
     case 'CREDITS':
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Credits />, domContainerNode); 
+      return;
+    case 'PROFILE':
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Profile />, domContainerNode); 
       return; 
     default:
       ReactDOM.unmountComponentAtNode(domContainerNode)
