@@ -91,8 +91,10 @@ SongPlay = React.createClass({
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
+      this.refs.progressBar.max = this.refs.audio.duration;
       var polling = setInterval(function(){ 
         var currTime = Date.now() - start - that.state.avgOffset;
+        that.refs.progressBar.value = currTime/1000;
         var notes = that.state.notes.slice();
         var message = that.state.message;
         var combo = that.state.combo;
@@ -164,7 +166,9 @@ SongPlay = React.createClass({
         return (
         <div>
           <h1>Song Play</h1>
-          <Health health={this.state.judgements.health}/>
+          <Health health={this.state.judgements.health}/><br />
+          <div>Progress</div>
+          <progress max="100" value="0" ref="progressBar" id="progressBar"></progress>
           <div>playhead: {this.state.playhead}</div>
           <div>No Fail: {noFail}</div>
           <div>{this.state.score}</div>
