@@ -83,7 +83,6 @@ Login = React.createClass({
               <div className='signInError'>{this.state.signInError}</div>
               <br />
               <div id="notUser" onClick={this.goToSignup}>Not yet a user? Click here.</div>
-              <br />
               <div id="notUser" onClick={this.goToMainMenu}>Back</div>
           </div>
 
