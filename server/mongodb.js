@@ -20,7 +20,7 @@ var PlayerSchema = new Schema({
 var ScoresSchema = new Schema({
 	username   : String,
 	songId     : Number,
-	points     : { type: Number, default: 0 },
+	points     : Number,
 	difficulty : String
 })
 
