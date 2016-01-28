@@ -13,14 +13,15 @@ require('./actions/');
 store = Redux.createStore(reducers.main);
 require('./components/');
 
-
-
-
-if(window.localStorage.getItem('sessionInfo')){
-  // var data = JSON.parse(window.localStorage.getItem('sessionInfo'));
-  // store.dispatch( { type:'SIGN_IN', username : data.username, token : data.token} );
-  // store.dispatch( setOffset(data.offset) );
-  // store.dispatch( setKeyBinds(data.keybinds) );
+// check for session token and settings. 
+if(window.localStorage.getItem('username')){
+  var username = window.localStorage.getItem('username');
+  var token = window.localStorage.getItem('token');
+  var offset = parseInt( window.localStorage.getItem('offset') );
+  var keybinds = JSON.parse( window.localStorage.getItem('keybinds') );
+  store.dispatch( { type:'SIGN_IN', username : username, token : token} );
+  store.dispatch( setOffset(offset) );
+  store.dispatch( setKeyBinds(keybinds);
 }
 
 var domContainerNode = document.getElementById('content');

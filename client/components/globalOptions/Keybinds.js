@@ -29,6 +29,8 @@ var KeybindOption = React.createClass({
           console.log('could not set keybinds');
         }.bind(this)
       });
+      var kbString = JSON.stringify(keyBinds);
+      window.localStorage.setItem('keybinds', kbString);
       store.dispatch({type:'SET_KEY_BINDS', keyBinds: keyBinds});
 
     },
