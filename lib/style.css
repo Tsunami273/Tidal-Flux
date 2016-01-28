@@ -795,6 +795,33 @@ display: inline;
   padding: 2px;
 }
 
+.song-card-title {
+  font-size:20px;
+  margin-top:10px;
+  margin-left:10px;
+}
+
+.song-card-artist {
+  margin-left:10%;
+  margin-bottom:20px;
+}
+
+.song-card-bpm {
+  float:right; 
+  margin-right:10%;
+}
+
+.song-card-score {
+/* could use monospace font here. */
+  width:170px;
+  float:right;
+  margin-right:10px;
+}
+
+.song-card-diff {
+  margin-left:8%;
+}
+
 /*==========================Global Options====================*/
 
 #opContain {

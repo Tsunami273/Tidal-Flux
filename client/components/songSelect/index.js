@@ -8,11 +8,37 @@ currdeg = 0;
 
 SongSelect = React.createClass({
     getInitialState: function(){
+      $.ajax({
+        url: '/api/scores?username=' + store.getState().username,
+        type: 'GET',
+        success: function(data) {
+          data.forEach( (e) => { console.log(e) } );
+          var scores = this.state.scores;
+          data.forEach( (e) => { 
+            var slot;
+            switch(e.difficulty){
+              case 'Easy':
+                slot = 0;
+                break;
+              case 'Medium':
+                slot = 1;
+                break;
+              default:
+                slot = 2;
+                break;
+            }
+            scores[e.songId-1][slot] = e.points
+          });
+          this.setState({scores: scores});
+        }.bind(this),
+        error: function(xhr, status, err) {
+        }.bind(this)
+      });
       var selectedSong = store.getState().selectedSong;
       return {
         diffs: ['Easy', 'Medium', 'Hard'],
         selectedSong: selectedSong,
-        scores: [],
+        scores: [ ['-','-','-'],['-','-','-'],['-','-','-'],['-','-','-'],['-','-','-'],['-','-','-'] ],
       }
     },
     setCarousel: function() {
@@ -107,7 +133,7 @@ SongSelect = React.createClass({
           <br />
           <div id="carouselContain">
             <div id="carousel" ref="carousel">
-            <Songs songSelect={this} songList={songList} />
+            <Songs scores={this.state.scores} songSelect={this} songList={songList} />
           </div>
           </div>
 
@@ -130,9 +156,10 @@ SongSelect = React.createClass({
           <h3>Play</h3>
           </div>
           <div id="back" onClick={this.back}>
-          <h3>Back</h3>
+            <h3>Back</h3>
           </div>
           </div>
+          <div>{this.state.scores}</div>
           <br />
           <br />
           <br />

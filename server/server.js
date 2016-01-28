@@ -20,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api/scores', function(req, res){
   models.Score.find(req.query)
-  .select('difficulty songId points')
+  .select('difficulty songId points username')
+  .sort({songId: 1})
   .then(function(data){
     res.status(200).json(data);
   })
