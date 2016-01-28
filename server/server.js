@@ -19,8 +19,8 @@ app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api/player/scores', function(req, res){
-  models.Score.find(req.body).then(function(){
-
+  models.Score.find(req.body).then(function(err, data){
+    res.status(200).json({data: data});
   })
 });
 
