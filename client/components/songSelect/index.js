@@ -159,7 +159,6 @@ SongSelect = React.createClass({
             <h3>Back</h3>
           </div>
           </div>
-          <div>{this.state.scores}</div>
           <br />
           <br />
           <br />
