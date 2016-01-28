@@ -1076,7 +1076,7 @@ progress::-webkit-progress-bar {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset; 
 }
-progress::-webkit-progress-value { 
+.healthBar::-webkit-progress-value { 
     background-image:
     -webkit-linear-gradient(top, 
                              rgba(255, 255, 255, .25), 
@@ -1085,6 +1085,16 @@ progress::-webkit-progress-value {
     border-radius: 8px; 
     background-size: 35px 20px, 100% 100%, 100% 100%;
     -webkit-transition: width 0.8s;
+}
+
+#progressBar::-webkit-progress-value {
+    background-image:
+    -webkit-linear-gradient(top, 
+                             rgba(255, 255, 255, .25), 
+                             rgba(0, 0, 0, .25)),
+    -webkit-linear-gradient(right, #298FA3, #ECEEF1);
+    border-radius: 8px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 
 /*===============Credits=================*/
