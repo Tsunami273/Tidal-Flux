@@ -79,8 +79,9 @@ ScoreScreen = React.createClass({
 
       return (
         <div className="score-screen-container">
-          <h1>Score Screen</h1>
-          <div className="message-container">{message}</div>
+          <div className="message-container">
+          <h3>{message}</h3>
+          </div>
           <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
           <div className="song-info-container">
             <div className="ss-song-title">{this.state.currSong.title}</div>
@@ -95,7 +96,7 @@ ScoreScreen = React.createClass({
             <div>Decent: <span className="judge-count">{this.state.judges.Decent}</span></div>
             <div>Miss: <span className="judge-count">{this.state.judges.Miss}</span></div>
           </div>
-          <NavButton dest="Done" onClick={this.play} />
+          <div className="clicky" id="done" onClick={this.play}>Done</div>
         </div>
         );
     }
