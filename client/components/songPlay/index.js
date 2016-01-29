@@ -49,8 +49,7 @@ SongPlay = React.createClass({
       listener.reset();
       var score = this.state.score
       var judges = this.state.judgements
-      store.dispatch(setScore(score, judges));
-      store.dispatch(navigateToPage('SCORE'));
+      store.dispatch( setScore(score, judges) );
     },
     back: function(){
       store.dispatch(navigateToPage('SELECT'));

@@ -452,7 +452,7 @@ body {
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 34px;
+  margin-top: 25px;
   padding-left: 3px;
   padding-right: 3px;
   text-align: center;
@@ -509,9 +509,11 @@ body {
   display:inline-block;
   background-color:#A9BCD0;
   color:#373F56;
-  padding:5px;
+  padding:7px;
   margin-top:10px;
   margin-left:5px;
+  font-size: 125%;
+  border-radius: 1.5px;
 }
 
 .userbox-button {
@@ -795,6 +797,33 @@ display: inline;
   padding: 2px;
 }
 
+.song-card-title {
+  font-size:20px;
+  margin-top:10px;
+  margin-left:10px;
+}
+
+.song-card-artist {
+  margin-left:10%;
+  margin-bottom:20px;
+}
+
+.song-card-bpm {
+  float:right; 
+  margin-right:10%;
+}
+
+.song-card-score {
+/* could use monospace font here. */
+  width:170px;
+  float:right;
+  margin-right:10px;
+}
+
+.song-card-diff {
+  margin-left:8%;
+}
+
 /*==========================Global Options====================*/
 
 #opContain {
@@ -857,6 +886,14 @@ display: inline;
   margin-left: auto;
   margin-right: auto;
 }*/
+
+#loginTitle {
+  letter-spacing: 2px;
+  font-size: 250%;
+  color: #ECEEF1;
+  text-shadow: 2px 2px 10px #404040;
+  margin-bottom: 5px;
+}
 
 #loginContain {
   width: 350px;
@@ -939,7 +976,7 @@ display: inline;
   text-align: center;
   border-radius: 2.5px;
   background-color: #298FA3;
-  margin-top: 30px;
+  margin-top: 25px;
   box-shadow: 8px 8px 10px  #b5bec9; 
 }
 

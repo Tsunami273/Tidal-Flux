@@ -79,10 +79,13 @@ Signup = React.createClass({
           offset: dog.globalOffset
           },
         success: function(data) {
-          window.localStorage.setItem('sessionInfo', data);  //Saving token and info name to local storage
-          store.dispatch( { type:'SIGN_IN', username : data.username, token: data.token } );
-          store.dispatch( navigateToPage('MAIN') );
-        }.bind(this),
+          var keybinds = JSON.stringify(this.keyBinds);
+          window.localStorage.setItem('username', data.username); 
+          window.localStorage.setItem('token', data.token); 
+          window.localStorage.setItem('offset', this.globalOffset); 
+          window.localStorage.setItem('keybinds', keybinds); 
+          store.dispatch( signIn(data.username, data.token, this.globalOffset, this.keyBinds) );
+        }.bind(dog),
         error: function(xhr, status, err) {
           this.setState({signUpError: 'This username already exists'});
         }.bind(this)

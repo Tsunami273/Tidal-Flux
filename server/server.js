@@ -10,7 +10,7 @@ var models     = require("./mongodb");
 var mongoose   = require('mongoose');
 var bcrypt     = require('bcryptjs');
 var jwt        = require('jwt-simple');
-var mysecret   = 'This is my secret';
+var dog        = 'dog';
 
 
 app.use(logger('dev'));
@@ -58,7 +58,7 @@ app.post('/api/player/signup', function(req, res){
 						res.status(403).json(err);
 					} else {
 						//Generate new token 
-				        var sessionToken = jwt.encode({username: player.username}, mysecret);
+				        var sessionToken = jwt.encode({username: player.username}, dog);
 				        //Session information
 						var session = {token: sessionToken, username: player.username, keybinds: player.keybinds, offset: player.offset}
 	    		  		res.status(200).json(session);
@@ -71,7 +71,6 @@ app.post('/api/player/signup', function(req, res){
 
 
 app.post('/api/player/signin', function(req, res) {
-
 	//Fetch and validate player
 	models.Player.findOne({ username: req.body.username })
     .exec(function (err, player) {
@@ -90,7 +89,7 @@ app.post('/api/player/signin', function(req, res) {
 	    		} 
 	    		if(valid) {
 	    			//Generate token
-	    			var sessionToken = jwt.encode({username: player.username}, mysecret);
+	    			var sessionToken = jwt.encode({username: player.username}, dog);
 
 	    			var session = {token: sessionToken, username: player.username, keybinds: player.keybinds, offset: player.offset}
 	    		    res.status(200).json(session);
@@ -103,8 +102,11 @@ app.post('/api/player/signin', function(req, res) {
 
 
 app.post('/api/player/score', function(req, res){
+    //Decode token to get player name 
+    var userObj = jwt.decode(req.body.token, dog);
+
 	//Find player in the song table
-	models.Score.findOne({ username: req.body.username, songId: req.body.songId, difficulty: req.body.difficulty})
+	models.Score.findOne({ username: userObj.username, songId: req.body.songId, difficulty: req.body.difficulty})
     .exec(function (err, player) {
     	if (err) { 
     		res.status(403).json(err);
@@ -113,7 +115,7 @@ app.post('/api/player/score', function(req, res){
       //If this is the first time the player is playing
     		var score = new models.Score();
 
-    		score.username = req.body.username;
+    		score.username = userObj.username;
     		score.points = req.body.points;
     		score.songId = req.body.songId;
     		score.difficulty = req.body.difficulty;
@@ -122,7 +124,7 @@ app.post('/api/player/score', function(req, res){
     			if(err) {
     				res.status(403).json(err);
     			} else {
-    				res.status(200).json(score);
+    				res.status(200).json({ highscore: 0});
     			}
     		});
     	} 
@@ -149,8 +151,9 @@ app.post('/api/player/score', function(req, res){
 })
 
 app.post('/api/player/keybinds', function(req, res) {
-  // NEED TO ADD SOME VALIDATION HERE WITH SESSION TOKEN.
-  models.Player.update({username: req.body.username}, {$set: {keybinds: req.body.keybinds}}, function(err, data){
+  var userObj = jwt.decode(req.body.token, dog);
+
+  models.Player.update({username: userObj.username}, {$set: {keybinds: req.body.keybinds}}, function(err, data){
     if(err){
       res.status(500).json({message: 'Something Happened'});
     }
@@ -162,15 +165,15 @@ app.post('/api/player/keybinds', function(req, res) {
 });
 
 app.post('/api/player/offset', function(req, res) {
-  // NEED TO ADD SOME VALIDATION HERE WITH SESSION TOKEN.
-  models.Player.update({username: req.body.username}, {$set: {offset: req.body.offset}}, function(err, data){
-    if(err){
-      res.status(500).json({message: 'Something Happened'});
-    }
-    else{
-      res.status(200).json({message:'Updated Offset Successfully', data:data});
-    }
-  })
+    var userObj = jwt.decode(req.body.token, dog);
+
+    models.Player.update({username: userObj.username}, {$set: {offset: req.body.offset}}, function(err, data){
+        if(err){
+            res.status(500).json({message: 'Something Happened'});
+        } else {
+            res.status(200).json({message:'Updated Offset Successfully', data:data});
+        }
+    })
 
 });
 
