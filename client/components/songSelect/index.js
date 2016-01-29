@@ -95,6 +95,7 @@ SongSelect = React.createClass({
     },
     componentDidMount: function() {
       this.setCarousel()
+      if(store.getState.username !== ""){
       $.ajax({
         url: '/api/scores?username=' + store.getState().username,
         type: 'GET',
@@ -120,6 +121,7 @@ SongSelect = React.createClass({
         error: function(xhr, status, err) {
         }.bind(this)
       });
+    }
     },
     render: function() {
         return (
