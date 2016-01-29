@@ -1133,27 +1133,31 @@ display: inline;
 .lanearea5.triggered {
   background: linear-gradient(to top, #298FA3, #262626, #262626);
 }
-/*.triggered {*/
-  /*background: linear-gradient(to top, #298FA3, #262626, #262626);*/
-/*}*/
 
 .note {
     fill:#ECEEF1;
     width: 50px;
     height: 10px;
 }
+.track-wrapper {
+  position:relative;
+}
 
 .playarea {
-  position:absolute;
-  left:550px;
-  top:10px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
   z-index:1;
+  width:300;
+  height:800;
+  margin-top:-500px;
 }
 
 .judgetext {
-  position:absolute;
-  left:600px;
-  top:300px;
+  position:relative;
+  margin-top:200px;
+  margin-left:auto;
+  margin-right:auto;
   color:#298FA3;
   z-index:2;
 }
@@ -1164,6 +1168,12 @@ display: inline;
   fill:#298FA3;
   stroke:#298FA3;
   font-size: 38;
+}
+
+.judgement {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 
@@ -1177,6 +1187,24 @@ display: inline;
 
 .healthBar {
 
+}
+
+.health-bar-contain {
+  margin-top:10px;
+  font-size:25;
+  margin-bottom:0px;
+}
+
+.play-score {
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.progress-bar-contain {
+  float:right;
+  font-size:25;
+  margin-right:30px;
+  padding-bottom:10px;
 }
 
 progress {
@@ -1210,6 +1238,12 @@ progress::-webkit-progress-bar {
     -webkit-linear-gradient(right, #298FA3, #ECEEF1);
     border-radius: 8px; 
     background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+
+.song-play-contain {
+  margin-left: auto;
+  margin-right: auto;
+  width:1050px;
 }
 
 /*===============Credits=================*/
