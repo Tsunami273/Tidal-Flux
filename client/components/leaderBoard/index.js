@@ -29,31 +29,28 @@ Leader = React.createClass({
 		var that = this;
 
 		return(
-			<div>
-				<div>Leader Board</div>
+			<div id="leaderContain">
+				<h1>Leader Board</h1>
 				{this.state.songsWithScores.map(function(song, index, allSongs){
 					return(
-					<div key={index}>
-						<br />
-						Title - {song.title}
-						<br />
-						Artist - {song.artist}
-						<br />
-						<div>easy
+					<div className="leaderCard" key={index}>
+						<div className="leader-card-title">{song.title}</div>
+						<div className="leader-card-artist">{song.artist}</div>
+						<div className="easy"><h3>easy</h3>
 						{song.easy.map(function(userScore, index, allEasyScores){
 							return(
 								<ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
 								)
 							})}
 						</div>
-						<div>medium
+						<div className="medium"><h3>medium</h3>
 						{song.medium.map(function(userScore, index, allEasyScores){
 							return(
 								<ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
 								)
 							})}
 						</div>
-						<div>hard
+						<div className="hard"><h3>hard</h3>
 						{song.hard.map(function(userScore, index, allEasyScores){
 							return(
 								<ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>

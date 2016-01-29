@@ -1289,6 +1289,77 @@ progress::-webkit-progress-bar {
   color: #262626;
 }
 
+/*====================Leader Board============================*/
+
+#leaderContain {
+  width: 750px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#leaderContain h1{
+  letter-spacing: 2px;
+  font-size: 350%;
+  color: #262626;
+  text-shadow: 2px 2px 10px #404040;
+  text-align: center; 
+}
+
+.leaderCard {
+  width: 750px;
+  height: 250px;
+  margin-bottom: 20px;
+  background-color: #298FA3;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius: 2px;
+}
+
+.leader-card-title {
+  width: 750px;
+  height: 50px;
+  text-align: center;
+  color: #ECEEF1;
+  font-size: 200%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+.leader-card-artist{
+  width: 750px;
+  height: 50px;
+  text-align: center;
+  color: #ECEEF1;
+  font-size: 150%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+.easy{
+  width: 250px;
+  float: left;
+  color: #ECEEF1;
+  text-align: center;
+}
+
+.medium{
+  width: 250px;
+  float: left;
+  color: #ECEEF1;
+  text-align: center;
+}
+
+.hard{
+  width: 250px;
+  float: left;
+  color: #ECEEF1;
+  text-align: center;
+}
+
+.leaderCard h3{
+  text-shadow: 2px 2px 8px #404040;
+}
+
+
+
   /* 
 ----==COLOR PALETTE==----
 WHITE       //==> #ECEEF1
