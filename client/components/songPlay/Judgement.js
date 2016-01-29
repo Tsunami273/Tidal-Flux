@@ -3,8 +3,6 @@ Judgement = React.createClass({
       var el = this.refs.judgement;
       var svg = d3.select(el).append('svg')
       .attr('class', 'judgement')
-      .attr('x', 600)
-      .attr('y', 600)
       .attr('width', 200)
       .attr('height', 200)
 
