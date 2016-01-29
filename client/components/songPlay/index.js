@@ -163,23 +163,22 @@ SongPlay = React.createClass({
         var audioSource = store.getState().selectedSong;
         var noFail = this.state.noFail ? 'true' : 'false';
         return (
-        <div>
-          <h1>Song Play</h1>
-          <Health health={this.state.judgements.health}/><br />
-          <div>Progress</div>
-          <progress max="100" value="0" ref="progressBar" id="progressBar"></progress>
-          <div>playhead: {this.state.playhead}</div>
-          <div>No Fail: {noFail}</div>
-          <div>{this.state.score}</div>
+        <div className="song-play-contain">
+          <div className="health-bar-contain"><Health health={this.state.judgements.health}/>
+          <div className="progress-bar-contain"><progress max="100" value="0" ref="progressBar" id="progressBar"></progress> &nbsp; <br /> <div className='progress-bar-contain'>Progress</div></div>
+          </div>
+          <div className="play-score">Score: {this.state.score}</div>
           <div onClick={this.back}>Back</div>
-          <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
-          <audio controls src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
+          <audio src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
           onEnded={this.play}
           onTimeUpdate={this.updatePlayhead}
           ref='audio'
           ></audio>
+          <div className="track-wrapper">
+          <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <Notes songState={this} stagedNotes={this.state.notes} />
+          </div>
         </div>
         );
     }
