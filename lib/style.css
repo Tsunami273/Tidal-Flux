@@ -804,7 +804,7 @@ display: inline;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 181px;
   padding-left: 3px;
   padding-right: 3px;
   text-align: center;
@@ -842,6 +842,52 @@ display: inline;
 .clickyGO:active {
   box-shadow: 4px 4px 10px  #b5bec9;
   -webkit-filter: blur(.5px); 
+}
+
+#offsetField {
+  margin-top: 10px;
+}
+
+#offsetButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #A9BCD0;
+    height: 19px;
+    width: 225px;
+    padding: 6px;
+    text-align: center;
+
+}
+
+#keyButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #A9BCD0;
+    height: 19px;
+    width: 225px;
+    padding: 6px;
+    text-align: center;
+}
+
+#failButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #A9BCD0;
+    height: 19px;
+    width: 225px;
+    padding: 6px;
+    text-align: center;
+}
+
+#fail {
+  margin-top: 10px;
+}
+
+#keyContain {
+  margin-top: 10px;
 }
 
 /*===============Login=================*/
@@ -977,8 +1023,15 @@ display: inline;
 #uName {
   margin-top: 100px;
 }
+#eError {
+  color: #EF307E;
+}
 
-#pError #eError #uError {
+#uError {
+  color: #EF307E;
+}
+
+#pError {
   color: #EF307E;
 }
 

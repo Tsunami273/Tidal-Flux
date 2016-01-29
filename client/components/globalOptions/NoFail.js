@@ -12,10 +12,10 @@ var NoFailOption = React.createClass({
     },
     render: function(){
       var failOption = (
-        <div>
+        <div id="fail">
         <form onSubmit={this.submitNoFail}>
           <input type="checkbox" checked={this.state.noFail} onChange={this.updateNoFail}/>No Fail? <br />
-          <input type="submit" id="subButton"/>
+          <div id="failButton">Save</div>
         </form>
         </div>
         )

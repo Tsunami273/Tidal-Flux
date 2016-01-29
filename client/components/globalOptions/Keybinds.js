@@ -101,15 +101,27 @@ var KeybindOption = React.createClass({
       var lane6 = this.state.lane6;
       var hide = this.state.hide;
       var bindings = (
-        <div>
-          <form onSubmit={this.updateKeyBind}>
-            lane 1: <input name="1" type="text" maxLength="1" value={lane1} onChange={this.setKeyBind}/> <br />
-            lane 2: <input name="2" type="text" maxLength="1" value={lane2} onChange={this.setKeyBind}/> <br />
-            lane 3: <input name="3" type="text" maxLength="1" value={lane3} onChange={this.setKeyBind}/> <br />
-            lane 4: <input name="4" type="text" maxLength="1" value={lane4} onChange={this.setKeyBind}/> <br />
-            lane 5: <input name="5" type="text" maxLength="1" value={lane5} onChange={this.setKeyBind}/> <br />
-            lane 6: <input name="6" type="text" maxLength="1" value={lane6} onChange={this.setKeyBind}/> <br />
-            <input type="submit" id="subButton" className={hide}/>
+        <div id="keyContain">
+          <form>
+            lane 1: <input name="1" type="text" maxLength="1" value={lane1} onChange={this.setKeyBind}/> 
+            <br />
+            <br />
+            lane 2: <input name="2" type="text" maxLength="1" value={lane2} onChange={this.setKeyBind}/> 
+            <br />
+            <br />
+            lane 3: <input name="3" type="text" maxLength="1" value={lane3} onChange={this.setKeyBind}/> 
+            <br />
+            <br />
+            lane 4: <input name="4" type="text" maxLength="1" value={lane4} onChange={this.setKeyBind}/> 
+            <br />
+            <br />
+            lane 5: <input name="5" type="text" maxLength="1" value={lane5} onChange={this.setKeyBind}/> 
+            <br />
+            <br />
+            lane 6: <input name="6" type="text" maxLength="1" value={lane6} onChange={this.setKeyBind}/> 
+            <br />
+            <br />
+            <div id="keyButton" onClick={this.updateKeyBind}>Save</div>
           </form>
         </div>
         )

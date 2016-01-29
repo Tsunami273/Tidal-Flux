@@ -27,11 +27,11 @@ var OffsetOption = React.createClass({
     render: function() {
       var dog = (<span>
         <input value={this.state.offset} onChange={this.updateOffset}></input>
-        <span className="savebutton" onClick={this.submitOffset}>  Save</span> 
+        <div id="offsetbutton" onClick={this.submitOffset}>Save</div> 
         </span>
         )
         return (
-          <div>
+          <div id="offsetField">
           {this.props.show ? dog : null}
           </div>
         );
