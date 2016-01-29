@@ -3,6 +3,7 @@ var NavButton = require('../navButton.js');
 var Songs = require('./Songs.js');
 var Diffs = require('./Diffs.js');
 var Scroll = require('./Scroll.js');
+var User = require('../mainMenu/User.js');
 songList = require('./songList.js');
 currdeg = 0;
 
@@ -17,6 +18,12 @@ SongSelect = React.createClass({
     },
     setCarousel: function() {
       this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
+    },
+    goToLogin: function(){
+      store.dispatch(navigateToPage('LOGIN'));
+    },
+    goToSignup: function(){
+      store.dispatch(navigateToPage('SIGNUP'));
     },
     back: function(){
       var diff = this.refs.diff.state.diff
@@ -126,6 +133,7 @@ SongSelect = React.createClass({
     render: function() {
         return (
         <div>
+          <User login={this.goToLogin} signup={this.goToSignup} />
             <div id="songSelectLogo">
               <h1>Song Select</h1>
             </div>
