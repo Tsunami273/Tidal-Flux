@@ -96,7 +96,9 @@ ScoreScreen = React.createClass({
             <div>Decent: <span className="judge-count">{this.state.judges.Decent}</span></div>
             <div>Miss: <span className="judge-count">{this.state.judges.Miss}</span></div>
           </div>
-          <div className="clicky" id="done" onClick={this.play}>Done</div>
+          <div className="clicky" id="back" onClick={this.play}>
+          <h3>Done</h3>
+          </div>
         </div>
         );
     }

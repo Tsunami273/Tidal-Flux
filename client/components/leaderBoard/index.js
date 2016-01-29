@@ -36,21 +36,21 @@ Leader = React.createClass({
 					<div className="leaderCard" key={index}>
 						<div className="leader-card-title">{song.title}</div>
 						<div className="leader-card-artist">{song.artist}</div>
-						<div className="easy"><h3>easy</h3>
+						<div className="easyScore"><h3>easy</h3>
 						{song.easy.map(function(userScore, index, allEasyScores){
 							return(
 								<ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
 								)
 							})}
 						</div>
-						<div className="medium"><h3>medium</h3>
+						<div className="mediumScore"><h3>medium</h3>
 						{song.medium.map(function(userScore, index, allEasyScores){
 							return(
 								<ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
 								)
 							})}
 						</div>
-						<div className="hard"><h3>hard</h3>
+						<div className="hardScore"><h3>hard</h3>
 						{song.hard.map(function(userScore, index, allEasyScores){
 							return(
 								<ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
@@ -60,7 +60,7 @@ Leader = React.createClass({
 					</div>
 						)
 					})}
-				<div className="clicky" onClick={this.goToMainMenu}>
+				<div className="clicky" id="back" onClick={this.goToMainMenu}>
 	        <h3>Back</h3>
 	      </div>	
 			</div>

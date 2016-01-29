@@ -1461,21 +1461,21 @@ progress::-webkit-progress-bar {
 }
 
 
-.easy{
+.easyScore{
   width: 250px;
   float: left;
   color: #ECEEF1;
   text-align: center;
 }
 
-.medium{
+.mediumScore{
   width: 250px;
   float: left;
   color: #ECEEF1;
   text-align: center;
 }
 
-.hard{
+.hardScore{
   width: 250px;
   float: left;
   color: #ECEEF1;
@@ -1486,6 +1486,34 @@ progress::-webkit-progress-bar {
   text-shadow: 2px 2px 8px #404040;
 }
 
+#back h3 {
+  padding-top: 3px;
+  font-weight: 1px;
+  font-size: 150%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+#back {
+  height: 40px;
+  width: 450px;
+  background-color: #298FA3;
+  color: #ECEEF1;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius: 1.5px;
+  letter-spacing: 2px;
+}
+#back:hover {
+  /*-webkit-filter: blur(1px);*/
+  box-shadow: 12px 12px 10px #b5bec9;
+}
+#back:active {
+  box-shadow: 4px 4px 10px  #b5bec9;
+  -webkit-filter: blur(.5px);
+}
 
 
 
