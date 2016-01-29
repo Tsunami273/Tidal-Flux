@@ -7,6 +7,7 @@ const main = function(state, action){
                   id: 1,
                   BPM: 173},
     username:'',
+    token: '',
     keyBinds: ['s','d','f', 'j', 'k','l'],
     selectedDiff: 'Medium',
       judges: {
@@ -20,27 +21,36 @@ const main = function(state, action){
     scrollSpeed: 2,
     durations: [4000,3000,2000,1500,1100,750],
     globalOffset: -30,
-    noFail: true
+    noFail: false
   }; 
   switch(action.type){
     case 'NAVIGATE':
       return Object.assign({}, state, {page: action.page}); 
     case 'SELECT_SONG':
       return Object.assign({}, state, {selectedSong: action.selected});
+    case 'NAV_FROM_SELECT':
+      return Object.assign({}, state, {
+        page: action.page,
+        selectedSong: action.song, 
+        scrollSpeed: action.scroll, 
+        selectedDiff: action.diff
+      });
     case 'SIGN_IN':
-      return Object.assign({}, state, {username: action.username, token: action.token});
+      return Object.assign({}, state, {
+        page: action.page,
+        username: action.username,
+        token: action.token,
+        keyBinds: action.keybinds,
+        globalOffset: action.offset
+      });
     case 'LOG_OUT':
-      return Object.assign({}, state, {username: ''});
+      return Object.assign({}, state, {username: '', token: ''});
     case 'SET_SCORE':
-      return Object.assign({}, state, {score: action.score, judges: action.judges});
-    case 'SET_DIFF':
-      return Object.assign({}, state, {selectedDiff: action.diff});
-    case 'SET_SCROLL':
-      return Object.assign({}, state, {scrollSpeed: action.scroll});
+      return Object.assign({}, state, {score: action.score, judges: action.judges, page: action.page});
     case 'SET_OFFSET':
       return Object.assign({}, state, {globalOffset: action.offset});
     case 'SET_KEY_BINDS':
-      return Object.assign({}, state, {keyBinds: action.keyBinds});
+      return Object.assign({}, state, {keyBinds: action.keybinds});
     case 'SET_NO_FAIL':
       return Object.assign({}, state, {noFail: action.noFail});
     default:

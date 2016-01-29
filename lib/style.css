@@ -797,6 +797,33 @@ display: inline;
   padding: 2px;
 }
 
+.song-card-title {
+  font-size:20px;
+  margin-top:10px;
+  margin-left:10px;
+}
+
+.song-card-artist {
+  margin-left:10%;
+  margin-bottom:20px;
+}
+
+.song-card-bpm {
+  float:right; 
+  margin-right:10%;
+}
+
+.song-card-score {
+/* could use monospace font here. */
+  width:170px;
+  float:right;
+  margin-right:10px;
+}
+
+.song-card-diff {
+  margin-left:8%;
+}
+
 /*==========================Global Options====================*/
 
 #opContain {
@@ -804,7 +831,7 @@ display: inline;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 150px;
+  margin-top: 181px;
   padding-left: 3px;
   padding-right: 3px;
   text-align: center;
@@ -842,6 +869,52 @@ display: inline;
 .clickyGO:active {
   box-shadow: 4px 4px 10px  #b5bec9;
   -webkit-filter: blur(.5px); 
+}
+
+#offsetField {
+  margin-top: 10px;
+}
+
+#offsetButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #A9BCD0;
+    height: 19px;
+    width: 225px;
+    padding: 6px;
+    text-align: center;
+
+}
+
+#keyButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #A9BCD0;
+    height: 19px;
+    width: 225px;
+    padding: 6px;
+    text-align: center;
+}
+
+#failButton {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7px;
+    background-color: #A9BCD0;
+    height: 19px;
+    width: 225px;
+    padding: 6px;
+    text-align: center;
+}
+
+#fail {
+  margin-top: 10px;
+}
+
+#keyContain {
+  margin-top: 10px;
 }
 
 /*===============Login=================*/
@@ -977,8 +1050,15 @@ display: inline;
 #uName {
   margin-top: 100px;
 }
+#eError {
+  color: #EF307E;
+}
 
-#pError #eError #uError {
+#uError {
+  color: #EF307E;
+}
+
+#pError {
   color: #EF307E;
 }
 
@@ -1053,27 +1133,31 @@ display: inline;
 .lanearea5.triggered {
   background: linear-gradient(to top, #298FA3, #262626, #262626);
 }
-/*.triggered {*/
-  /*background: linear-gradient(to top, #298FA3, #262626, #262626);*/
-/*}*/
 
 .note {
     fill:#ECEEF1;
     width: 50px;
     height: 10px;
 }
+.track-wrapper {
+  position:relative;
+}
 
 .playarea {
-  position:absolute;
-  left:550px;
-  top:10px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
   z-index:1;
+  width:300;
+  height:800;
+  margin-top:-500px;
 }
 
 .judgetext {
-  position:absolute;
-  left:600px;
-  top:300px;
+  position:relative;
+  margin-top:200px;
+  margin-left:auto;
+  margin-right:auto;
   color:#298FA3;
   z-index:2;
 }
@@ -1084,6 +1168,12 @@ display: inline;
   fill:#298FA3;
   stroke:#298FA3;
   font-size: 38;
+}
+
+.judgement {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 
@@ -1097,6 +1187,24 @@ display: inline;
 
 .healthBar {
 
+}
+
+.health-bar-contain {
+  margin-top:10px;
+  font-size:25;
+  margin-bottom:0px;
+}
+
+.play-score {
+  font-size:25px;
+  margin-bottom:20px;
+}
+
+.progress-bar-contain {
+  float:right;
+  font-size:25;
+  margin-right:30px;
+  padding-bottom:10px;
 }
 
 progress {
@@ -1132,6 +1240,12 @@ progress::-webkit-progress-bar {
     background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 
+.song-play-contain {
+  margin-left: auto;
+  margin-right: auto;
+  width:1050px;
+}
+
 /*===============Credits=================*/
 
 .credit-block {
@@ -1152,14 +1266,27 @@ progress::-webkit-progress-bar {
 .credit-block a {
   color:#ECEEF1;
 }
+
+#creditContain {
+  width: 1000px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 75px;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: center;
+}
 /*====================Score Screen============================*/
 
 .score-screen-container {
-  margin-left:10px;
+  width: 500px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .score-screen-container h2{
-  margin-bottom:10px;
 }
 
 .message-container {
@@ -1261,6 +1388,134 @@ progress::-webkit-progress-bar {
   background-color:#A9BCD0;
   color: #262626;
 }
+
+
+#done {
+  height: 40px;
+  width: 450px;
+  background-color: #298FA3;
+  color: #ECEEF1;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius: 1.5px;
+  letter-spacing: 2px;
+}
+#done:hover {
+  /*-webkit-filter: blur(1px);*/
+  box-shadow: 12px 12px 10px #b5bec9;
+}
+#done:active {
+  box-shadow: 4px 4px 10px  #b5bec9;
+  -webkit-filter: blur(.5px);
+}
+
+#done h3 {
+  padding-top: 3px;
+  font-weight: 1px;
+}
+/*====================Leader Board============================*/
+
+#leaderContain {
+  width: 750px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#leaderContain h1{
+  letter-spacing: 2px;
+  font-size: 350%;
+  color: #262626;
+  text-shadow: 2px 2px 10px #404040;
+  text-align: center; 
+}
+
+.leaderCard {
+  width: 750px;
+  height: 250px;
+  margin-bottom: 20px;
+  background-color: #298FA3;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius: 2px;
+}
+
+.leader-card-title {
+  width: 750px;
+  height: 50px;
+  text-align: center;
+  color: #ECEEF1;
+  font-size: 200%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+.leader-card-artist{
+  width: 750px;
+  height: 50px;
+  text-align: center;
+  color: #ECEEF1;
+  font-size: 150%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+
+.easyScore{
+  width: 250px;
+  float: left;
+  color: #ECEEF1;
+  text-align: center;
+}
+
+.mediumScore{
+  width: 250px;
+  float: left;
+  color: #ECEEF1;
+  text-align: center;
+}
+
+.hardScore{
+  width: 250px;
+  float: left;
+  color: #ECEEF1;
+  text-align: center;
+}
+
+.leaderCard h3{
+  text-shadow: 2px 2px 8px #404040;
+}
+
+#back h3 {
+  padding-top: 3px;
+  font-weight: 1px;
+  font-size: 150%;
+  text-shadow: 2px 2px 8px #404040;
+}
+
+#back {
+  height: 40px;
+  width: 450px;
+  background-color: #298FA3;
+  color: #ECEEF1;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  box-shadow: 8px 8px 10px  #b5bec9;
+  border-radius: 1.5px;
+  letter-spacing: 2px;
+}
+#back:hover {
+  /*-webkit-filter: blur(1px);*/
+  box-shadow: 12px 12px 10px #b5bec9;
+}
+#back:active {
+  box-shadow: 4px 4px 10px  #b5bec9;
+  -webkit-filter: blur(.5px);
+}
+
+
 
   /* 
 ----==COLOR PALETTE==----

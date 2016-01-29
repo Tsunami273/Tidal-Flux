@@ -84,8 +84,7 @@ Signup = React.createClass({
           window.localStorage.setItem('token', data.token); 
           window.localStorage.setItem('offset', this.globalOffset); 
           window.localStorage.setItem('keybinds', keybinds); 
-          store.dispatch( { type:'SIGN_IN', username : data.username, token: data.token } );
-          store.dispatch( navigateToPage('MAIN') );
+          store.dispatch( signIn(data.username, data.token, this.globalOffset, this.keyBinds) );
         }.bind(dog),
         error: function(xhr, status, err) {
           this.setState({signUpError: 'This username already exists'});
@@ -122,9 +121,9 @@ Signup = React.createClass({
                 <br />
                 <input type="submit" id="subButton" className={hide}/>
               </form>
-                <div id="pError">{passwordError}</div>
                 <div id="eError">{emailError}</div>
                 <div id="uError">{usernameError}</div>
+                <div id="pError">{passwordError}</div>
                 <div className="signUpError">{this.state.signUpError}</div>
                 <br />
                 <div id="alreadyUser" onClick={this.goToLogin}>Already a user? Click here.</div>

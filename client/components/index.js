@@ -6,5 +6,5 @@ require('./login/');
 require('./signup/');
 require('./globalOptions');
 require('./credits');
-require('./profile');
-
+require('./profile/');
+require('./leaderBoard/');

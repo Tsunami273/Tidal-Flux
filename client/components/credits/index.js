@@ -11,7 +11,7 @@ Credits = React.createClass({
     render: function() {
         return (
         <div>
-        <div id="menucontain">
+        <div id="creditContain">
           <div id="title">
             <img src="TidalFlux.svg" alt="Tidal Flux"></img>
           </div>

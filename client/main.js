@@ -19,9 +19,7 @@ if(window.localStorage.getItem('username')){
   var token = window.localStorage.getItem('token');
   var offset = parseInt( window.localStorage.getItem('offset') );
   var keybinds = JSON.parse( window.localStorage.getItem('keybinds') );
-  store.dispatch( { type:'SIGN_IN', username : username, token : token} );
-  store.dispatch( setOffset(offset) );
-  store.dispatch( setKeyBinds(keybinds));
+  store.dispatch( signIn(username, token, offset, keybinds) );
 }
 
 var domContainerNode = document.getElementById('content');
@@ -65,7 +63,11 @@ var render = function(){
     case 'PROFILE':
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Profile />, domContainerNode); 
-      return; 
+      return;
+    case 'LEADER':
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Leader />, domContainerNode); 
+      return;
     default:
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<MainMenu />, domContainerNode);
