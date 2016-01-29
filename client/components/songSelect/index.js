@@ -11,23 +11,22 @@ SongSelect = React.createClass({
       var selectedSong = store.getState().selectedSong;
       return {
         diffs: ['Easy', 'Medium', 'Hard'],
-        selectedSong: selectedSong
+        selectedSong: selectedSong,
+        scores: [ ['-','-','-'],['-','-','-'],['-','-','-'],['-','-','-'],['-','-','-'],['-','-','-'] ],
       }
     },
     setCarousel: function() {
       this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
     },
     back: function(){
-      store.dispatch(selectSong(this.state.selectedSong));
-      store.dispatch(navigateToPage('MAIN'));
+      var diff = this.refs.diff.state.diff
+      var scroll = this.refs.scroll.state.scroll;
+      store.dispatch( navigateFromSelect('MAIN', this.state.selectedSong, scroll, diff) );
     },
     play: function(event) {
       var diff = this.refs.diff.state.diff
       var scroll = this.refs.scroll.state.scroll;
-      store.dispatch(selectSong(this.state.selectedSong));
-      store.dispatch(navigateToPage('PLAY'));
-      store.dispatch(setScroll(scroll));
-      store.dispatch(setDiff(diff));
+      store.dispatch( navigateFromSelect('PLAY', this.state.selectedSong, scroll, diff ) );
     },
     rotatePrev: function() {
       currdeg = currdeg + 60;
@@ -94,8 +93,33 @@ SongSelect = React.createClass({
       var currsong = songList[index];
       this.setState({selectedSong: currsong});
     },
-    componentDidMount() {
+    componentDidMount: function() {
       this.setCarousel()
+      $.ajax({
+        url: '/api/scores?username=' + store.getState().username,
+        type: 'GET',
+        success: function(data) {
+          var scores = this.state.scores;
+          data.forEach( (e) => { 
+            var slot;
+            switch(e.difficulty){
+              case 'Easy':
+                slot = 0;
+                break;
+              case 'Medium':
+                slot = 1;
+                break;
+              default:
+                slot = 2;
+                break;
+            }
+            scores[e.songId-1][slot] = e.points
+          });
+          this.setState({scores: scores});
+        }.bind(this),
+        error: function(xhr, status, err) {
+        }.bind(this)
+      });
     },
     render: function() {
         return (
@@ -106,7 +130,7 @@ SongSelect = React.createClass({
           <br />
           <div id="carouselContain">
             <div id="carousel" ref="carousel">
-            <Songs songSelect={this} songList={songList} />
+            <Songs scores={this.state.scores} songSelect={this} songList={songList} />
           </div>
           </div>
 
@@ -129,7 +153,7 @@ SongSelect = React.createClass({
           <h3>Play</h3>
           </div>
           <div id="back" onClick={this.back}>
-          <h3>Back</h3>
+            <h3>Back</h3>
           </div>
           </div>
           <br />

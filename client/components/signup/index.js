@@ -84,8 +84,7 @@ Signup = React.createClass({
           window.localStorage.setItem('token', data.token); 
           window.localStorage.setItem('offset', this.globalOffset); 
           window.localStorage.setItem('keybinds', keybinds); 
-          store.dispatch( { type:'SIGN_IN', username : data.username, token: data.token } );
-          store.dispatch( navigateToPage('MAIN') );
+          store.dispatch( signIn(data.username, data.token, this.globalOffset, this.keyBinds) );
         }.bind(dog),
         error: function(xhr, status, err) {
           this.setState({signUpError: 'This username already exists'});
