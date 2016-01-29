@@ -8,32 +8,6 @@ currdeg = 0;
 
 SongSelect = React.createClass({
     getInitialState: function(){
-      $.ajax({
-        url: '/api/scores?username=' + store.getState().username,
-        type: 'GET',
-        success: function(data) {
-          data.forEach( (e) => { console.log(e) } );
-          var scores = this.state.scores;
-          data.forEach( (e) => { 
-            var slot;
-            switch(e.difficulty){
-              case 'Easy':
-                slot = 0;
-                break;
-              case 'Medium':
-                slot = 1;
-                break;
-              default:
-                slot = 2;
-                break;
-            }
-            scores[e.songId-1][slot] = e.points
-          });
-          this.setState({scores: scores});
-        }.bind(this),
-        error: function(xhr, status, err) {
-        }.bind(this)
-      });
       var selectedSong = store.getState().selectedSong;
       return {
         diffs: ['Easy', 'Medium', 'Hard'],
@@ -45,16 +19,14 @@ SongSelect = React.createClass({
       this.refs.carousel.style.transform = "rotateY("+currdeg+"deg)";
     },
     back: function(){
-      store.dispatch(selectSong(this.state.selectedSong));
-      store.dispatch(navigateToPage('MAIN'));
+      var diff = this.refs.diff.state.diff
+      var scroll = this.refs.scroll.state.scroll;
+      store.dispatch( navigateFromSelect('MAIN', this.state.selectedSong, scroll, diff) );
     },
     play: function(event) {
       var diff = this.refs.diff.state.diff
       var scroll = this.refs.scroll.state.scroll;
-      store.dispatch(selectSong(this.state.selectedSong));
-      store.dispatch(navigateToPage('PLAY'));
-      store.dispatch(setScroll(scroll));
-      store.dispatch(setDiff(diff));
+      store.dispatch( navigateFromSelect('PLAY', this.state.selectedSong, scroll, diff ) );
     },
     rotatePrev: function() {
       currdeg = currdeg + 60;
@@ -123,6 +95,31 @@ SongSelect = React.createClass({
     },
     componentDidMount: function() {
       this.setCarousel()
+      $.ajax({
+        url: '/api/scores?username=' + store.getState().username,
+        type: 'GET',
+        success: function(data) {
+          var scores = this.state.scores;
+          data.forEach( (e) => { 
+            var slot;
+            switch(e.difficulty){
+              case 'Easy':
+                slot = 0;
+                break;
+              case 'Medium':
+                slot = 1;
+                break;
+              default:
+                slot = 2;
+                break;
+            }
+            scores[e.songId-1][slot] = e.points
+          });
+          this.setState({scores: scores});
+        }.bind(this),
+        error: function(xhr, status, err) {
+        }.bind(this)
+      });
     },
     render: function() {
         return (

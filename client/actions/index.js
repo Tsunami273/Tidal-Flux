@@ -10,9 +10,19 @@ selectSong = function(song){
     selected: song
   };
 }
+navigateFromSelect = function(page, song, scroll, diff){
+  return {
+      type: 'NAV_FROM_SELECT',
+      page: page,
+      song: song,
+      scroll: scroll,
+      diff: diff
+  }
+}
 setScore = function(score, judges){
   return {
     type:'SET_SCORE',
+    page: 'SCORE',
     score: score,
     judges: judges
   };
@@ -21,7 +31,7 @@ setScore = function(score, judges){
 setDiff = function(diff){
   return {
     type:'SET_DIFF',
-    diff: diff,
+    diff: diff
   }
 }
 
@@ -39,17 +49,21 @@ setOffset = function(offset){
   }
 }
 
-signIn = function(username){
+signIn = function(username, token, offset, keybinds){
   return {
     type:'SIGN_IN',
-    username: username
+    page: 'MAIN',
+    username: username,
+    token: token,
+    offset: offset,
+    keybinds: keybinds
   }
 }
 
-setKeyBinds = function(keyBinds){
+setKeyBinds = function(keybinds){
   return {
     type:'SET_KEY_BINDS',
-    keyBinds: keyBinds
+    keybinds: keybinds
   }
 }
 
