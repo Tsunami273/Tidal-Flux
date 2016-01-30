@@ -45,6 +45,7 @@ Signup = React.createClass({
       }
       else{
         this.setState({usernameError: ''});
+        this.setState({hide:''});
       }
       this.setState({username: event.target.value});
     },
