@@ -21,6 +21,7 @@ SongPlay = React.createClass({
         offset: 0,
         avgOffset: 0,
         notes: [[],[],[],[],[],[]],
+        hits: [[],[],[],[],[],[]],
         lane0: false,
         lane1: false,
         lane2: false,
@@ -49,7 +50,8 @@ SongPlay = React.createClass({
       listener.reset();
       var score = this.state.score
       var judges = this.state.judgements
-      store.dispatch( setScore(score, judges) );
+      var hits = this.state.hits
+      store.dispatch( setScore(score, judges, hits) );
     },
     back: function(){
       store.dispatch(navigateToPage('SELECT'));
@@ -65,12 +67,11 @@ SongPlay = React.createClass({
       var combos = [];
       var keys = store.getState().keyBinds; 
       var totalNotes = 0;
-      var noteScoreValue;
       for(var i = 0 ; i < 6; i++){
         combos.push(makeKeyBinds(this,keys[i], i));
         totalNotes += noteTimes[i].length;
       }
-      noteScoreValue = Math.round(1000000 / totalNotes);
+      var noteScoreValue = Math.round(1000000 / totalNotes);
       var noteScoreValues = {perfect: noteScoreValue, 
         good: Math.round(noteScoreValue * .6),
         decent: Math.round(noteScoreValue * .2)};
@@ -91,10 +92,12 @@ SongPlay = React.createClass({
       var that = this; 
       this.refs.audio.play();
       this.refs.progressBar.max = this.refs.audio.duration;
+
       var polling = setInterval(function(){ 
         var currTime = Date.now() - start - that.state.avgOffset;
         that.refs.progressBar.value = currTime/1000;
         var notes = that.state.notes.slice();
+        var hits = [...that.state.hits];
         var message = that.state.message;
         var combo = that.state.combo;
         var judgements = {};
@@ -103,6 +106,7 @@ SongPlay = React.createClass({
         for(var i = 0 ; i < 6; i++){
           if(notes[i][0] + 150 < currTime){
             notes[i].shift();
+            hits[i].push(currTime);
             message = 'Miss';
             judgements.Miss++;
             messageArray = ['Miss' + judgements.Miss];
@@ -116,11 +120,13 @@ SongPlay = React.createClass({
         that.setState({notes: notes,
           message: message,
           judgements: judgements,
-          messageArray: messageArray});
+          messageArray: messageArray,
+          hits: hits});
         if(judgements.health < 0 && !that.state.noFail){
           return that.play();
         };
       }, 10);
+
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
         var grabTime = Date.now()-start + 4500;
@@ -136,6 +142,7 @@ SongPlay = React.createClass({
         }
         that.setState({notes: stagedNotes});
       }, 1000);
+
       intervalID.push(polling);
       intervalID.push(staging);
     },

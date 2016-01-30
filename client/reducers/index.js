@@ -46,7 +46,12 @@ const main = function(state, action){
     case 'LOG_OUT':
       return Object.assign({}, state, {username: '', token: ''});
     case 'SET_SCORE':
-      return Object.assign({}, state, {score: action.score, judges: action.judges, page: action.page});
+      return Object.assign({}, state, {
+        score: action.score,
+        judges: action.judges,
+        page: action.page,
+        hits: action.hits
+      });
     case 'SET_OFFSET':
       return Object.assign({}, state, {globalOffset: action.offset});
     case 'SET_KEY_BINDS':

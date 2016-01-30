@@ -103,6 +103,11 @@ app.post('/api/player/signin', function(req, res) {
 
 
 app.post('/api/player/score', function(req, res){
+
+    if(req.body.points > 1000000 || !req.body.hits){
+        res.status(400).json({hey:'no cheating'});
+        return;
+    }
     //Decode token to get player name 
     var userObj = jwt.decode(req.body.token, dog);
 
@@ -120,6 +125,7 @@ app.post('/api/player/score', function(req, res){
     		score.points = req.body.points;
     		score.songId = req.body.songId;
     		score.difficulty = req.body.difficulty;
+            score.hits = req.body.hits;
 
     		score.save(function (err, score) {
     			if(err) {
