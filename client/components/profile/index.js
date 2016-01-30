@@ -18,7 +18,7 @@ Profile = React.createClass({
       url: '/api/scores/',
       dataType: 'json',
       type: 'GET',
-      data: {username: this.state.username },
+      data: {username: this.state.username },  //To get all scores for the user
       success: function(data){
         var songsWithScores = createScoresArray(data);
         this.setState({songsWithScores: songsWithScores});
@@ -49,21 +49,21 @@ Profile = React.createClass({
             <div className="easyScore"><h3>easy</h3>
             {song.easy.map(function(userScore, index, allEasyScores){
               return(
-                <ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
+                <ByDifficulty /* username={userScore[0]} */ score={userScore[1]} key={index}/>
                 )
               })}
             </div>
             <div className="mediumScore"><h3>medium</h3>
             {song.medium.map(function(userScore, index, allEasyScores){
               return(
-                <ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
+                <ByDifficulty /* username={userScore[0]} */ score={userScore[1]} key={index}/>
                 )
               })}
             </div>
             <div className="hardScore"><h3>hard</h3>
             {song.hard.map(function(userScore, index, allEasyScores){
               return(
-                <ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
+                <ByDifficulty /* username={userScore[0]} */ score={userScore[1]} key={index}/>
                 )
               })}
             </div>

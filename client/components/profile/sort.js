@@ -3,7 +3,7 @@ var ByDifficulty = React.createClass({
 	render: function(){
 		return(
 			<div>
-				{this.props.username} - {this.props.score}
+				{this.props.score}
 			</div>
 		)
 	}
