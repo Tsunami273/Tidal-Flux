@@ -6,19 +6,16 @@ var Logout = require('../mainMenu/User.js');; //Logout for profile
 
 Profile = React.createClass({
   getInitialState: function(){
-    var player = store.getState();
     return {
-      username : player.username,
       songsWithScores:[]
     }
   },
 
   componentDidMount: function(){
     $.ajax({
-      url: '/api/scores/',
+      url: '/api/scores?username=' + store.getState().username,
       dataType: 'json',
       type: 'GET',
-      data: {username: this.state.username },  //To get all scores for the user
       success: function(data){
         var songsWithScores = createScoresArray(data);
         this.setState({songsWithScores: songsWithScores});
@@ -36,6 +33,10 @@ Profile = React.createClass({
 
   goToSignup: function(){
     store.dispatch(navigateToPage('SIGNUP'));
+  },
+
+  goToMainMenu: function(){
+    store.dispatch(navigateToPage('MAIN'));
   },
 
   render: function(){
