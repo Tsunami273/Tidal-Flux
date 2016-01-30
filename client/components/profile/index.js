@@ -1,8 +1,6 @@
 // import child components here.
 var NavButton = require('../navButton.js');
-
-var createScoresArray = require('./scoresArray.js');
-var ByDifficulty = require('./sort.js')
+var createScoresArray = require('./scores.js');
 
 Profile = React.createClass({
   getInitialState: function(){
@@ -37,6 +35,17 @@ Profile = React.createClass({
   render: function(){
     var that = this;
 
+    //Sort scores by song and difficulty
+    var ByDifficulty = React.createClass({
+      render: function(){
+        return(
+          <div>
+            {this.props.score}
+          </div>
+        )
+      }
+    });
+
     return(
       <div id="leaderContain">
         <span className="username">Hi, {that.state.username}</span>
@@ -49,21 +58,21 @@ Profile = React.createClass({
             <div className="easyScore"><h3>easy</h3>
             {song.easy.map(function(userScore, index, allEasyScores){
               return(
-                <ByDifficulty /* username={userScore[0]} */ score={userScore[1]} key={index}/>
+                <ByDifficulty score={userScore[1]} key={index}/>
                 )
               })}
             </div>
             <div className="mediumScore"><h3>medium</h3>
             {song.medium.map(function(userScore, index, allEasyScores){
               return(
-                <ByDifficulty /* username={userScore[0]} */ score={userScore[1]} key={index}/>
+                <ByDifficulty score={userScore[1]} key={index}/>
                 )
               })}
             </div>
             <div className="hardScore"><h3>hard</h3>
             {song.hard.map(function(userScore, index, allEasyScores){
               return(
-                <ByDifficulty /* username={userScore[0]} */ score={userScore[1]} key={index}/>
+                <ByDifficulty score={userScore[1]} key={index}/>
                 )
               })}
             </div>
