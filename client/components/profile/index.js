@@ -1,56 +1,82 @@
 // import child components here.
 var NavButton = require('../navButton.js');
 
+var createScoresArray = require('./scoresArray.js');
+var ByDifficulty = require('./sort.js')
+
 Profile = React.createClass({
-    getInitialState: function(){
-      var player = store.getState();
-      return {
-        judges: player.judges,
-        username: player.username, 
-        score: player.score,
-        token: player.token,
-        currSong: player.selectedSong,
-        currDiff: player.selectedDiff,
-        response: {message: ''},
-      };
-    },
-
-    play: function(event) {
-      store.dispatch(navigateToPage('SELECT'));
-    },
-
-    componentDidMount: function(){
-      //Check first if user is logged in
-      if (this.state.username) {
-        $.ajax({
-          url: '/api/player/score',
-          dataType: 'json',
-          type: 'POST',
-          data: { token : this.state.token, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
-          success: function(data) {
-            this.setState({response: data});
-          }.bind(this), 
-          error: function(xhr, status, err) {
-            console.log('Error: ', err);
-          }.bind(this)
-        });
-      }
-    },
-
-    render: function() {
-      return (
-        <div className="profile-screen-container">
-          <h1>My Profile</h1>
-          <div className="username-container">
-            <span className="username">Hi, {this.state.username}</span>
-          </div>
-          <div className="songs-scores-container">
-            <h3>My Scores</h3>
-          </div>
-
-          <NavButton dest="Main Menu" onClick={this.play} />
-        </div>
-        );
+  getInitialState: function(){
+    var player = store.getState();
+    return {
+      username : player.username,
+      songsWithScores:[]
     }
+  },
+
+  componentDidMount: function(){
+    $.ajax({
+      url: '/api/scores/',
+      dataType: 'json',
+      type: 'GET',
+      data: {username: this.state.username },
+      success: function(data){
+        var songsWithScores = createScoresArray(data);
+        this.setState({songsWithScores: songsWithScores});
+        console.log('this.state', this.state);
+      }.bind(this),
+      error: function(err){
+        console.log('error: ', err);
+      }.bind(this)
+    })
+  },
+
+  goToMainMenu: function(){
+    store.dispatch(navigateToPage('MAIN'));
+  },
+
+  render: function(){
+    var that = this;
+
+    return(
+      <div id="leaderContain">
+        <span className="username">Hi, {that.state.username}</span>
+        <h1>My Profile</h1>
+        {this.state.songsWithScores.map(function(song, index, allSongs){
+          return(
+          <div className="leaderCard" key={index}>
+            <div className="leader-card-title">{song.title}</div>
+            <div className="leader-card-artist">{song.artist}</div>
+            <div className="easyScore"><h3>easy</h3>
+            {song.easy.map(function(userScore, index, allEasyScores){
+              return(
+                <ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
+                )
+              })}
+            </div>
+            <div className="mediumScore"><h3>medium</h3>
+            {song.medium.map(function(userScore, index, allEasyScores){
+              return(
+                <ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
+                )
+              })}
+            </div>
+            <div className="hardScore"><h3>hard</h3>
+            {song.hard.map(function(userScore, index, allEasyScores){
+              return(
+                <ByDifficulty username={userScore[0]} score={userScore[1]} key={index}/>
+                )
+              })}
+            </div>
+          </div>
+            )
+          })}
+        <div className="clicky" id="back" onClick={this.goToMainMenu}>
+          <h3>Back</h3>
+        </div>  
+      </div>
+
+      );  
+  }
 });
+
 module.exports = Profile;
