@@ -31,6 +31,7 @@ ScoreScreen = React.createClass({
         username: dog.username, 
         score: dog.score,
         token: dog.token,
+        hits: dog.hits,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
         response: {message: ''},
@@ -49,7 +50,12 @@ ScoreScreen = React.createClass({
           url: '/api/player/score',
           dataType: 'json',
           type: 'POST',
-          data: { token : this.state.token, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
+          data: { 
+            token : this.state.token, 
+            songId : this.state.currSong.id,
+            difficulty : this.state.currDiff, 
+            points : this.state.score,
+            hits: this.state.hits },
           success: function(data) {
             this.setState({response: data});
           }.bind(this), 
@@ -79,8 +85,9 @@ ScoreScreen = React.createClass({
 
       return (
         <div className="score-screen-container">
-          <h1>Score Screen</h1>
-          <div className="message-container">{message}</div>
+          <div className="message-container">
+          {message}
+          </div>
           <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
           <div className="song-info-container">
             <div className="ss-song-title">{this.state.currSong.title}</div>
@@ -95,7 +102,9 @@ ScoreScreen = React.createClass({
             <div>Decent: <span className="judge-count">{this.state.judges.Decent}</span></div>
             <div>Miss: <span className="judge-count">{this.state.judges.Miss}</span></div>
           </div>
-          <NavButton dest="Done" onClick={this.play} />
+          <div className="clicky" id="back" onClick={this.play}>
+          <h3>Done</h3>
+          </div>
         </div>
         );
     }

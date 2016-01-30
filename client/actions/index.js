@@ -19,12 +19,13 @@ navigateFromSelect = function(page, song, scroll, diff){
       diff: diff
   }
 }
-setScore = function(score, judges){
+setScore = function(score, judges, hits){
   return {
     type:'SET_SCORE',
     page: 'SCORE',
     score: score,
-    judges: judges
+    judges: judges,
+    hits: hits
   };
 }
 
