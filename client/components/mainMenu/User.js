@@ -12,9 +12,14 @@ var User = React.createClass({
       window.localStorage.removeItem('offset');
       window.localStorage.removeItem('keybinds');
     },
+
+    goToProfile: function(){
+      store.dispatch(navigateToPage('PROFILE'));
+    },
+
     render: function() {
       var loggedIn = (<div> 
-        Welcome, {this.state.user} 
+        <span className="username-button" onClick={this.goToProfile}>Welcome, {this.state.user}</span>
         <span className="userbox-button" onClick={this.logout}> Log Out</span>
         </div>);
       var notLoggedIn = (<div>Not Logged In: 
