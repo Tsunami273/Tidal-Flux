@@ -1,6 +1,8 @@
 // import child components here.
 var NavButton = require('../navButton.js');
 var createScoresArray = require('./scores.js');
+var Logout = require('../MainMenu/User.js');; //Logout for profile
+
 
 Profile = React.createClass({
   getInitialState: function(){
@@ -28,11 +30,17 @@ Profile = React.createClass({
     })
   },
 
-  goToMainMenu: function(){
-    store.dispatch(navigateToPage('MAIN'));
+  goToLogin: function(){
+      store.dispatch(navigateToPage('LOGIN'));
+  },
+
+  goToSignup: function(){
+    store.dispatch(navigateToPage('SIGNUP'));
   },
 
   render: function(){
+
+
     var that = this;
 
     //Sort scores by song and difficulty
@@ -48,7 +56,7 @@ Profile = React.createClass({
 
     return(
       <div id="leaderContain">
-        <span className="username">Hi, {that.state.username}</span>
+        <Logout login={this.goToLogin} signup={this.goToSignup}/>
         <h1>My Profile</h1>
         {this.state.songsWithScores.map(function(song, index, allSongs){
           return(
@@ -83,8 +91,7 @@ Profile = React.createClass({
           <h3>Back</h3>
         </div>  
       </div>
-
-      );  
+    );  
   }
 });
 
