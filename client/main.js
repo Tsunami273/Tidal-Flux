@@ -60,10 +60,14 @@ var render = function(){
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Credits />, domContainerNode); 
       return;
+    case 'PROFILE':
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Profile />, domContainerNode); 
+      return;
     case 'LEADER':
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Leader />, domContainerNode); 
-      return;    
+      return;
     default:
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<MainMenu />, domContainerNode);
