@@ -4,6 +4,7 @@ var Songs = require('./Songs.js');
 var Diffs = require('./Diffs.js');
 var Scroll = require('./Scroll.js');
 var User = require('../mainMenu/User.js');
+var navKeys = require('../navKeys.js');
 songList = require('./songList.js');
 currdeg = 0;
 
@@ -102,33 +103,42 @@ SongSelect = React.createClass({
     },
     componentDidMount: function() {
       this.setCarousel()
+      var combos = [];
+      combos.push(navKeys(this, 'left', this.rotatePrev));
+      combos.push(navKeys(this, 'right', this.rotateNext));
+      combos.push(navKeys(this, 'backspace', this.back));
+      combos.push(navKeys(this, 'enter', this.play));
+      listener.register_many(combos);
       if(store.getState.username !== ""){
-      $.ajax({
-        url: '/api/scores?username=' + store.getState().username,
-        type: 'GET',
-        success: function(data) {
-          var scores = this.state.scores;
-          data.forEach( (e) => { 
-            var slot;
-            switch(e.difficulty){
-              case 'Easy':
-                slot = 0;
-                break;
-              case 'Medium':
-                slot = 1;
-                break;
-              default:
-                slot = 2;
-                break;
-            }
-            scores[e.songId-1][slot] = e.points
-          });
-          this.setState({scores: scores});
-        }.bind(this),
-        error: function(xhr, status, err) {
-        }.bind(this)
-      });
-    }
+        $.ajax({
+          url: '/api/scores?username=' + store.getState().username,
+          type: 'GET',
+          success: function(data) {
+            var scores = this.state.scores;
+            data.forEach( (e) => { 
+              var slot;
+              switch(e.difficulty){
+                case 'Easy':
+                  slot = 0;
+                  break;
+                case 'Medium':
+                  slot = 1;
+                  break;
+                default:
+                  slot = 2;
+                  break;
+              }
+              scores[e.songId-1][slot] = e.points
+            });
+            this.setState({scores: scores});
+          }.bind(this),
+          error: function(xhr, status, err) {
+          }.bind(this)
+        });
+      }
+    },
+    componentWillUnmount: function(event){
+      listener.reset();
     },
     render: function() {
         return (

@@ -1,36 +1,17 @@
 // import child components here.
 var NavButton = require('../navButton.js');
+var navKeys = require('../navKeys.js');
 
 ScoreScreen = React.createClass({
     getInitialState: function(){
       var dog = store.getState();
-      var grade;
-      if(dog.score === 1000000){
-        grade = 'SS';
-      }
-      else if(dog.score > 990000){
-        grade = 'S';
-      }
-      else if(dog.score > 950000){
-        grade = 'A+';
-      }
-      else if(dog.score > 900000){
-        grade = 'A';
-      }
-      else if(dog.score > 800000){
-        grade = 'B';
-      }
-      else if(dog.score > 700000){
-        grade = 'C';
-      }
-      else {
-        grade = 'F';
-      }
+      var grade = dog.score > 700000 ? dog.score > 800000 ? dog.score > 900000 ? dog.score > 950000 ? dog.score > 990000 ?  dog.score === 1000000 ? 'SS' : 'S' :'A+' : 'A' : 'B' : 'C' : 'F';
       return {
         judges: dog.judges,
         username: dog.username, 
         score: dog.score,
         token: dog.token,
+        hits: dog.hits,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
         response: {message: ''},
@@ -43,13 +24,19 @@ ScoreScreen = React.createClass({
     },
 
     componentDidMount: function(){
+      listener.register_combo(navKeys(this, 'enter', this.play));
       //Check first if user is logged in
       if (this.state.username) {
         $.ajax({
           url: '/api/player/score',
           dataType: 'json',
           type: 'POST',
-          data: { token : this.state.token, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
+          data: { 
+            token : this.state.token, 
+            songId : this.state.currSong.id,
+            difficulty : this.state.currDiff, 
+            points : this.state.score,
+            hits: this.state.hits },
           success: function(data) {
             this.setState({response: data});
           }.bind(this), 
@@ -59,19 +46,21 @@ ScoreScreen = React.createClass({
         });
       }
     },
-
+    componentWillUnmount: function(event){
+      listener.reset();
+    },
     render: function() {
       var message = '';
       if(this.state.judges.health <= 0){
         if (this.state.username) {
-          message = <h2>Hey, {this.state.username} you lose! Score is {this.state.response.message}</h2>;
+          message = <h2>Hey, {this.state.username} you lose! {this.state.response.message} score!</h2>;
         } else {
           message = <h2>Hey, you lose!</h2>;
         }
       }
       if (this.state.judges.health > 0) {
         if (this.state.username) {
-          message = <h2>Nice play, {this.state.username}! Score is {this.state.response.message}</h2>;
+          message = <h2>Nice play, {this.state.username}! {this.state.response.message} score!</h2>;
         } else {
           message = <h2>Nice Play!</h2>;
         }
@@ -80,7 +69,7 @@ ScoreScreen = React.createClass({
       return (
         <div className="score-screen-container">
           <div className="message-container">
-          <h3>{message}</h3>
+          {message}
           </div>
           <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
           <div className="song-info-container">

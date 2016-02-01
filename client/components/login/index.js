@@ -6,7 +6,6 @@ Login = React.createClass({
       password: '', 
       usernameError: '',
       signInError: '',
-      hide:'hidden'
       };
     },
     goToSignup: function(event){
@@ -16,27 +15,18 @@ Login = React.createClass({
     store.dispatch(navigateToPage('MAIN'));
     },
     validateUsername: function(event){
-      var username = event.target.value;
-      var usernameError = '';
-      if(username.length < 4){
-        this.setState({usernameError: 'Username must be at least 4 characters'});
-        this.setState({hide:'hidden'});
+      if(event.target.value.length < 4){
+        this.setState({username: event.target.value, usernameError:'Username must be at least 4 characters'});
       }
-      else if(username.length > 16){
-        this.setState({usernameError: 'Username must be less than 16 characters'});
-        this.setState({hide:'hidden'});
+      else if(event.target.value.length > 16){
+        this.setState({username: event.target.value, usernameError:'Username must be less than 16 characters'});
       }
-      else{
-        this.setState({usernameError: ''});
-        this.setState({hide: ''});
+      else {
+        this.setState({username: event.target.value, usernameError: ''});
       }
-      this.setState({username: event.target.value});
     },
     setPassword: function(event){
       this.setState({password: event.target.value});
-      if(this.state.usernameError === ''){
-        this.setState({hide: ''});
-      };
     },
     sendCredentialsToServer: function(event){
       event.preventDefault();
@@ -60,7 +50,7 @@ Login = React.createClass({
     },
     render: function() {
       var usernameError = this.state.usernameError ? 'Error, ' + this.state.usernameError : '';
-      var hide = this.state.hide;
+      var hide = this.state.username === '' || this.state.password === '' || this.state.usernameError  ? 'disabled' : false
         return (
         <div id="loginA">
           <img src="TidalFlux.svg" alt="Tidal Flux" className="logo" onClick={this.goToMainMenu}></img>
@@ -74,9 +64,9 @@ Login = React.createClass({
               <div className="loginfield">Password</div> <input type="password" value={this.state.password} onChange={this.setPassword}/>
               <br />
               <br />
-              <input type="submit" id="subButton" className={hide}/>
+              <input type="submit" id="subButton" disabled={hide}/>
             </form>
-              <div>{usernameError}</div>
+              <div id="uError">{usernameError}</div>
               <div className='signInError'>{this.state.signInError}</div>
               <br />
               <div id="notUser" onClick={this.goToSignup}>Not yet a user? Click here.</div>

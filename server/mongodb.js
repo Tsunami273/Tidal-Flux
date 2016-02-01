@@ -21,7 +21,8 @@ var ScoresSchema = new Schema({
 	username   : String,
 	songId     : Number,
 	points     : Number,
-	difficulty : String
+	difficulty : String,
+  hits       : []
 })
 
 module.exports.Player = mongoose.model('Player', PlayerSchema);

@@ -132,6 +132,11 @@ app.post('/api/player/signin', function(req, res) {
 
 
 app.post('/api/player/score', function(req, res){
+
+    if(req.body.points > 1000000 || !req.body.hits){
+        res.status(400).json({hey:'no cheating'});
+        return;
+    }
     //Decode token to get player name 
     var userObj = jwt.decode(req.body.token, dog);
 
@@ -149,6 +154,7 @@ app.post('/api/player/score', function(req, res){
     		score.points = req.body.points;
     		score.songId = req.body.songId;
     		score.difficulty = req.body.difficulty;
+            score.hits = req.body.hits;
 
     		score.save(function (err, score) {
     			if(err) {
@@ -160,7 +166,7 @@ app.post('/api/player/score', function(req, res){
     	} 
     	if (player) {     // If the player has played played before
     		if (req.body.points <= player.points) {  //New score lower than the existing one
-				res.status(200).json({message:'low score', highscore: player.points});
+				res.status(200).json({message:'Low', highscore: player.points});
 			}
 
     		if(req.body.points > player.points) {   //New High Score
@@ -172,7 +178,7 @@ app.post('/api/player/score', function(req, res){
 					if(err) {
 						res.status(403).json(err);
 					} else {
-						res.status(200).json({message:'New high score', highscore: player.points});
+						res.status(200).json({message:'New high', highscore: player.points});
 					}
 				});
     		}

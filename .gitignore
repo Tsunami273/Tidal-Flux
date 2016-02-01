@@ -1,5 +1,7 @@
+.gitignore
 /node_modules
 npm-debug.log
 /build/bundle.js
 /songs/*.ogg
 /songs/*
+/server/creds.js
