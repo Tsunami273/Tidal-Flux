@@ -71,6 +71,12 @@ SongPlay = React.createClass({
         combos.push(makeKeyBinds(this,keys[i], i));
         totalNotes += noteTimes[i].length;
       }
+      combos.push({"keys": 'esc',
+          "on_keydown": function(event){
+            console.log('back');
+          },
+          "this": scope
+        })
       var noteScoreValue = Math.round(1000000 / totalNotes);
       var noteScoreValues = {perfect: noteScoreValue, 
         good: Math.round(noteScoreValue * .6),
