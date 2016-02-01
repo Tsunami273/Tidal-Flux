@@ -11,7 +11,6 @@ Signup = React.createClass({
       usernameError: '',
       passwordError: '',
       signUpError: '',
-      hide:'hidden'
       };
     },
     goToLogin: function(event){
@@ -22,47 +21,45 @@ Signup = React.createClass({
     },
     validateEmail: function(event) {
       var email = event.target.value;
-      var emailError = '';
       if(!email.includes('@')){
-        this.setState({emailError: 'not a valid email'});
-        this.setState({hide:'hidden'});
+        this.setState({
+          emailError: 'not a valid email',
+          email: event.target.value
+        });
       }
       else{
-        this.setState({emailError: ''});
+        this.setState({
+          emailError: '', 
+          email: event.target.value
+        });
       }
-      this.setState({email: event.target.value});
     },
     validateUsername: function(event){
-      var username = event.target.value;
-      var usernameError = '';
-      if(username.length < 4){
-        this.setState({usernameError: 'Username must be at least 4 characters'});
-        this.setState({hide:'hidden'});
+      if(event.target.value.length < 4){
+        this.setState({username: event.target.value, usernameError:'Username must be at least 4 characters'});
       }
-      else if(username.length > 16){
-        this.setState({usernameError: 'Username must be less than 16 characters'});
-        this.setState({hide:'hidden'});
+      else if(event.target.value.length > 16){
+        this.setState({username: event.target.value, usernameError:'Username must be less than 16 characters'})
       }
-      else{
-        this.setState({usernameError: ''});
+      else {
+        this.setState({username: event.target.value, usernameError: ''});
       }
-      this.setState({username: event.target.value});
     },
     setPassword: function(event){
-      this.setState({password: event.target.value});
+      if(this.state.confirmPassword !== '' && this.state.confirmPassword !== event.target.value){
+        this.setState({password: event.target.value, passwordError: 'passwords do not match'});
+      }
+      else{
+        this.setState({password: event.target.value, passwordError: ''});
+      }
     },
     validatePassword: function(event){
       if(this.state.password !== event.target.value){
-        this.setState({passwordError:'passwords do not match'});
-        this.setState({hide:'hidden'});
+        this.setState({confirmPassword: event.target.value, passwordError: 'passwords do not match'});
       }
       else{
-        this.setState({passwordError: ''});
-        if(this.state.usernameError === '' && this.state.emailError === ''){
-          this.setState({hide:''});
-        }
+        this.setState({confirmPassword: event.target.value, passwordError: ''});
       }
-      this.setState({confirmPassword: event.target.value});
     },
     sendCredentialsToServer: function(event){
       event.preventDefault();
@@ -87,7 +84,7 @@ Signup = React.createClass({
           store.dispatch( signIn(data.username, data.token, this.globalOffset, this.keyBinds) );
         }.bind(dog),
         error: function(xhr, status, err) {
-          this.setState({signUpError: 'This username already exists'});
+          this.setState({signUpError: 'This username/email already exists'});
         }.bind(this)
       });
     },
@@ -95,7 +92,8 @@ Signup = React.createClass({
       var emailError = this.state.emailError ? 'Error, ' + this.state.emailError : '';
       var usernameError = this.state.usernameError ? 'Error, ' + this.state.usernameError : '';
       var passwordError = this.state.passwordError ? 'Error, ' + this.state.passwordError : '';
-      var hide = this.state.hide;
+      var hide = this.state.username === '' || this.state.password === '' || this.state.confirmPassword === '' || this.state.email === '' || 
+      this.state.passwordError || this.state.usernameError || this.state.emailError ? 'disabled' : false;
         return (
         <div>
           <div id="signUpA">
@@ -119,7 +117,7 @@ Signup = React.createClass({
                 <input type="password" value={this.state.confirmPassword} onChange={this.validatePassword}/>
                 <br />
                 <br />
-                <input type="submit" id="subButton" className={hide}/>
+                <input type="submit" id="subButton" disabled={hide} />
               </form>
                 <div id="eError">{emailError}</div>
                 <div id="uError">{usernameError}</div>
