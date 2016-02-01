@@ -31,6 +31,7 @@ ScoreScreen = React.createClass({
         username: dog.username, 
         score: dog.score,
         token: dog.token,
+        hits: dog.hits,
         currSong: dog.selectedSong,
         currDiff: dog.selectedDiff,
         response: {message: ''},
@@ -49,7 +50,12 @@ ScoreScreen = React.createClass({
           url: '/api/player/score',
           dataType: 'json',
           type: 'POST',
-          data: { token : this.state.token, songId : this.state.currSong.id, difficulty : this.state.currDiff, points : this.state.score },
+          data: { 
+            token : this.state.token, 
+            songId : this.state.currSong.id,
+            difficulty : this.state.currDiff, 
+            points : this.state.score,
+            hits: this.state.hits },
           success: function(data) {
             this.setState({response: data});
           }.bind(this), 
@@ -62,6 +68,7 @@ ScoreScreen = React.createClass({
 
     render: function() {
       var message = '';
+      var score = <p>{this.state.response.message}</p>
       // var score = <h1>Your score is: {this.state.response.message}</h1>;
       if(this.state.judges.health <= 0){
         if (this.state.username) {
@@ -83,6 +90,7 @@ ScoreScreen = React.createClass({
         <div className="score-screen-container">
           <div className="message-container">
             {message}
+            {score}    
           </div>
           <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
           <div className="song-info-container">

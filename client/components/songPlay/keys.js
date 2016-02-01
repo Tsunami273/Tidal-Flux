@@ -7,6 +7,8 @@ var makeKeyBinds = function(scope, key, i){
             var currTime = Date.now() - start - this.state.avgOffset;
             if(this.state.notes[i][0] > currTime - 150 && this.state.notes[i][0] < currTime + 150){
               var notes = this.state.notes.slice();
+              var hits = [...this.state.hits];
+              hits[i].push(currTime);
               var batting = Math.abs(this.state.notes[i][0] - currTime);
               var scoreAdd, healthAdd, judge;
               var judgements = {};
@@ -42,7 +44,8 @@ var makeKeyBinds = function(scope, key, i){
               score: this.state.score + scoreAdd,
               message: judge,
               judgements: judgements,
-              messageArray: messageArray});
+              messageArray: messageArray,
+              hits: hits});
             }
           },
           "on_keyup": function(event){

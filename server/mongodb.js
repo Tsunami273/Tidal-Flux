@@ -13,15 +13,16 @@ var PlayerSchema = new Schema({
 	username   : { type: String, required: true, unique: true },
 	email      : { type: String, required: true, unique: true },
 	password   : { type: String, required: true },
-    keybinds   : [],
-    offset     : Number
+  keybinds   : [],
+  offset     : Number
 })
 
 var ScoresSchema = new Schema({
 	username   : String,
 	songId     : Number,
 	points     : Number,
-	difficulty : String
+	difficulty : String,
+  hits       : []
 })
 
 module.exports.Player = mongoose.model('Player', PlayerSchema);
