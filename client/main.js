@@ -63,7 +63,11 @@ var render = function(){
     case 'LEADER':
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Leader />, domContainerNode); 
-      return;    
+      return;
+    case 'FORGOT':
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Forgot />, domContainerNode); 
+      return;        
     default:
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<MainMenu />, domContainerNode);

@@ -20,6 +20,7 @@ var User = React.createClass({
       var notLoggedIn = (<div>Not Logged In: 
         <span className="userbox-button" onClick={this.props.login}> Log In</span> or 
         <span className="userbox-button" onClick={this.props.signup}> Sign Up</span>
+        <span className="userbox-button" onClick={this.props.forgot}> Forgot</span>
         </div>);
         return (<div className="userbox">
         {this.state.user ? loggedIn : notLoggedIn}
