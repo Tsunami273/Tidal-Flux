@@ -1,3 +1,4 @@
+var navKeys = require('../navKeys.js');
 var Diffs = React.createClass({
     getInitialState: function(diff){
       var currDiff = store.getState().selectedDiff;
@@ -8,6 +9,14 @@ var Diffs = React.createClass({
     },
     selectDiff: function(diff) {
       this.setState({diff: diff})
+    },
+    componentDidMount: function(){
+      var combos = [];
+      this.state.diffs.forEach((e,i,c) => {
+        var key = i > 0 ? i > 1 ? 'e' : 'w' : 'q';
+        combos.push( navKeys(this, key, this.selectDiff.bind(this, e)) );
+      })
+      listener.register_many(combos);
     },
     render: function() {
       var that = this;

@@ -4,6 +4,7 @@ var beatMaps = require('./maps/');
 var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
 var findNoteTimes = require('./functionDump.js').findNoteTimes;
 var makeKeyBinds = require('./keys.js');
+var navKeys = require('../navKeys.js');
 var Judgement = require('./Judgement.js');
 var Health = require('./Health.js')
 offsetArr = [];
@@ -71,12 +72,7 @@ SongPlay = React.createClass({
         combos.push(makeKeyBinds(this,keys[i], i));
         totalNotes += noteTimes[i].length;
       }
-      combos.push({"keys": 'esc',
-          "on_keydown": function(event){
-            console.log('back');
-          },
-          "this": scope
-        })
+      combos.push(navKeys(this, 'esc', this.back));
       var noteScoreValue = Math.round(1000000 / totalNotes);
       var noteScoreValues = {perfect: noteScoreValue, 
         good: Math.round(noteScoreValue * .6),
