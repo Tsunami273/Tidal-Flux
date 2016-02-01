@@ -53,14 +53,14 @@ ScoreScreen = React.createClass({
       var message = '';
       if(this.state.judges.health <= 0){
         if (this.state.username) {
-          message = <h2>Hey, {this.state.username} you lose! Score is {this.state.response.message}</h2>;
+          message = <h2>Hey, {this.state.username} you lose! {this.state.response.message} score!</h2>;
         } else {
           message = <h2>Hey, you lose!</h2>;
         }
       }
       if (this.state.judges.health > 0) {
         if (this.state.username) {
-          message = <h2>Nice play, {this.state.username}! Score is {this.state.response.message}</h2>;
+          message = <h2>Nice play, {this.state.username}! {this.state.response.message} score!</h2>;
         } else {
           message = <h2>Nice Play!</h2>;
         }
