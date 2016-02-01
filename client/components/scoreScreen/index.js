@@ -1,5 +1,6 @@
 // import child components here.
 var NavButton = require('../navButton.js');
+var navKeys = require('../navKeys.js');
 
 ScoreScreen = React.createClass({
     getInitialState: function(){
@@ -44,6 +45,9 @@ ScoreScreen = React.createClass({
     },
 
     componentDidMount: function(){
+      // var combos = [];
+      listener.register_combo(navKeys(this, 'enter', this.play));
+
       //Check first if user is logged in
       if (this.state.username) {
         $.ajax({
@@ -65,7 +69,9 @@ ScoreScreen = React.createClass({
         });
       }
     },
-
+    componentWillUnmount: function(event){
+      listener.reset();
+    },
     render: function() {
       var message = '';
       if(this.state.judges.health <= 0){
