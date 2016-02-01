@@ -5,28 +5,7 @@ var navKeys = require('../navKeys.js');
 ScoreScreen = React.createClass({
     getInitialState: function(){
       var dog = store.getState();
-      var grade;
-      if(dog.score === 1000000){
-        grade = 'SS';
-      }
-      else if(dog.score > 990000){
-        grade = 'S';
-      }
-      else if(dog.score > 950000){
-        grade = 'A+';
-      }
-      else if(dog.score > 900000){
-        grade = 'A';
-      }
-      else if(dog.score > 800000){
-        grade = 'B';
-      }
-      else if(dog.score > 700000){
-        grade = 'C';
-      }
-      else {
-        grade = 'F';
-      }
+      var grade = dog.score > 700000 ? dog.score > 800000 ? dog.score > 900000 ? dog.score > 950000 ? dog.score > 990000 ?  dog.score === 1000000 ? 'SS' : 'S' :'A+' : 'A' : 'B' : 'C' : 'F';
       return {
         judges: dog.judges,
         username: dog.username, 
@@ -45,9 +24,7 @@ ScoreScreen = React.createClass({
     },
 
     componentDidMount: function(){
-      // var combos = [];
       listener.register_combo(navKeys(this, 'enter', this.play));
-
       //Check first if user is logged in
       if (this.state.username) {
         $.ajax({
