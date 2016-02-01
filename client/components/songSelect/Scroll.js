@@ -1,3 +1,4 @@
+var navKeys = require('../navKeys.js');
 var Scroll = React.createClass({
     getInitialState: function(diff){
       var currScroll = store.getState().scrollSpeed;
@@ -5,6 +6,13 @@ var Scroll = React.createClass({
         scroll: currScroll,
         scrolls: [1,2,3,4,5,6],
       }
+    },
+    componentDidMount: function(){
+      var combos = [];
+      this.state.scrolls.forEach((e,i,c) => {
+        combos.push( navKeys(this, e.toString(), this.selectScroll.bind(this, e)) );
+      });
+      listener.register_many(combos);
     },
     selectScroll: function(scrollIndex) {
       this.setState({scroll: scrollIndex});
