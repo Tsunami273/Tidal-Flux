@@ -1,8 +1,11 @@
 'use strict';
+var creds = require('./creds.js');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://tidal:tidal@ds047355.mongolab.com:47355/tidal', function(err, result) {
-    if (err) return err;
-    console.log('Successfully connected to MongoDB')
+mongoose.connect('mongodb://'+creds.user+':'+creds.pass+'@ds047355.mongolab.com:47355/tidal', function(err, result) {
+    if (err) throw err;
+    else{
+      console.log('Successfully connected to MongoDB');
+    } 
 });
 
 var db = mongoose.connection;
