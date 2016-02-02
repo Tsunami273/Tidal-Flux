@@ -240,7 +240,7 @@ app.get('/api/player/password/reset', function (req, res){
             to: data[0].email, // list of receivers
             subject: "Tidal Flux password reset", // Subject line
             text: "Hello world", // plaintext body
-            html: "<b>Hello world ✔<a href=localhost:4000/passwordReset?token=" + token + ">password reset<a></b>" // html body
+            html: "<b>Hello "+data[0].username +" please reset your password: <a href=tidal-flux.herokuapp.com/passwordReset?token=" + token + ">password reset<a></b>" // html body
         };
         transport.sendMail(mailData, function(err, info){
             if(err){

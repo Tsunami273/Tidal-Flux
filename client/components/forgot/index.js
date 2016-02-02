@@ -35,11 +35,10 @@ Forgot = React.createClass({
 			dataType: 'json',
 			type: 'GET',
 			success: function(data){
-				console.log('sent recovery email successfully')
+				store.dispatch(navigateToPage('MAIN'));
 			}.bind(this),
 			error: function(err){
 				this.setState({emailNotFound:'this email does not exist'})
-				console.log('Password Recovery Email Error: ', err);
 			}.bind(this)
 		})
 	},
