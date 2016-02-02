@@ -73,6 +73,7 @@ SongPlay = React.createClass({
         totalNotes += noteTimes[i].length;
       }
       combos.push(navKeys(this, 'esc', this.back));
+      combos.push(navKeys(this, 'backspace', this.back));
       var noteScoreValue = Math.round(1000000 / totalNotes);
       var noteScoreValues = {perfect: noteScoreValue, 
         good: Math.round(noteScoreValue * .6),

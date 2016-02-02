@@ -37,10 +37,10 @@ Tutorial = React.createClass({
           combo: 0,
         },
         noteScoreValues: {
-          Perfect: 0,
-          Good: 0,
-          Decent: 0,
-          Miss: 0
+          perfect: 0,
+          good: 0,
+          decent: 0,
+          miss: 0
         },
         scrollSpeed: scrollSpeed,
       };
@@ -64,6 +64,7 @@ Tutorial = React.createClass({
         totalNotes += noteTimes[i].length;
       }
       combos.push(navKeys(this, 'esc', this.back));
+      combos.push(navKeys(this, 'backspace', this.back));
       listener.register_many(combos);
       offsetArr = [];
       intervalID = [];
