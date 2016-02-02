@@ -13,6 +13,7 @@ Tutorial = React.createClass({
     getInitialState: function() {
       var globalState = store.getState()
       var scrollSpeed = globalState.durations[globalState.scrollSpeed-1];
+      var keys = globalState.keyBinds;
       return {
         playhead: 0,
         timer: 0,
@@ -43,6 +44,7 @@ Tutorial = React.createClass({
           miss: 0
         },
         scrollSpeed: scrollSpeed,
+        keys: keys,
       };
     },
     back: function(){
@@ -57,7 +59,7 @@ Tutorial = React.createClass({
       var timedBeatMap = findMeasureStartTimes(beatMaps[0][currDiff], currSong.BPM);
       var noteTimes = findNoteTimes(timedBeatMap, currOffset);
       var combos = [];
-      var keys = store.getState().keyBinds; 
+      var keys = this.state.keys; 
       var totalNotes = 0;
       for(var i = 0 ; i < 6; i++){
         combos.push(makeKeyBinds(this,keys[i], i));
@@ -145,12 +147,13 @@ Tutorial = React.createClass({
     },
     render: function() {
         var audioSource = store.getState().selectedSong;
+        var that = this;
         return (
         <div className="song-play-contain">
           <div onClick={this.back}>Back</div>
           <audio src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
-          onEnded={this.play}
+          onEnded={this.back}
           onTimeUpdate={this.updatePlayhead}
           ref='audio'
           ></audio>
@@ -158,12 +161,20 @@ Tutorial = React.createClass({
           <div className="instructions" id="instruct-bottom-left">When the notes reach this bar, press the corresponding key to hit them. 
             <div className="tutorial-arrow">&#8594;</div>
           </div>
-          <div className="instruction" id="instruct-bottom-right"> Press 'escape' or 'backspace' to quit the song early. </div>
+          <div className="instruction" id="instruct-bottom-right"> 
+            Press "<span className="key-name-text">escape</span>" or 
+             "<span className="key-name-text">backspace</span>" to quit the song early.
+            </div>
           <div className="track-wrapper-tutorial">
           <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <Notes songState={this} stagedNotes={this.state.notes} />
           </div>
-          <div className="tutorial-keys">S D F J K L</div>
+          <div className="tutorial-keys">
+          {this.state.keys.map((e,i,c) => {
+            var triggered = classNames('tutorial-lane-key'+(i+1), {triggered: that.state['lane'+i]});
+            return (<span className={triggered} key={i}>{e.toUpperCase()} </span>)
+          })}
+          </div>
         </div>
         );
     }
