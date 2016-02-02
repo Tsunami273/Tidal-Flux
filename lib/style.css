@@ -1555,7 +1555,14 @@ progress::-webkit-progress-bar {
 }
 
 #instruct-bottom-right {
+  margin-top:-132px;
+  font-size:20;
   float:right;
+  width: 350px;
+}
+
+.key-name-text {
+  color:#EF307E;
 }
 
   /* 

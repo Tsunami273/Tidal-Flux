@@ -158,6 +158,7 @@ Tutorial = React.createClass({
           <div className="instructions" id="instruct-bottom-left">When the notes reach this bar, press the corresponding key to hit them. 
             <div className="tutorial-arrow">&#8594;</div>
           </div>
+          <div className="instruction" id="instruct-bottom-right"> Press 'escape' or 'backspace' to quit the song early. </div>
           <div className="track-wrapper-tutorial">
           <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <Notes songState={this} stagedNotes={this.state.notes} />
