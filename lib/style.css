@@ -489,7 +489,7 @@ body {
   text-shadow: 2px 2px 8px #404040;
 }
 
-#options #login #signup {
+#options #login #signup #tutorial {
   margin-top: 15px;
   /*background-color: #298FA3;
   height: 35px;
@@ -1516,7 +1516,54 @@ progress::-webkit-progress-bar {
   -webkit-filter: blur(.5px);
 }
 
+/*====================Tutorial============================*/
 
+.instructions {
+  width:380px;
+}
+
+#instruct-bottom-left {
+  font-size:20px;
+  margin-top:420px;
+  margin-bottom:0px;
+  padding-bottom:0px;
+}
+
+#instruct-top {
+  font-size:30px;
+  margin-top:150px;
+}
+
+.track-wrapper-tutorial {
+  margin-top:-746px;
+}
+
+.tutorial-keys {
+  margin-top:0px;
+  margin-left:auto;
+  margin-right:auto;
+  width:310px;
+  font-size:49;
+}
+
+.tutorial-arrow {
+  margin-top:-50px;
+  padding: 0px;
+  font-size:80;
+  color:#EF307E;
+  margin-left:300px;
+}
+
+#instruct-bottom-right {
+  margin-top:-132px;
+  font-size:20;
+  float:right;
+  width: 350px;
+}
+
+.key-name-text {
+  color:#EF307E;
+}
 
   /* 
 ----==COLOR PALETTE==----
