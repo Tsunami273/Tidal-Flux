@@ -1524,7 +1524,9 @@ progress::-webkit-progress-bar {
 
 #instruct-bottom-left {
   font-size:20px;
-  margin-top:450px;
+  margin-top:420px;
+  margin-bottom:0px;
+  padding-bottom:0px;
 }
 
 #instruct-top {
@@ -1533,7 +1535,7 @@ progress::-webkit-progress-bar {
 }
 
 .track-wrapper-tutorial {
-  margin-top:-710px;
+  margin-top:-746px;
 }
 
 .tutorial-keys {
@@ -1542,6 +1544,18 @@ progress::-webkit-progress-bar {
   margin-right:auto;
   width:310px;
   font-size:49;
+}
+
+.tutorial-arrow {
+  margin-top:-50px;
+  padding: 0px;
+  font-size:80;
+  color:#EF307E;
+  margin-left:300px;
+}
+
+#instruct-bottom-right {
+  float:right;
 }
 
   /* 

@@ -106,7 +106,7 @@ Tutorial = React.createClass({
 
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
-        var grabTime = Date.now()-start + 4500;
+        var grabTime = Date.now()-start + 5500;
         var noteTimes = that.state.noteTimes;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
@@ -155,7 +155,9 @@ Tutorial = React.createClass({
           ref='audio'
           ></audio>
           <div className="instructions" id="instruct-top">Notes will fall down from the top of the screen.</div>
-          <div className="instructions" id="instruct-bottom-left">When the notes reach this bar, press the corresponding key to hit them. </div>
+          <div className="instructions" id="instruct-bottom-left">When the notes reach this bar, press the corresponding key to hit them. 
+            <div className="tutorial-arrow">&#8594;</div>
+          </div>
           <div className="track-wrapper-tutorial">
           <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <Notes songState={this} stagedNotes={this.state.notes} />
