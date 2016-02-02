@@ -51,41 +51,45 @@ ScoreScreen = React.createClass({
     },
     render: function() {
       var message = '';
+      // var score = <p>{this.state.response.message}</p>
       if(this.state.judges.health <= 0){
         if (this.state.username) {
-          message = <h2>Hey, {this.state.username} you lose! {this.state.response.message} score!</h2>;
+          message = <p>Hey, {this.state.username} you lose!</p>;
         } else {
-          message = <h2>Hey, you lose!</h2>;
+          message = <p>Hey, you lose!</p>;
         }
       }
       if (this.state.judges.health > 0) {
         if (this.state.username) {
-          message = <h2>Nice play, {this.state.username}! {this.state.response.message} score!</h2>;
+          message = <p>Nice play, {this.state.username}!</p>;
         } else {
-          message = <h2>Nice Play!</h2>;
+          message = <p>Nice Play!</p>;
         }
       }
 
       return (
+        <div>
         <div className="score-screen-container">
           <div className="message-container">
-          {message}
+            {message}    
           </div>
-          <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
           <div className="song-info-container">
             <div className="ss-song-title">{this.state.currSong.title}</div>
             <div className="ss-song-artist">{this.state.currSong.artist}</div>
           </div>
-          <div className="ss-song-diff">{this.state.currDiff}</div>
-          <div className="grade-container">{this.state.grade}</div>
-          <div className="score-container">Score: <span className="score-count">{this.state.score}</span></div>
-          <div className="judge-container">
+          <div className="ss-song-diff">Difficulty: {this.state.currDiff}</div>
+          <div id="scoreinner">
+            <div className="grade-container">{this.state.grade}</div>
+            <div className="score-container">Score: <span className="score-count">{this.state.score}</span></div>
+            <div className="judge-container">
             <div>Perfect: <span className="judge-count">{this.state.judges.Perfect}</span></div>
             <div>Good: <span className="judge-count">{this.state.judges.Good}</span></div>
             <div>Decent: <span className="judge-count">{this.state.judges.Decent}</span></div>
             <div>Miss: <span className="judge-count">{this.state.judges.Miss}</span></div>
           </div>
-          <div className="clicky" id="back" onClick={this.play}>
+          </div>
+        </div>
+          <div className="clicky" id="done" onClick={this.play}>
           <h3>Done</h3>
           </div>
         </div>
@@ -93,3 +97,4 @@ ScoreScreen = React.createClass({
     }
 });
 module.exports = ScoreScreen;
+// <div className="highscore-container"><h2>Your current top score :{this.state.response.highscore}</h2></div>
