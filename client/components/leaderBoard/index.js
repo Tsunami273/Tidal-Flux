@@ -33,7 +33,6 @@ Leader = React.createClass({
 		return(
 			
 			<div id="leaderContain">
-				<SongDropDown songsWithScores={this.state.songWithScores}/>
 				<h1>Leader Board</h1>
 				{this.state.songsWithScores.map(function(song, index, allSongs){
 					return(
