@@ -1565,6 +1565,29 @@ progress::-webkit-progress-bar {
   color:#EF307E;
 }
 
+.tutorial-lane-key1.triggered {
+  color:#298FA3;
+}
+
+.tutorial-lane-key2.triggered {
+  color:#298FA3;
+}
+
+.tutorial-lane-key3.triggered {
+  color:#298FA3;
+}
+
+.tutorial-lane-key4.triggered {
+  color:#298FA3;
+}
+
+.tutorial-lane-key5.triggered {
+  color:#298FA3;
+}
+
+.tutorial-lane-key6.triggered {
+  color:#298FA3;
+}
   /* 
 ----==COLOR PALETTE==----
 WHITE       //==> #ECEEF1
