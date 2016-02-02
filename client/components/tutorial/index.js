@@ -1,21 +1,19 @@
-// import child components here.
-var Notes = require('./Notes.js');
-var beatMaps = require('./maps/');
-var findMeasureStartTimes = require('./functionDump.js').findMeasureStartTimes;
-var findNoteTimes = require('./functionDump.js').findNoteTimes;
-var makeKeyBinds = require('./keys.js');
+var Notes = require('../songPlay/Notes.js');
+var beatMaps = require('./map.js');
+var findMeasureStartTimes = require('../songPlay/functionDump.js').findMeasureStartTimes;
+var findNoteTimes = require('../songPlay/functionDump.js').findNoteTimes;
+var makeKeyBinds = require('../songPlay/keys.js');
 var navKeys = require('../navKeys.js');
-var Judgement = require('./Judgement.js');
-var Health = require('./Health.js')
+var Judgement = require('../songPlay/Judgement.js');
 offsetArr = [];
 intervalID = [];
 
 
-SongPlay = React.createClass({
+Tutorial = React.createClass({
     getInitialState: function() {
       var globalState = store.getState()
       var scrollSpeed = globalState.durations[globalState.scrollSpeed-1];
-      var noFail = globalState.noFail;
+      var keys = globalState.keyBinds;
       return {
         playhead: 0,
         timer: 0,
@@ -29,7 +27,6 @@ SongPlay = React.createClass({
         lane3: false,
         lane4: false,
         lane5: false,
-        score: 0,
         message: '',
         messageArray: [],
         judgements: {
@@ -40,22 +37,18 @@ SongPlay = React.createClass({
           health: 100,
           combo: 0,
         },
+        noteScoreValues: {
+          perfect: 0,
+          good: 0,
+          decent: 0,
+          miss: 0
+        },
         scrollSpeed: scrollSpeed,
-        noFail: noFail
+        keys: keys,
       };
     },
-    play: function(event) {
-      intervalID.forEach(function(e,i,c){
-        clearInterval(e);  
-      });
-      listener.reset();
-      var score = this.state.score
-      var judges = this.state.judgements
-      var hits = this.state.hits
-      store.dispatch( setScore(score, judges, hits) );
-    },
     back: function(){
-      store.dispatch(navigateToPage('SELECT'));
+      store.dispatch(navigateToPage('MAIN'));
     },
     componentDidMount: function() {
       start = Date.now();
@@ -63,10 +56,10 @@ SongPlay = React.createClass({
       var currDiff = curr.selectedDiff;
       var currSong = curr.selectedSong; 
       var currOffset = curr.globalOffset;
-      var timedBeatMap = findMeasureStartTimes(beatMaps[currSong.id-1][currDiff], currSong.BPM);
+      var timedBeatMap = findMeasureStartTimes(beatMaps[0][currDiff], currSong.BPM);
       var noteTimes = findNoteTimes(timedBeatMap, currOffset);
       var combos = [];
-      var keys = store.getState().keyBinds; 
+      var keys = this.state.keys; 
       var totalNotes = 0;
       for(var i = 0 ; i < 6; i++){
         combos.push(makeKeyBinds(this,keys[i], i));
@@ -74,15 +67,10 @@ SongPlay = React.createClass({
       }
       combos.push(navKeys(this, 'esc', this.back));
       combos.push(navKeys(this, 'backspace', this.back));
-      var noteScoreValue = Math.round(1000000 / totalNotes);
-      var noteScoreValues = {perfect: noteScoreValue, 
-        good: Math.round(noteScoreValue * .6),
-        decent: Math.round(noteScoreValue * .2)};
       listener.register_many(combos);
       offsetArr = [];
       intervalID = [];
-      this.setState({noteTimes: noteTimes,
-        noteScoreValues: noteScoreValues});
+      this.setState({noteTimes: noteTimes});
     },
     componentWillUnmount: function(event){
       listener.reset();
@@ -94,13 +82,10 @@ SongPlay = React.createClass({
       start = Date.now();
       var that = this; 
       this.refs.audio.play();
-      this.refs.progressBar.max = this.refs.audio.duration;
 
       var polling = setInterval(function(){ 
         var currTime = Date.now() - start - that.state.avgOffset;
-        that.refs.progressBar.value = currTime/1000;
         var notes = that.state.notes.slice();
-        var hits = [...that.state.hits];
         var message = that.state.message;
         var combo = that.state.combo;
         var judgements = {};
@@ -109,30 +94,21 @@ SongPlay = React.createClass({
         for(var i = 0 ; i < 6; i++){
           if(notes[i][0] + 150 < currTime){
             notes[i].shift();
-            hits[i].push(currTime);
             message = 'Miss';
             judgements.Miss++;
             messageArray = ['Miss' + judgements.Miss];
-            judgements.health = judgements.health - 10;
             judgements.combo = 0; 
-            if(judgements.health < 0 && !that.state.noFail){
-              return that.play();
-            }
           }
         }
         that.setState({notes: notes,
           message: message,
           judgements: judgements,
-          messageArray: messageArray,
-          hits: hits});
-        if(judgements.health < 0 && !that.state.noFail){
-          return that.play();
-        };
+          messageArray: messageArray});
       }, 10);
 
       var staging = setInterval(function(){
         var stagedNotes = that.state.notes.slice();
-        var grabTime = Date.now()-start + 4500;
+        var grabTime = Date.now()-start + 5500;
         var noteTimes = that.state.noteTimes;
         for(var i = 0; i < 6; i++){
           var length = noteTimes[i].length;
@@ -171,27 +147,37 @@ SongPlay = React.createClass({
     },
     render: function() {
         var audioSource = store.getState().selectedSong;
-        var noFail = this.state.noFail ? 'true' : 'false';
+        var that = this;
         return (
         <div className="song-play-contain">
-          <div className="health-bar-contain"><Health health={this.state.judgements.health}/>
-          <div className="progress-bar-contain"><progress max="100" value="0" ref="progressBar" id="progressBar"></progress> &nbsp; <br /> <div className='progress-bar-contain'>Progress</div></div>
-          </div>
-          <div className="play-score">Score: {this.state.score}</div>
           <div onClick={this.back}>Back</div>
           <audio src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
-          onEnded={this.play}
+          onEnded={this.back}
           onTimeUpdate={this.updatePlayhead}
           ref='audio'
           ></audio>
-          <div className="track-wrapper">
+          <div className="instructions" id="instruct-top">Notes will fall down from the top of the screen.</div>
+          <div className="instructions" id="instruct-bottom-left">When the notes reach this bar, press the corresponding key to hit them. 
+            <div className="tutorial-arrow">&#8594;</div>
+          </div>
+          <div className="instruction" id="instruct-bottom-right"> 
+            Press "<span className="key-name-text">escape</span>" or 
+             "<span className="key-name-text">backspace</span>" to quit the song early.
+            </div>
+          <div className="track-wrapper-tutorial">
           <Judgement messages={this.state.messageArray} combo={this.state.judgements.combo}/>
           <Notes songState={this} stagedNotes={this.state.notes} />
+          </div>
+          <div className="tutorial-keys">
+          {this.state.keys.map((e,i,c) => {
+            var triggered = classNames('tutorial-lane-key'+(i+1), {triggered: that.state['lane'+i]});
+            return (<span className={triggered} key={i}>{e.toUpperCase()} </span>)
+          })}
           </div>
         </div>
         );
     }
 });
 
-module.exports = SongPlay;
+module.exports = Tutorial;

@@ -1,5 +1,4 @@
 // import child components here.
-// var combos = require('./keybinds.js');
 var NavButton = require('../navButton.js');
 var User = require('./User.js');
 
@@ -26,6 +25,9 @@ MainMenu = React.createClass({
     goToLeaderBoard: function(){
       store.dispatch(navigateToPage('LEADER'));
     },
+    goToTutorial: function(){
+      store.dispatch( navigateFromSelect('TUTORIAL', songList[3], 1, 'Easy' ) );
+    },
     render: function() {
         return (
         <div>
@@ -44,7 +46,7 @@ MainMenu = React.createClass({
             <h3>Options</h3>
           </div>
 
-          <div id="login" className="clicky" onClick={this.goToLogin}>
+          <div id="tutorial" className="clicky" onClick={this.goToTutorial}>
             <h3>Tutorial</h3>
           </div>
 
@@ -62,6 +64,3 @@ MainMenu = React.createClass({
     }
 });
 module.exports = MainMenu;
-
-// <div className="clicky" onClick={this.goToLogin}>Login</div>
-// <div className="clicky" onClick={this.goToSignup}>Signup</div>
