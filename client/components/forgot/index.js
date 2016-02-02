@@ -5,7 +5,6 @@ Forgot = React.createClass({
 			confirmEmail: '',
 			emailError: '',
 			confirmEmailError: '',
-			hide: 'hidden',
 			emailNotFound: ''
 		};
 	},
@@ -13,29 +12,26 @@ Forgot = React.createClass({
 		var email = event.target.value;
 		if(!email.includes('@')){
       this.setState({emailError: 'not a valid email'});
-      this.setState({hide:'hidden'});
     }
     else{
       this.setState({emailError: ''});
-      this.setState({hide:''});
     }
-    this.setState({email: event.target.value});
+    this.setState({email: email});
 	},
 	validateConfirmEmail: function(event){
 		var confirmEmail = event.target.value;
 		if(this.state.email !== confirmEmail){
 			this.setState({confirmEmailError: 'Emails do not match'});
-			this.setState({hide:'hidden'});
 		}
 		else{
 			this.setState({confirmEmailError:''});
-			this.setState({hide:''});
 		}
 		this.setState({confirmEmail: confirmEmail});
 	},
-	sendRecoveryEmail: function(){
+	sendRecoveryEmail: function(event){
+		event.preventDefault();
 		$.ajax({
-			url:'/api/player/password/recover?email=' + this.state.email,
+			url:'/api/player/password/reset?email=' + this.state.email,
 			dataType: 'json',
 			type: 'GET',
 			success: function(data){
@@ -48,14 +44,15 @@ Forgot = React.createClass({
 		})
 	},
 	render: function(){
+		var hide = this.state.emailError || this.state.confirmEmailError ? 'disabled' : false;
 		return (
 			<div>
-				<form>
+				<form onSubmit={this.sendRecoveryEmail}>
 					<input type="text" value={this.state.email} onChange={this.validateEmail} placeholder="email"/>
 					<br />
 					<input type="text" value={this.state.confirmEmail} onChange={this.validateConfirmEmail} placeholder="confirm email"/>
 					<br />
-					<input type="submit" id="subButton" className={this.state.hide}/>
+					<input type="submit" id="subButton" disabled={hide}/>
 				</form>
 				<div id="eError">{this.state.emailError}</div>
 				<div id="eError">{this.state.confirmEmailError}</div>

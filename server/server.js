@@ -222,38 +222,38 @@ app.post('/api/rankings', function (req, res) {
 });
 
 //***********EMAIL***************/
-// app.get('/password/reset/email', function (req, res){
+app.get('/api/player/password/reset', function (req, res){
 
-//     console.log('password reset body', req.body);
-//     // var email = req.query.email;
-//     // console.log('email', email);
-//     // models.Player
-//     // .find(req.query)
-//     // .select('username email')
-//     // .then(function(data){
-//     //     var tempPassword = 'abc';
-//     //     console.log('Player Data', data);
-//     //     res.status(200).json(data);
-//     // });
+    var email = req.query.email;
+    console.log('email', email);
+    models.Player
+    .find(req.query)
+    .select('username email')
+    .then(function(data){
+        console.log('data', data);
+        var token = jwt.encode({username: data[0].username}, dog);
+        console.log('token', token);
+        console.log('data.email', data[0].email);
+        console.log('data.username', data[0].username);
+        var mailData= {
+            from: "Team Tsunami <tidalflux273@gmail.com>", // sender address
+            to: data[0].email, // list of receivers
+            subject: "Tidal Flux password reset", // Subject line
+            text: "Hello world", // plaintext body
+            html: "<b>Hello world ✔<a href=localhost:4000/passwordReset?token=" + token + ">password reset<a></b>" // html body
+        };
+        transport.sendMail(mailData, function(err, info){
+            if(err){
+                console.log('Email Error:', err);
+            }
+            else {
+                console.log('info', info);
+            }
+        });
+        res.status(200).json(data);
+    });
 
-//     // //SEND THE EMAIL
-//     // var mailData= {
-//     //     from: "Team Tsunami <foo@blurdybloop.com>", // sender address
-//     //     to: "michaelvwheatley@gmail.com", // list of receivers
-//     //     subject: "Hello", // Subject line
-//     //     text: "Hello world", // plaintext body
-//     //     html: "<b>Hello world ✔</b>" // html body
-//     // }
-//     // transport.sendMail(mailData, function(err, info){
-//     //     if(err){
-//     //         console.log('Email Error:', err);
-//     //     }
-//     //     else {
-//     //         console.log('info', info);
-//     //     }
-//     // });
-//     // //SEND THE EMAIL
-// })
+})
 
 
 
