@@ -21,19 +21,19 @@ var songList = [
   artist:'Sanaas',
   id:4,
   BPM: 175,
-  diff: [2,4,6]
+  diff: [2,5,6]
 },
-  {title:'song5',
-  artist:'dog',
+  {title:'i ωɒN̂t iẗ ThÅt ωay',
+  artist:'ΔMUNOA',
   id:5,
-  BPM: 150,
-  diff: [1,1,1]
+  BPM: 145,
+  diff: [1,4,7]
 },
-  {title:'song6',
-  artist:'cat',
+  {title:'C0ld night',
+  artist:'Batsu',
   id:6,
-  BPM: 170,
-  diff: [1,1,1]
+  BPM: 140,
+  diff: [2,4,8]
 },
 ];
 
