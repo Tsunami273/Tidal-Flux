@@ -34,6 +34,7 @@
     "keypress.js": "^2.1.0",
     "mongoose": "^4.3.6",
     "morgan": "^1.6.1",
+    "nodemailer": "^2.0.0",
     "nodemon": "^1.8.1",
     "npm-watch": "^0.1.1",
     "path": "^0.12.7",
