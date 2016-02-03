@@ -1,10 +1,12 @@
 var createScoresArray = require('./createScoresArray.js');
-var ByDifficulty = require('./ByDifficulty.js')
+var ByDifficulty = require('./ByDifficulty.js');
+var SongDropDown = require('./SongDropDown.js')
 
 Leader = React.createClass({
 	getInitialState: function(){
 		return {
-			songsWithScores:[]
+			songsWithScores:[],
+			currentSongId: null
 		}
 	},
 	componentDidMount: function(){
@@ -29,6 +31,7 @@ Leader = React.createClass({
 		var that = this;
 
 		return(
+			
 			<div id="leaderContain">
 				<h1>Leader Board</h1>
 				{this.state.songsWithScores.map(function(song, index, allSongs){

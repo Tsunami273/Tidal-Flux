@@ -7,4 +7,5 @@ require('./signup/');
 require('./globalOptions');
 require('./credits');
 require('./leaderBoard/');
+require('./forgot');
 require('./tutorial');
