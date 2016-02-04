@@ -14,6 +14,9 @@ Login = React.createClass({
     goToMainMenu: function(event) {
     store.dispatch(navigateToPage('MAIN'));
     },
+    goToForgot: function(){
+      store.dispatch(navigateToPage('FORGOT'));
+    },
     validateUsername: function(event){
       if(event.target.value.length < 4){
         this.setState({username: event.target.value, usernameError:'Username must be at least 4 characters'});
@@ -70,6 +73,7 @@ Login = React.createClass({
               <div className='signInError'>{this.state.signInError}</div>
               <br />
               <div id="notUser" onClick={this.goToSignup}>Not yet a user? Click here.</div>
+              <span className="userbox-button" onClick={this.goToForgot}>Forgot Password</span>
               <div id="notUser" onClick={this.goToMainMenu}>Back</div>
           </div>
 

@@ -20,7 +20,7 @@ MainMenu = React.createClass({
       store.dispatch(navigateToPage('SIGNUP'));
     },
     goToOptions: function(){
-      store.dispatch(navigateToPage('GOPTIONS'))
+      store.dispatch(navigateToPage('GOPTIONS'));
     },
     goToLeaderBoard: function(){
       store.dispatch(navigateToPage('LEADER'));
@@ -31,7 +31,7 @@ MainMenu = React.createClass({
     render: function() {
         return (
         <div>
-        <User login={this.goToLogin} signup={this.goToSignup} />
+        <User login={this.goToLogin} signup={this.goToSignup}/>
         <div id="menucontain">
 
           <div id="title">
@@ -51,7 +51,7 @@ MainMenu = React.createClass({
           </div>
 
           <div id="leader" className="clicky" onClick={this.goToLeaderBoard}>
-            <h3>Leader Board</h3>
+            <h3>Leaderboard</h3>
           </div>
 
           <div id="credits" className="clicky" onClick={this.goToCredits}>

@@ -10,6 +10,7 @@ var models     = require("./mongodb");
 var mongoose   = require('mongoose');
 var bcrypt     = require('bcryptjs');
 var jwt        = require('jwt-simple');
+var nodemailer = require('nodemailer');
 var dog        = 'dog';
 
 
@@ -17,6 +18,34 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../'));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+var transport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: "tidalflux273@gmail.com",
+        pass: "tsunami273"
+    }
+});
+
+app.get('/passwordReset', function (req, res){
+    res.sendfile(path.join(__dirname + '/../passwordReset.html'));
+});
+
+app.post('/passwordReset', function (req,res){
+    var token = req.body.token;
+    var userObj = jwt.decode(token, dog);
+    console.log('userObj', userObj);
+    bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
+        models.Player.update({username: userObj.username}, {$set: {password: hashPassword}}, function(err, data){
+            if(err){
+              res.sendfile(path.join(__dirname + '/../passwordFailed.html'));
+            }
+            else{
+              res.sendfile(path.join(__dirname + '/../passwordChanged.html'));
+            }
+        });
+    });
+});
 
 app.get('/api/scores', function(req, res){
   models.Score.find(req.query)
@@ -81,20 +110,20 @@ app.post('/api/player/signin', function(req, res) {
     	}
     	if (player) {
 	    	//Validate password
-	    	bcrypt.compare(req.body.password, player.password, function (err, valid) {
-	    		if (err) {
-	    			res.status(403).json(err);
-	    		}
-	    		if(!valid) {
-	    			res.status(403).json({ message: 'Forbidden'});
-	    		} 
-	    		if(valid) {
-	    			//Generate token
-	    			var sessionToken = jwt.encode({username: player.username}, dog);
+                bcrypt.compare(req.body.password, player.password, function (err, valid) {
+    	    		if (err) {
+    	    			res.status(403).json(err);
+    	    		}
+    	    		if(!valid) {
+    	    			res.status(403).json({ message: 'Forbidden'});
+    	    		} 
+    	    		if(valid) {
+    	    			//Generate token
+    	    			var sessionToken = jwt.encode({username: player.username}, dog);
 
-	    			var session = {token: sessionToken, username: player.username, keybinds: player.keybinds, offset: player.offset}
-	    		    res.status(200).json(session);
-	    		} 
+    	    			var session = {token: sessionToken, username: player.username, keybinds: player.keybinds, offset: player.offset}
+    	    		    res.status(200).json(session);
+    	    		}  
 	    	});
 	    }
     });
@@ -191,6 +220,41 @@ app.post('/api/player/profile', function (req, res) {
 app.post('/api/rankings', function (req, res) {
 	playerRankings(req, res);
 });
+
+//***********EMAIL***************/
+app.get('/api/player/password/reset', function (req, res){
+
+    var email = req.query.email;
+    console.log('email', email);
+    models.Player
+    .find(req.query)
+    .select('username email')
+    .then(function(data){
+        console.log('data', data);
+        var token = jwt.encode({username: data[0].username}, dog);
+        console.log('token', token);
+        console.log('data.email', data[0].email);
+        console.log('data.username', data[0].username);
+        var mailData= {
+            from: "Team Tsunami <tidalflux273@gmail.com>", // sender address
+            to: data[0].email, // list of receivers
+            subject: "Tidal Flux password reset", // Subject line
+            text: "Hello world", // plaintext body
+            html: "<b>Hello "+data[0].username +" please reset your password: <a href=tidal-flux.herokuapp.com/passwordReset?token=" + token + ">password reset<a></b>" // html body
+        };
+        transport.sendMail(mailData, function(err, info){
+            if(err){
+                console.log('Email Error:', err);
+            }
+            else {
+                console.log('info', info);
+            }
+        });
+        res.status(200).json(data);
+    });
+
+})
+
 
 
 app.listen(port);

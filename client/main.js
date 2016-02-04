@@ -62,6 +62,10 @@ var render = function(){
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Leader />, domContainerNode); 
       return;
+    case 'FORGOT':
+      ReactDOM.unmountComponentAtNode(domContainerNode)
+      ReactDOM.render(<Forgot />, domContainerNode); 
+      return;        
     case 'TUTORIAL':
       ReactDOM.unmountComponentAtNode(domContainerNode)
       ReactDOM.render(<Tutorial />, domContainerNode); 
