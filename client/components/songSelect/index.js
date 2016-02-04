@@ -109,7 +109,7 @@ SongSelect = React.createClass({
       combos.push(navKeys(this, 'backspace', this.back));
       combos.push(navKeys(this, 'enter', this.play));
       listener.register_many(combos);
-      if(store.getState.username !== ""){
+      if(store.getState().username !== ""){
         $.ajax({
           url: '/api/scores?username=' + store.getState().username,
           type: 'GET',

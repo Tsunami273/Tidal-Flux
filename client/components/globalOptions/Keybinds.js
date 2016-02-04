@@ -16,7 +16,6 @@ var KeybindOption = React.createClass({
       event.preventDefault();
       var keybinds = [this.state.lane1, this.state.lane2, this.state.lane3, this.state.lane4, this.state.lane5, this.state.lane6];
       var token = store.getState().token;
-      // ADD SESSION TOKEN VALIDATION HERE.
       if(store.getState().username){
       $.ajax({
         url: '/api/player/keybinds',
