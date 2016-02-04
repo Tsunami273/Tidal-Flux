@@ -2,11 +2,20 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
+    browserify: {
+      dist: {
+        files: {
+          'build/bundle.js': 'client/main.js'
+        },
+        options: {
+          transform: ['reactify']
+        }
+      }
+    },
     uglify: {
       views: {
         src: './build/bundle.js',
-        dest: './build/production.min.js'
+        dest: './build/bundle.min.js'
       },
     },
 
@@ -19,20 +28,16 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-babel');
-
+  grunt.loadNpmTasks('grunt-browserify');
 
 
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('default', ['uglify', 'cssmin'
+  grunt.registerTask('default', ['browserify', 'uglify', 'cssmin'
   ]);
 
-  grunt.registerTask('build', ['uglify', 'cssmin'
-  ]);
 
 };
