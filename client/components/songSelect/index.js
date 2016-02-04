@@ -168,7 +168,7 @@ SongSelect = React.createClass({
             <Diffs ref="diff" diffs={this.state.diffs}/>
             <br />
             <Scroll ref="scroll" />
-          <audio src={'./songs/' + this.state.selectedSong.id + '/'+  this.state.selectedSong.id + '.ogg'} autoPlay></audio>
+          <audio src={'./songs/' + this.state.selectedSong.id + '/'+  this.state.selectedSong.id + '.ogg'} autoPlay loop></audio>
           <div id="playsong" onClick={this.play}>
           <h3>Play</h3>
           </div>
