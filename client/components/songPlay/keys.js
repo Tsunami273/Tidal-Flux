@@ -7,7 +7,7 @@ var makeKeyBinds = function(scope, key, i){
             var currTime = Date.now() - start - this.state.avgOffset;
             if(this.state.notes[i][0] > currTime - 150 && this.state.notes[i][0] < currTime + 150){
               var notes = this.state.notes.slice();
-              var hits = [...this.state.hits];
+              var hits = this.state.hits.slice();
               hits[i].push(currTime);
               var batting = Math.abs(this.state.notes[i][0] - currTime);
               var scoreAdd, healthAdd, judge;

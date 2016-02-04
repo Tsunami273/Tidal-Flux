@@ -170,7 +170,7 @@ Tutorial = React.createClass({
           <Notes songState={this} stagedNotes={this.state.notes} />
           </div>
           <div className="tutorial-keys">
-          {this.state.keys.map((e,i,c) => {
+          {this.state.keys.map(function(e,i,c){
             var triggered = classNames('tutorial-lane-key'+(i+1), {triggered: that.state['lane'+i]});
             return (<span className={triggered} key={i}>{e.toUpperCase()} </span>)
           })}

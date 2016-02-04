@@ -9,8 +9,9 @@ var Scroll = React.createClass({
     },
     componentDidMount: function(){
       var combos = [];
-      this.state.scrolls.forEach((e,i,c) => {
-        combos.push( navKeys(this, e.toString(), this.selectScroll.bind(this, e)) );
+      var that = this;
+      this.state.scrolls.forEach(function(e,i,c){
+        combos.push( navKeys(that, e.toString(), that.selectScroll.bind(that, e)) );
       });
       listener.register_many(combos);
     },
