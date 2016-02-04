@@ -1,5 +1,6 @@
 var createScoresArray = require('./createScoresArray.js');
-var ByDifficulty = require('./ByDifficulty.js')
+var ByDifficulty = require('./ByDifficulty.js');
+var navKeys = require('../navKeys.js');
 
 Leader = React.createClass({
 	getInitialState: function(){
@@ -8,6 +9,10 @@ Leader = React.createClass({
 		}
 	},
 	componentDidMount: function(){
+		var combos = [];
+    combos.push(navKeys(this, 'esc', this.back));
+    combos.push(navKeys(this, 'backspace', this.back));
+    listener.register_many(combos);
 		$.ajax({
 			url: '/api/scores/',
 			dataType: 'json',
@@ -22,6 +27,9 @@ Leader = React.createClass({
 			}.bind(this)
 		})
 	},
+	componentWillUnmount: function(){
+      listener.reset();
+  },
 	goToMainMenu: function(){
 	  store.dispatch(navigateToPage('MAIN'));
 	},

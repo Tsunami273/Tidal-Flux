@@ -1,4 +1,3 @@
-// putting these on global scope so components in other files can use them.
 React = require('react');
 ReactDOM = require('react-dom');
 Redux = require('redux');
@@ -26,7 +25,6 @@ var domContainerNode = document.getElementById('content');
 // tell when components should render.
 var render = function(){
   // this function should handle rendering of seperate pages e.g if state.page is 'MAIN' render the main menu.
-  console.log(store.getState());
   switch(store.getState().page){
     case 'MAIN':
       ReactDOM.unmountComponentAtNode(domContainerNode)
