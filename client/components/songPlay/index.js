@@ -49,7 +49,7 @@ SongPlay = React.createClass({
         clearInterval(e);  
       });
       listener.reset();
-      var score = this.state.score
+      var score = Math.round(this.state.score);
       var judges = this.state.judgements
       var hits = this.state.hits
       store.dispatch( setScore(score, judges, hits) );
@@ -74,10 +74,10 @@ SongPlay = React.createClass({
       }
       combos.push(navKeys(this, 'esc', this.back));
       combos.push(navKeys(this, 'backspace', this.back));
-      var noteScoreValue = Math.round(1000000 / totalNotes);
+      var noteScoreValue = 1000000 / totalNotes;
       var noteScoreValues = {perfect: noteScoreValue, 
-        good: Math.round(noteScoreValue * .6),
-        decent: Math.round(noteScoreValue * .2)};
+        good: noteScoreValue * .8,
+        decent: noteScoreValue * .5};
       listener.register_many(combos);
       offsetArr = [];
       intervalID = [];
@@ -172,12 +172,13 @@ SongPlay = React.createClass({
     render: function() {
         var audioSource = store.getState().selectedSong;
         var noFail = this.state.noFail ? 'true' : 'false';
+        var score = Math.round(this.state.score);
         return (
         <div className="song-play-contain">
           <div className="health-bar-contain"><Health health={this.state.judgements.health}/>
           <div className="progress-bar-contain"><progress max="100" value="0" ref="progressBar" id="progressBar"></progress> &nbsp; <br /> <div className='progress-bar-contain'>Progress</div></div>
           </div>
-          <div className="play-score">Score: {this.state.score}</div>
+          <div className="play-score">Score: {score}</div>
           <div onClick={this.back}>Back</div>
           <audio src={'./songs/' + audioSource.id + '/' + audioSource.id + '.ogg'} 
           onCanPlay={this.loadedSong} 
