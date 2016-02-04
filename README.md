@@ -37,7 +37,7 @@ After installing the game;
 
 ## License
 
-###ISC
+ISC
 
 Copyright (c) 2016, Tidal-Flux
 
