@@ -51,7 +51,7 @@ MainMenu = React.createClass({
           </div>
 
           <div id="leader" className="clicky" onClick={this.goToLeaderBoard}>
-            <h3>Leader Board</h3>
+            <h3>Leaderboard</h3>
           </div>
 
           <div id="credits" className="clicky" onClick={this.goToCredits}>

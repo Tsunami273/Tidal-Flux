@@ -1487,6 +1487,13 @@ progress::-webkit-progress-bar {
   text-shadow: 2px 2px 8px #404040;
 }
 
+#song-drop-down{
+  text-shadow: 2px 2px 8px #404040;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+}
+
 #back h3 {
   padding-top: 3px;
   font-weight: 1px;
