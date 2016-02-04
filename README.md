@@ -7,12 +7,8 @@ Browser Based Rhythm Game
 1. `$ git clone https://github.com/Tsunami273/Tidal-Flux.git`
 2. `$ cd Tidal-Flux`
 3. `$ npm install`
-4. Provide MongoDB information in server/cred.js
+4. - Provide Mongo Database information in `server/cred.js`
 5. `$ npm start`
-
-## Usage
-
-TODO: Write usage instructions
 
 ## Contributing
 After installing the game;
@@ -37,10 +33,6 @@ After installing the game;
 * Node
 * MongoDB
 * Express
-
-## Credits
-
-TODO: add credits
 
 ## License
 
