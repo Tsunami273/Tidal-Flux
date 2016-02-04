@@ -7,7 +7,8 @@ Browser Based Rhythm Game
 1. `$ git clone https://github.com/Tsunami273/Tidal-Flux.git`
 2. `$ cd Tidal-Flux`
 3. `$ npm install`
-4. `$ npm start`
+4. Provide MongoDB information in server/cred.js
+5. `$ npm start`
 
 ## Usage
 
@@ -21,7 +22,6 @@ After installing the game;
 2. Create your feature branch: `git checkout -b my-new-feature`
   1. `$ npm install`
   2. `$ npm run watch`
-  3. `$ npm run watch`
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
@@ -33,7 +33,7 @@ After installing the game;
 * React
 * D3
 
-###Front end
+###Back end
 * Node
 * MongoDB
 * Express
