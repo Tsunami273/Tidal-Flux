@@ -30,7 +30,7 @@ Lane = React.createClass({
       notes
         .enter()
         .append('rect')
-        .attr('class', 'note')
+        .attr('class', 'note'+this.props.laneNum)
         .attr('x', 0)
         .attr('y', 0)
         .transition()
