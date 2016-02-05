@@ -24,7 +24,11 @@ ScoreScreen = React.createClass({
     },
 
     componentDidMount: function(){
-      listener.register_combo(navKeys(this, 'enter', this.play));
+      var combos = [
+      navKeys(this, 'enter', this.play),
+      navKeys(this, 'escape', this.play),
+      navKeys(this, 'backspace', this.play)];
+      listener.register_many(combos);
       //Check first if user is logged in
       if (this.state.username) {
         $.ajax({
