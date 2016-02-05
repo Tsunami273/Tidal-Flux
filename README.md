@@ -1,4 +1,4 @@
-# Tidal-FLUX
+# Tidal-Flux
 
 Browser Based Rhythm Game  
 
@@ -19,8 +19,8 @@ After installing the game;
   1. `$ npm install`
   2. `$ npm run watch`
 3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
+4. Push to the branch: `git push my-new-feature`
+5. Submit a pull request `with the information a short message of what you added/removed or modified`
 
 
 
