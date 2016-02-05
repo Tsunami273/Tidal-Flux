@@ -12,9 +12,10 @@ var Diffs = React.createClass({
     },
     componentDidMount: function(){
       var combos = [];
-      this.state.diffs.forEach((e,i,c) => {
+      var that = this;
+      this.state.diffs.forEach(function(e,i,c){
         var key = i > 0 ? i > 1 ? 'e' : 'w' : 'q';
-        combos.push( navKeys(this, key, this.selectDiff.bind(this, e)) );
+        combos.push( navKeys(that, key, that.selectDiff.bind(that, e)) );
       })
       listener.register_many(combos);
     },

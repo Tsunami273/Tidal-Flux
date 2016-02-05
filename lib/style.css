@@ -1134,11 +1134,54 @@ display: inline;
   background: linear-gradient(to top, #298FA3, #262626, #262626);
 }
 
-.note {
+.note0 {
     fill:#ECEEF1;
     width: 50px;
     height: 10px;
+    stroke:#298FA3;
+    stroke-width:3px;
 }
+
+.note1 {
+    fill:#ECEEF1;
+    width: 50px;
+    height: 10px;
+    stroke:#298FA3;
+    stroke-width:3px;
+}
+
+.note2 {
+    fill:#ECEEF1;
+    width: 50px;
+    height: 10px;
+    stroke:#298FA3;
+    stroke-width:3px;
+}
+
+.note3 {
+    fill:#ECEEF1;
+    width: 50px;
+    height: 10px;
+    stroke:#EF307E;
+    stroke-width:3px;
+}
+
+.note4 {
+    fill:#ECEEF1;
+    width: 50px;
+    height: 10px;
+    stroke:#EF307E;
+    stroke-width:3px;
+}
+
+.note5 {
+    fill:#ECEEF1;
+    width: 50px;
+    height: 10px;
+    stroke:#EF307E;
+    stroke-width:3px;
+}
+
 .track-wrapper {
   position:relative;
 }

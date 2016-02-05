@@ -115,7 +115,7 @@ SongSelect = React.createClass({
           type: 'GET',
           success: function(data) {
             var scores = this.state.scores;
-            data.forEach( (e) => { 
+            data.forEach( function(e){ 
               var slot;
               switch(e.difficulty){
                 case 'Easy':
