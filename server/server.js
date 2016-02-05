@@ -12,6 +12,7 @@ var bcrypt     = require('bcryptjs');
 var jwt        = require('jwt-simple');
 var nodemailer = require('nodemailer');
 var dog        = 'dog';
+var creds = require('./creds.js');
 
 
 app.use(logger('dev'));
@@ -22,8 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 var transport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: "tidalflux273@gmail.com",
-        pass: "tsunami273"
+        user: creds.email,
+        pass: creds.epass
     }
 });
 
