@@ -214,13 +214,6 @@ app.post('/api/player/offset', function(req, res) {
 
 });
 
-app.post('/api/player/profile', function (req, res) {
-	playerProfile(req, res);
-});
-
-app.post('/api/rankings', function (req, res) {
-	playerRankings(req, res);
-});
 
 //***********EMAIL***************/
 app.get('/api/player/password/reset', function (req, res){
