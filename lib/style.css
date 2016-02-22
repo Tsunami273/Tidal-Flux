@@ -667,6 +667,7 @@ display: inline;
   height: 125px;
   position: relative;
   -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
 }
 
 #carousel {
@@ -675,12 +676,15 @@ display: inline;
   position: absolute;
   -webkit-transform-style: preserve-3d;
   -webkit-transition: transform 1s;
+  -moz-transform-style: preserve-3d;
+  -moz-transition: transform 1s;
 }
 
 .songlistitem1 {
   padding: 1px;
   display: block;
   -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
@@ -693,6 +697,7 @@ display: inline;
   opacity: 0.85;
   border-radius: 2px;
   -webkit-transform: rotateY(0deg) translateZ(307px);
+  -moz-transform: rotateY(0deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -701,6 +706,7 @@ display: inline;
   padding: 1px;
   display: block;
   -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
@@ -713,6 +719,7 @@ display: inline;
   opacity: 0.85;
   border-radius: 2px;
   -webkit-transform: rotateY(60deg) translateZ(307px);
+  -moz-transform: rotateY(60deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -721,6 +728,7 @@ display: inline;
   padding: 1px;
   display: block;
   -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
@@ -733,6 +741,7 @@ display: inline;
   opacity: 0.85;
   border-radius: 2px;
   -webkit-transform: rotateY(120deg) translateZ(307px);
+  -moz-transform: rotateY(120deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -741,6 +750,7 @@ display: inline;
   padding: 1px;
   display: block;
   -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
@@ -753,6 +763,7 @@ display: inline;
   opacity: 0.85;
   border-radius: 2px;
   -webkit-transform: rotateY(180deg) translateZ(307px);
+  -moz-transform: rotateY(180deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -761,6 +772,7 @@ display: inline;
   padding: 1px;
   display: block;
   -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
@@ -773,6 +785,7 @@ display: inline;
   opacity: 0.85;
   border-radius: 2px;
   -webkit-transform: rotateY(240deg) translateZ(307px);
+  -moz-transform: rotateY(240deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
@@ -781,6 +794,7 @@ display: inline;
   padding: 1px;
   display: block;
   -webkit-font-smoothing: antialiased !important;
+  -moz-font-smoothing: antialiased !important;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   position: absolute;
   background: #000;
@@ -793,6 +807,7 @@ display: inline;
   opacity: 0.85;
   border-radius: 2px;
   -webkit-transform: rotateY(300deg) translateZ(307px);
+  -moz-transform: rotateY(300deg) translateZ(307px);
   background: #298FA3;
   padding: 2px;
 }
