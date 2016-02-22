@@ -1,5 +1,5 @@
-var user = 'INSERT DATABASE USERNAME HERE'
-var pass = 'INSERT DATABASE PASSWORD HERE'
+var user = 'kaptsundog'
+var pass = 'kaptsundog'
 var email = 'INSERT EMAIL HERE'
 var epass = 'INSERT EMAIL PASSWORD HERE'
 
