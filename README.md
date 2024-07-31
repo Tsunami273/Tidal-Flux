@@ -1,7 +1,7 @@
 # Tidal-Flux
 
 Browser Based Rhythm Game  
-###[Play now!](https://tidal-flux.herokuapp.com)
+###[Play now!](https://tidal-flux.onrender.com/)
 
 ## Installation
 
