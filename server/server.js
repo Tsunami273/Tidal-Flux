@@ -12,7 +12,7 @@ var bcrypt     = require('bcryptjs');
 var jwt        = require('jwt-simple');
 var nodemailer = require('nodemailer');
 var dog        = 'dog';
-var creds = require('./creds.js');
+var creds      = require('./creds.js');
 
 
 app.use(logger('dev'));

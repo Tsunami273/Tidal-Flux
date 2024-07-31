@@ -1,7 +1,7 @@
 'use strict';
 var creds = require('./creds.js');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://'+creds.user+':'+creds.pass+'@ds047355.mongolab.com:47355/tidal', function(err, result) {
+mongoose.connect(creds.mdburi, function(err, result) {
     if (err) throw err;
     else{
       console.log('Successfully connected to MongoDB');
@@ -16,8 +16,8 @@ var PlayerSchema = new Schema({
 	username   : { type: String, required: true, unique: true },
 	email      : { type: String, required: true, unique: true },
 	password   : { type: String, required: true },
-  keybinds   : [],
-  offset     : Number
+	keybinds   : [],
+ 	offset     : Number
 })
 
 var ScoresSchema = new Schema({
@@ -25,7 +25,7 @@ var ScoresSchema = new Schema({
 	songId     : Number,
 	points     : Number,
 	difficulty : String,
-  hits       : []
+	hits       : []
 })
 
 module.exports.Player = mongoose.model('Player', PlayerSchema);
