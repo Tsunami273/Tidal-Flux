@@ -6,7 +6,7 @@ Songs = React.createClass({
     render: function() {
       var that = this;
         return (
-          <div>
+          <div className="carousel-body">
           {this.props.songList.map(function(e, i, c){
             var selected = classNames('songlistitem'+e.id.toString(), {'selectedsong': e.id === that.state.currSong.id});
             return (<span className={selected} key={i} data={e.id}>

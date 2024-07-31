@@ -680,6 +680,13 @@ display: inline;
   -moz-transition: transform 1s;
 }
 
+.carousel-body {
+  height: 100%;
+  width: 100%;
+  /*position: absolute;*/
+  -webkit-transform-style: preserve-3d;
+}
+
 .songlistitem1 {
   padding: 1px;
   display: block;
