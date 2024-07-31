@@ -1,7 +1,7 @@
 # Tidal-Flux
 
 Browser Based Rhythm Game  
-###[Play now!](https://tidal-flux.onrender.com/)
+### [Play now!](https://tidal-flux.onrender.com/)
 
 ## Installation
 
@@ -27,12 +27,12 @@ After installing the game;
 
 
 ## Built With
-###Front end
+### Front end
 * React
 * Redux
 * D3
 
-###Back end
+### Back end
 * Node
 * MongoDB
 * Express
