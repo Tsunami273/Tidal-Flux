@@ -6,6 +6,7 @@ var Scroll = require('./Scroll.js');
 var User = require('../mainMenu/User.js');
 var navKeys = require('../navKeys.js');
 songList = require('./songList.js');
+var Volume = require('../volume.js');
 currdeg = 0;
 
 SongSelect = React.createClass({
@@ -136,6 +137,8 @@ SongSelect = React.createClass({
           }.bind(this)
         });
       }
+      let audio = $('audio')[0];
+      if (audio) audio.volume = store.getState().volume / 100
     },
     componentWillUnmount: function(event){
       listener.reset();
@@ -179,6 +182,7 @@ SongSelect = React.createClass({
           <br />
           <br />
           <br />
+          <Volume />
         </div>
         );
     }

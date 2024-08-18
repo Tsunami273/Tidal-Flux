@@ -21,7 +21,8 @@ const main = function(state, action){
     scrollSpeed: 2,
     durations: [4000,3000,2000,1500,1100,750],
     globalOffset: -30,
-    noFail: false
+    noFail: false,
+    volume: 75,
   }; 
   switch(action.type){
     case 'NAVIGATE':
@@ -58,6 +59,8 @@ const main = function(state, action){
       return Object.assign({}, state, {keyBinds: action.keybinds});
     case 'SET_NO_FAIL':
       return Object.assign({}, state, {noFail: action.noFail});
+    case 'SET_VOLUME':
+      return Object.assign({}, state, {volume: action.volume});
     default:
       return state;
   }

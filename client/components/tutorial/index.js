@@ -5,6 +5,7 @@ var findNoteTimes = require('../songPlay/functionDump.js').findNoteTimes;
 var makeKeyBinds = require('../songPlay/keys.js');
 var navKeys = require('../navKeys.js');
 var Judgement = require('../songPlay/Judgement.js');
+var Volume = require('../volume.js');
 offsetArr = [];
 intervalID = [];
 
@@ -175,6 +176,7 @@ Tutorial = React.createClass({
             return (<span className={triggered} key={i}>{e.toUpperCase()} </span>)
           })}
           </div>
+          <Volume />
         </div>
         );
     }

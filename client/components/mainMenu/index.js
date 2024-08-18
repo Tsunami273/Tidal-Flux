@@ -1,6 +1,7 @@
 // import child components here.
 var NavButton = require('../navButton.js');
 var User = require('./User.js');
+var Volume = require('../volume.js');
 
 MainMenu = React.createClass({
     getInitialState: function(){
@@ -59,6 +60,7 @@ MainMenu = React.createClass({
           </div>
 
         </div>
+        <Volume />
         </div>
         );
     }

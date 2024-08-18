@@ -939,6 +939,13 @@ display: inline;
   margin-top: 10px;
 }
 
+#volume-slider {
+  margin: 20px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
 /*===============Login=================*/
 #loginA {
   width: 727px;

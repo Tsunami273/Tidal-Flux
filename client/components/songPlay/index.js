@@ -83,6 +83,8 @@ SongPlay = React.createClass({
       intervalID = [];
       this.setState({noteTimes: noteTimes,
         noteScoreValues: noteScoreValues});
+      let audio = $('audio')[0];
+      if (audio) audio.volume = store.getState().volume / 100;
     },
     componentWillUnmount: function(event){
       listener.reset();

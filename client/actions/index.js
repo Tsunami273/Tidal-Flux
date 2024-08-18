@@ -68,4 +68,11 @@ setKeyBinds = function(keybinds){
   }
 }
 
+setVolume = function(volume){
+  return {
+    type: 'SET_VOLUME',
+    volume: volume
+  }
+}
+
 
